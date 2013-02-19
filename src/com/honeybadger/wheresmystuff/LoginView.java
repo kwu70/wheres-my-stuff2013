@@ -95,6 +95,7 @@ public class LoginView extends Activity{
 		} else {
 			if(lg.validate(email, password)){
 				startActivity(i);
+				finish();
 			}
 			else{
 				mEmailView.setError(getString(R.string.error_incorrect_password));
