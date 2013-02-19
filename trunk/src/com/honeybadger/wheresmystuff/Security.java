@@ -7,7 +7,7 @@ public class Security {
 	protected ArrayList<String> passwords = new ArrayList<String>();
 	public Security(){
 		emails.add("foo@example.com");
-		passwords.add("Hello");
+		passwords.add("hello");
 	}
 	
 	
