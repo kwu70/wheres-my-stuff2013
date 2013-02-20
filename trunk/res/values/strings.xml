@@ -2,5 +2,10 @@
 
     <string name="app_name">Where\'s My Stuff</string>
     <string name="member_activity">Main Page</string>
+    <string name="account_preferences">Account Preferences</string>
+    <string name="search_for_items">Search for Items</string>
+    <string name="found_items">Found Items</string>
+    <string name="lost_items">Lost Items</string>
+    <string name="add_item">Add Item</string>
 
 </resources>
