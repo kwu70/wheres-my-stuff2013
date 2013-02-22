@@ -1,4 +1,4 @@
-package com.honeybadger.wheresmystuff;
+package com.honeybadger.wheresmystuff.support;
 
 import java.util.ArrayList;
 
