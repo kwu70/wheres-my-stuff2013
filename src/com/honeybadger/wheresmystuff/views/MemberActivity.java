@@ -1,9 +1,9 @@
 package com.honeybadger.wheresmystuff.views;
 
 import com.honeybadger.wheresmystuff.R;
-import com.honeybadger.wheresmystuff.R.layout;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 /**
@@ -20,5 +20,10 @@ public class MemberActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.member_view);
+	}
+	
+	public void onBackPressed() {
+	    Intent i = new Intent(this, LoginView.class);
+	    startActivity(i);
 	}
 }

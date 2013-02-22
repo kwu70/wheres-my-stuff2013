@@ -1,9 +1,6 @@
 package com.honeybadger.wheresmystuff.views;
 
 import com.honeybadger.wheresmystuff.R;
-import com.honeybadger.wheresmystuff.R.id;
-import com.honeybadger.wheresmystuff.R.layout;
-import com.honeybadger.wheresmystuff.R.string;
 import com.honeybadger.wheresmystuff.support.Login;
 
 import android.app.Activity;
@@ -29,10 +26,10 @@ public class LoginView extends Activity{
 	
 	//Intent to switch to next activity
 	private Intent i;
+	private Intent i2;
 	
-	//Login instance
 	private Login lg;
-	
+
 	/**
 	 * Called when the activity is first created.
 	 * Creates Intent object which moves to MemberActivity.class and creates 
@@ -45,6 +42,8 @@ public class LoginView extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);		
 		i = new Intent(this, MemberActivity.class);
+		i2 = new Intent(this, RegisterActivity.class);
+		
 		lg = new Login();
 		
 		email = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -58,6 +57,16 @@ public class LoginView extends Activity{
 					@Override
 					public void onClick(View view) {
 						attemptLogin();
+					}
+				});
+		
+		findViewById(R.id.btnCreateAccount).setOnClickListener(
+				new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						startActivity(i2);
+						finish();
 					}
 				});
 	}
@@ -101,13 +110,14 @@ public class LoginView extends Activity{
 			// There was an error; don't attempt login and focus the first
 			// form field with an error.
 			focusView.requestFocus();
-		} else {
-			if(lg.validate(email, password)){
+		}
+		else {
+			if(Login.validate(email, password)){
 				startActivity(i);
 				finish();
 			}
 			else{
-				mEmailView.setError(getString(R.string.error_incorrect_password));
+				mPasswordView.setError(getString(R.string.error_incorrect_password_email));
 			}
 		}
 	}
