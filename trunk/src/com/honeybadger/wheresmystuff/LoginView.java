@@ -7,6 +7,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * The LoginView class contains the UI screen users are shown before they
+ * can access their MemberActivity screen.
+ */
 public class LoginView extends Activity{
 	String email;
 	String password;
@@ -23,6 +27,14 @@ public class LoginView extends Activity{
 	//Login instance
 	private Login lg;
 	
+	/**
+	 * Called when the activity is first created.
+	 * Creates Intent object which moves to MemberActivity.class and creates 
+	 * a new Login instance.  Sets up Login UI and attempts to login after 
+	 * sign-in button is pressed.
+	 * 
+	 * @param state of activity
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);		
@@ -43,6 +55,13 @@ public class LoginView extends Activity{
 					}
 				});
 	}
+	
+	/**
+	 * Each of the credential fields is checked for appropriate length and
+	 * type of characters showing error messages for invalid input.
+	 * If the email and password fields are valid, member is logged in and 
+	 * taken to the MemberActivity screen.
+	 */
 	private void attemptLogin() {
 		email = mEmailView.getText().toString();
 		password = mPasswordView.getText().toString();
