@@ -1,4 +1,10 @@
-package com.honeybadger.wheresmystuff;
+package com.honeybadger.wheresmystuff.views;
+
+import com.honeybadger.wheresmystuff.R;
+import com.honeybadger.wheresmystuff.R.id;
+import com.honeybadger.wheresmystuff.R.layout;
+import com.honeybadger.wheresmystuff.R.string;
+import com.honeybadger.wheresmystuff.support.Login;
 
 import android.app.Activity;
 import android.content.Intent;

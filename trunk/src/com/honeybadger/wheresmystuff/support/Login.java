@@ -1,4 +1,5 @@
-package com.honeybadger.wheresmystuff;
+package com.honeybadger.wheresmystuff.support;
+
 
 /**
  * The Login class is responsible for verifying login credentials, logging

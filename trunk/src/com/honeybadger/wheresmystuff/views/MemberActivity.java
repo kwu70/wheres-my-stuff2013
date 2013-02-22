@@ -1,4 +1,7 @@
-package com.honeybadger.wheresmystuff;
+package com.honeybadger.wheresmystuff.views;
+
+import com.honeybadger.wheresmystuff.R;
+import com.honeybadger.wheresmystuff.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
