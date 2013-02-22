@@ -7,13 +7,15 @@ package com.honeybadger.wheresmystuff.support;
  * creating an account if the email does not yet exist.
  */
 public class Login {
-	private Security sc;
 	
+	/*
+	 * Used to set up initial usernames and passcodes
+	 */
+	private static int timesAccessed;
 	/**
 	 * Login constructor that creates a new Security object.
 	 */
 	public Login(){
-		sc = new Security();
 	}
 	
 	/**
@@ -21,7 +23,7 @@ public class Login {
 	 *
 	 * @return 		true if user is locked out, false otherwise
 	 */
-	public boolean lockOut(){
+	public static boolean lockOut(){
 		return false;
 	}
 	
@@ -34,17 +36,22 @@ public class Login {
 	 * @param psswd User's inputted password
 	 * @return 		whether combination of login credentials exists or not 
 	 */
-	public boolean validate(String email, String psswd){
+	public static boolean validate(String email, String psswd){
+		if(timesAccessed == 0){
+			Security.emails.add("foo@example.com");
+			Security.passwords.add("hello");
+			timesAccessed++;
+		}
 		int emailIndex = 0;
-		for(int i =0; i < sc.emails.size(); i++){
-			if(email.equals(sc.emails.get(i))){
+		for(int i =0; i < Security.emails.size(); i++){
+			if(email.equals(Security.emails.get(i))){
 				emailIndex = i;
 			}
 			else{
-				return createAccount(email, psswd);
+				return false;
 			}
 		}
-		if(psswd.equals(sc.passwords.get(emailIndex))){
+		if(psswd.equals(Security.passwords.get(emailIndex))){
 			return true;
 		}
 		return false;
@@ -57,9 +64,9 @@ public class Login {
 	 * @param psswd User's inputted password
 	 * @return 		true boolean value
 	 */
-	private boolean createAccount(String email, String psswd) {
-		sc.emails.add(email);
-		sc.passwords.add(psswd);
+	public static boolean createAccount(String email, String psswd) {
+		Security.emails.add(email);
+		Security.passwords.add(psswd);
 		return true;
 	}
 }

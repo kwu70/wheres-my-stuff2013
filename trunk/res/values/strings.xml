@@ -7,5 +7,14 @@
     <string name="found_items">Found Items</string>
     <string name="lost_items">Lost Items</string>
     <string name="add_item">Add Item</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="register">Register</string>
+    <string name="create_account">Create Account</string>
+    <string name="found_items_list">Found Items List</string>
+    <string name="lost_items_list">Lost Items List</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
 
 </resources>
