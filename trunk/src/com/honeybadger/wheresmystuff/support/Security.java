@@ -20,6 +20,4 @@ public class Security {
 		passwords.add("hello");
 		members.add(new Member("example@example.com", "example"));
 	}
-	
-	
 }

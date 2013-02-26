@@ -7,14 +7,6 @@
     android:gravity="left"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btnAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/account_preferences" />
-
     <TextView
         android:id="@+id/txtFound"
         android:layout_width="wrap_content"
@@ -70,5 +62,14 @@
         android:layout_toRightOf="@+id/listFound" >
 
     </ListView>
+
+    <Button
+        android:id="@+id/btnAccount"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/account_preferences"
+        android:textSize="@dimen/btnAccount" />
 
 </RelativeLayout>

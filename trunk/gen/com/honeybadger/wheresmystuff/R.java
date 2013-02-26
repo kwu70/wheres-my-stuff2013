@@ -12,17 +12,18 @@ public final class R {
     }
     public static final class dimen {
         public static final int ButtonDP=0x7f040000;
+        public static final int btnAccount=0x7f040001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080006;
-        public static final int btnAccount=0x7f080007;
-        public static final int btnAddItem=0x7f08000b;
+        public static final int btnAccount=0x7f08000b;
+        public static final int btnAddItem=0x7f08000a;
         public static final int btnCreateAccount=0x7f080005;
         public static final int btnRegister=0x7f080014;
-        public static final int btnSearch=0x7f080009;
+        public static final int btnSearch=0x7f080008;
         public static final int email=0x7f080001;
         public static final int lblConfirm=0x7f080012;
         public static final int lblEmail=0x7f08000e;
@@ -36,8 +37,8 @@ public final class R {
         public static final int sign_in_button=0x7f080004;
         public static final int txtConfirm=0x7f080013;
         public static final int txtEmail=0x7f08000f;
-        public static final int txtFound=0x7f080008;
-        public static final int txtLost=0x7f08000a;
+        public static final int txtFound=0x7f080007;
+        public static final int txtLost=0x7f080009;
         public static final int txtPassword=0x7f080011;
     }
     public static final class layout {
