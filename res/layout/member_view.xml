@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:gravity="left"
     android:orientation="vertical" >
 
     <Button
@@ -49,20 +50,25 @@
         android:layout_centerHorizontal="true"
         android:text="@string/search_for_items" />
 
-    <TextView
-        android:id="@+id/lstFound"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/listFound"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/txtFound"
-        android:text="@string/found_items_list" />
+        android:layout_above="@+id/btnAddItem"
+        android:layout_alignRight="@+id/btnAccount"
+        android:layout_below="@+id/txtFound" >
 
-    <TextView
-        android:id="@+id/lstLost"
-        android:layout_width="wrap_content"
+    </ListView>
+
+    <ListView
+        android:id="@+id/listLost"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/listFound"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/txtLost"
-        android:text="@string/lost_items_list" />
+        android:layout_below="@+id/txtFound"
+        android:layout_toRightOf="@+id/listFound" >
+
+    </ListView>
 
 </RelativeLayout>

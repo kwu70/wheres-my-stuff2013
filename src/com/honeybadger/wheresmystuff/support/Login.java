@@ -24,35 +24,6 @@ public class Login {
 		return false;
 	}
 	
-
-	/**
-	 * Checks if email string is found in the Security object's email list and
-	 * if not, a new account is created.
-	 * If password is not found in password list, false is returned.
-	 *
-	 * @param email User's inputted email address
-	 * @param psswd User's inputted password
-	 * @return 		whether combination of login credentials exists or not 
-	 */
-/*  Old code using email and password lists	
- 
-	public boolean validate(String email, String psswd){
-		int emailIndex = 0;
-		for(int i =0; i < sc.members.size(); i++){
-			if(email.equals(sc.members.get(i).getEmail())){
-				emailIndex = i;
-			}
-			else{
-				return createAccount(email, psswd);
-			}
-		}
-		if(psswd.equals(sc.members.get(emailIndex).getPassword())){
-			return true;
-		}
-		return false;
-	}
-	*/
-	
 	/**
 	 * Checks if member is part of the system using the email inputted by the user.
 	 * If email and password for the email are correct then it will return true
