@@ -41,8 +41,8 @@ public class Security {
 	 * @return Member with the email. If the email is not found then return default Member.
 	 */
 	public static Member getMember(String email){
-		for(int i = 0; i < Security.members.size(); i++){
-			if(email.equals(Security.members.get(i).getEmail())){
+		for(int i = 0; i < members.size(); i++){
+			if(email.equals(members.get(i).getEmail())){
 				return members.get(i);
 			}
 		}
@@ -56,8 +56,8 @@ public class Security {
 	 * @return boolean based on whether the Member is in the list.
 	 */
 	public static boolean contains(String email){
-		for(int i = 0; i < Security.members.size(); i++){
-			if(email.equals(Security.members.get(i).getEmail())){
+		for(int i = 0; i < members.size(); i++){
+			if(email.equals(members.get(i).getEmail())){
 				return true;
 			}
 		}
@@ -84,8 +84,8 @@ public class Security {
 	 * @param password
 	 */
 	public static boolean removeMember(String email){
-		for(int i = 0; i < Security.members.size(); i++){
-			if(email.equals(Security.members.get(i).getEmail())){
+		for(int i = 0; i < members.size(); i++){
+			if(email.equals(members.get(i).getEmail())){
 				members.remove(i);
 				return true;
 			}
