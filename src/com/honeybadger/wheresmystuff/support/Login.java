@@ -1,21 +1,18 @@
 package com.honeybadger.wheresmystuff.support;
 
-
 /**
  * The Login class is responsible for verifying login credentials, logging
  * a user in if they exist, locking a user out if they are incorrect, and 
  * creating an account if the email does not yet exist.
  */
 public class Login {
+	private Security sc;
 	
-	/*
-	 * Used to set up initial usernames and passcodes
-	 */
-	private static int timesAccessed;
 	/**
 	 * Login constructor that creates a new Security object.
 	 */
 	public Login(){
+		sc = new Security();
 	}
 	
 	/**
@@ -23,10 +20,11 @@ public class Login {
 	 *
 	 * @return 		true if user is locked out, false otherwise
 	 */
-	public static boolean lockOut(){
+	public boolean lockOut(){
 		return false;
 	}
 	
+
 	/**
 	 * Checks if email string is found in the Security object's email list and
 	 * if not, a new account is created.
@@ -36,25 +34,45 @@ public class Login {
 	 * @param psswd User's inputted password
 	 * @return 		whether combination of login credentials exists or not 
 	 */
-	public static boolean validate(String email, String psswd){
-		if(timesAccessed == 0){
-			Security.emails.add("foo@example.com");
-			Security.passwords.add("hello");
-			timesAccessed++;
-		}
+/*  Old code using email and password lists	
+ 
+	public boolean validate(String email, String psswd){
 		int emailIndex = 0;
-		for(int i =0; i < Security.emails.size(); i++){
-			if(email.equals(Security.emails.get(i))){
+		for(int i =0; i < sc.members.size(); i++){
+			if(email.equals(sc.members.get(i).getEmail())){
 				emailIndex = i;
 			}
 			else{
-				return false;
+				return createAccount(email, psswd);
 			}
 		}
-		if(psswd.equals(Security.passwords.get(emailIndex))){
+		if(psswd.equals(sc.members.get(emailIndex).getPassword())){
 			return true;
 		}
 		return false;
+	}
+	*/
+	
+	/**
+	 * Checks if member is part of the system using the email inputted by the user.
+	 * If email and password for the email are correct then it will return true
+	 * Otherwise it returns false
+	 *
+	 * @param email User's inputted email address
+	 * @param psswd User's inputted password
+	 * @return 		whether combination of login credentials exists or not 
+	 */
+	public boolean validate(String email, String password){
+		int index = 0;
+		for(int i = 0; i < Security.members.size(); i++){
+			if(email.equals(Security.members.get(i).getEmail())){
+				index = i;
+			}
+		}
+		if(password.equals(Security.members.get(index).getPassword())){
+			return true;
+		}
+			return false;
 	}
 	
 	/**
@@ -64,9 +82,10 @@ public class Login {
 	 * @param psswd User's inputted password
 	 * @return 		true boolean value
 	 */
-	public static boolean createAccount(String email, String psswd) {
-		Security.emails.add(email);
-		Security.passwords.add(psswd);
+	public boolean createAccount(String email, String psswd) {
+		sc.emails.add(email);
+		sc.passwords.add(psswd);
+		Security.members.add(new Member(email, psswd));
 		return true;
 	}
 }
