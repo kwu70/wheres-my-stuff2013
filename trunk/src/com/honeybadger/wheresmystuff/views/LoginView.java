@@ -112,7 +112,7 @@ public class LoginView extends Activity{
 			focusView.requestFocus();
 		}
 		else {
-			if(Login.validate(email, password)){
+			if(lg.validate(email, password)){
 				startActivity(i);
 				finish();
 			}

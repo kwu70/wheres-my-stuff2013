@@ -1,7 +1,8 @@
 package com.honeybadger.wheresmystuff.views;
 
 import com.honeybadger.wheresmystuff.R;
-import com.honeybadger.wheresmystuff.support.Login;
+import com.honeybadger.wheresmystuff.support.*;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,7 +16,7 @@ public class RegisterActivity extends Activity{
 	private String email;
 	private String password;
 	private String confirmPassword;
-	
+		
 	private AlertDialog.Builder builder;
 	
 	private EditText eEmail;
@@ -23,17 +24,13 @@ public class RegisterActivity extends Activity{
 	private EditText eConfirmPassword;
 	
 	private Intent i;
-	
-	private Login lg;
-		
+			
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_view);
 		
 	    i = new Intent(this, LoginView.class);
-	    
-	    lg = new Login();
-	    
+	    	    
 	    builder = new AlertDialog.Builder(this);
 		builder.setMessage("Are you sure?").setPositiveButton("Yes", new DialogClickListener())
 	    .setNegativeButton("No", new DialogClickListener());
@@ -73,7 +70,7 @@ public class RegisterActivity extends Activity{
 	    public void onClick(DialogInterface dialog, int which) {
 	        switch (which){
 	        case DialogInterface.BUTTON_POSITIVE:
-	        	Login.createAccount(email, password);
+	        	Security.members.add(new Member(email, password)); //(register's new member)
 	        	startActivity(i);
 	        	finish();
 	        	break;
