@@ -11,7 +11,6 @@ public class Member{
 	private int failedAttempts;
 	private boolean lockout;
 	private ArrayList<Item> items;
-	private Item itemList;
 	
 	//Constructors
 	public Member(){
@@ -29,7 +28,6 @@ public class Member{
 		this.lockout = false;
 		this.failedAttempts = 0;
 		items = new ArrayList<Item>();
-		itemList = new Item();
 	}
 	
 	/**
@@ -122,22 +120,22 @@ public class Member{
 	/**
 	 * look for an item in the arraylist
 	 */
-	public void findItems(){
-		items.contains(itemList);
+	public void findItem(Item item){
+		items.contains(item);
 	}
 	
 	/**
 	 * add an item to the arraylist
 	 */
-	public void addItems(){
-		items.add(itemList);
+	public void addItem(Item item){
+		items.add(item);
 	}
 	
 	/**
 	 * remove an item from the arraylist
 	 */
-	public void removeItems(){
-		items.remove(itemList);
+	public void removeItem(Item item){
+		items.remove(item);
 	}
 	
 }
