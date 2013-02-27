@@ -7,6 +7,7 @@ package com.honeybadger.wheresmystuff.support;
 public class Item {
 	
 	private String name, description, type;
+	private static String[] category = new String[]{"Food", "Clothing", "Personal","Donation"};
 	private boolean status, resolved;
 	private Member owner;
 	
@@ -122,7 +123,17 @@ public class Item {
 	public void setType(String type){
 		this.type = type;
 	}
+	public String[] getListOfCategories(){
+		return type;
+	}
 	
+	public void setListOfCategories(String[] type){
+		this.type = type;
+	}
+	
+	public int sizeOfCategoryList(){
+		return size = type.length;
+	}
 	/**
 	 * TODO setter for coordinate location
 	 */
