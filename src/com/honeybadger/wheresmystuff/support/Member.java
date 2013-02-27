@@ -10,7 +10,7 @@ public class Member{
 	private String name, email, password;
 	private int failedAttempts;
 	private boolean lockout;
-	private ArrayList<Object> items;
+	private ArrayList<Item> items;
 	private Item itemList;
 	
 	//Constructors
@@ -28,7 +28,7 @@ public class Member{
 		this.name = name;
 		this.lockout = false;
 		this.failedAttempts = 0;
-		items = new ArrayList<Object>();
+		items = new ArrayList<Item>();
 		itemList = new Item();
 	}
 	
@@ -68,7 +68,7 @@ public class Member{
 	 * Getter for items
 	 * @return items list of items
 	 */
-	public ArrayList<Object> getItems(){
+	public ArrayList<Item> getItems(){
 		return items;
 	}
 	
@@ -108,7 +108,7 @@ public class Member{
 	 * Setter for items
 	 * @param items add items to list
 	 */
-	public void setItems(ArrayList<Object> items){
+	public void setItems(ArrayList<Item> items){
 		this.items = items;
 	}
 	
