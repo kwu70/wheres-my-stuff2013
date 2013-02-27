@@ -1,4 +1,5 @@
 package com.honeybadger.wheresmystuff.support;
+import java.util.ArrayList;
 
 /**
  * Member class represents a member in the system.
@@ -9,6 +10,8 @@ public class Member{
 	private String name, email, password;
 	private int failedAttempts;
 	private boolean lockout;
+	private ArrayList<Object> items;
+	private Item itemList;
 	
 	//Constructors
 	public Member(){
@@ -25,6 +28,8 @@ public class Member{
 		this.name = name;
 		this.lockout = false;
 		this.failedAttempts = 0;
+		items = new ArrayList<Object>();
+		itemList = new Item();
 	}
 	
 	/**
@@ -60,6 +65,14 @@ public class Member{
 	}
 	
 	/**
+	 * Getter for items
+	 * @return items list of items
+	 */
+	public ArrayList<Object> getItems(){
+		return items;
+	}
+	
+	/**
 	 * Setter for Name
 	 * @param name String replaces old name
 	 */
@@ -92,10 +105,39 @@ public class Member{
 	}
 	
 	/**
+	 * Setter for items
+	 * @param items add items to list
+	 */
+	public void setItems(ArrayList<Object> items){
+		this.items = items;
+	}
+	
+	/**
 	 * increments failedAttempts (Login Attempts) by 1
 	 */
 	public void incFailedAttempts(){
 		this.failedAttempts++;
+	}
+	
+	/**
+	 * look for an item in the arraylist
+	 */
+	public void findItems(){
+		items.contains(itemList);
+	}
+	
+	/**
+	 * add an item to the arraylist
+	 */
+	public void addItems(){
+		items.add(itemList);
+	}
+	
+	/**
+	 * remove an item from the arraylist
+	 */
+	public void removeItems(){
+		items.remove(itemList);
 	}
 	
 }
