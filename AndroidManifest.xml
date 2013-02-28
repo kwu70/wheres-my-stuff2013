@@ -30,6 +30,10 @@
        	 	android:name="com.honeybadger.wheresmystuff.views.RegisterActivity"
         	android:label="@string/register">
         </activity>
+       	<activity
+       	 	android:name="com.honeybadger.wheresmystuff.views.AddItemActivity"
+        	android:label="@string/add_item_view">
+        </activity>
     </application>
 
 </manifest>

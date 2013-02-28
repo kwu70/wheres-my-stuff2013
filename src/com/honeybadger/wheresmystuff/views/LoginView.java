@@ -40,8 +40,9 @@ public class LoginView extends Activity{
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);		
-		i = new Intent(this, MemberActivity.class);
+		setContentView(R.layout.activity_login);
+		
+		i = new Intent(this, MemberActivity.class);		
 		i2 = new Intent(this, RegisterActivity.class);
 		
 		lg = new Login();
@@ -113,6 +114,7 @@ public class LoginView extends Activity{
 		}
 		else {
 			if(lg.validate(email, password)){
+				i.putExtra(email, 0);
 				startActivity(i);
 				finish();
 			}
