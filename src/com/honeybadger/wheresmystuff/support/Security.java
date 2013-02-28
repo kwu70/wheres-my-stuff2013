@@ -55,7 +55,7 @@ public class Security {
 	 * @param email Email of specific member
 	 * @return boolean based on whether the Member is in the list.
 	 */
-	public boolean contains(String email){
+	public static boolean contains(String email){
 		for(int i = 0; i < members.size(); i++){
 			if(email.equals(members.get(i).getEmail())){
 				return true;

@@ -36,10 +36,9 @@ public class Login {
 	 * @return boolean Whether combination of login credentials exists or not. 
 	 */
 	public boolean validate(String email, String password){	
-		if(Security.getMemberList().contains(email)){
+		if(Security.contains(email)){
 			Member temp = Security.getMember(email);
-			if(password.equals(temp.getPassword())
-						&& !lockOut(temp)){
+			if(password.equals(temp.getPassword()) && !lockOut(temp)){
 				temp.setFailedAttempts(0);
 				return true;
 			}
