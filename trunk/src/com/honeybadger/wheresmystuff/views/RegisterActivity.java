@@ -134,8 +134,8 @@ public class RegisterActivity extends Activity{
 	    public void onClick(DialogInterface dialog, int which) {
 	        switch (which){
 	        case DialogInterface.BUTTON_POSITIVE:
-	        	Security.addMember(email, password); //(register's new member)
 	        	startActivity(i);
+	        	Security.addMember(email, password); //(register's new member)
 	        	finish();
 	        	break;
 	        case DialogInterface.BUTTON_NEGATIVE:
