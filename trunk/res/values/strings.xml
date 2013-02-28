@@ -16,5 +16,15 @@
     <string name="register_email">Email</string>
     <string name="register_password">Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="add_item_view">Add Item</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_description">Description</string>
+    <string name="lost_item_rad">Lost Item</string>
+    <string name="found_item_rad">Found Item</string>
+    <string name="item_type_lbl">Type</string>
+    <string name="food_type">Food</string>
+    <string name="clothing_type">Clothing</string>
+    <string name="personal_type">Personal</string>
+    <string name="donation_type">Donation</string>
 
 </resources>

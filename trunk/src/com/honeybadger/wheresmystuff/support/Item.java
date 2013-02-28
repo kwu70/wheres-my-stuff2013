@@ -124,15 +124,11 @@ public class Item {
 		this.type = type;
 	}
 	public String[] getListOfCategories(){
-		return type;
-	}
-	
-	public void setListOfCategories(String[] type){
-		this.type = type;
+		return category;
 	}
 	
 	public int sizeOfCategoryList(){
-		return size = type.length;
+		return category.length;
 	}
 	/**
 	 * TODO setter for coordinate location
