@@ -114,7 +114,7 @@ public class LoginView extends Activity{
 		}
 		else {
 			if(lg.validate(email, password)){
-				i.putExtra(email, 0);
+				i.putExtra("userEmail", email);
 				startActivity(i);
 				finish();
 			}
