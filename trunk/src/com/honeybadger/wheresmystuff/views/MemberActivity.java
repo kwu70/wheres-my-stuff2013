@@ -2,6 +2,7 @@ package com.honeybadger.wheresmystuff.views;
 
 import com.honeybadger.wheresmystuff.R;
 import com.honeybadger.wheresmystuff.support.Member;
+import com.honeybadger.wheresmystuff.support.Security;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -29,9 +30,11 @@ public class MemberActivity extends Activity{
 		setContentView(R.layout.member_view);
 		
 		Intent intent = getIntent();
-		String userEmail = intent.getExtras().getString("userEmail");
+		userEmail = intent.getExtras().getString("userEmail");
+		currentMember = Security.getMember(userEmail);
 				
 		addItem = new Intent(this, AddItemActivity.class);
+		addItem.putExtra("userEmail", userEmail);
 		
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddItemClickListener());
 	}
