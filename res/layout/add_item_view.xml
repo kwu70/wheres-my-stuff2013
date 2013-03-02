@@ -1,119 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/item_name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="444dp" >
 
-    <EditText
-        android:id="@+id/editItemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/txtName"
-        android:ems="10"
-        android:inputType="text" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/txtDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editItemName"
-        android:text="@string/item_description"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/editDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/txtDescription"
-        android:ems="10"
-        android:inputType="textMultiLine" />
-
-    <RadioGroup
-        android:id="@+id/radGroupLostFound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editDescription" >
-
-        <RadioButton
-            android:id="@+id/radLost"
+        <TextView
+            android:id="@+id/txtType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/lost_item_rad" />
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/radGroupLostFound"
+            android:text="@string/item_type_lbl"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <RadioButton
-            android:id="@+id/radFound"
+        <RadioGroup
+            android:id="@+id/radGroupType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/found_item_rad" />
-    </RadioGroup>
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/txtType" >
 
-    <Button
-        android:id="@+id/btnAddItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/add_item" />
+            <RadioButton
+                android:id="@+id/radFoodType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/food_type" />
 
-    <RadioGroup
-        android:id="@+id/radGroupType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/txtType" >
+            <RadioButton
+                android:id="@+id/radClothingType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clothing_type" />
 
-        <RadioButton
-            android:id="@+id/radFoodType"
+            <RadioButton
+                android:id="@+id/radPersonalType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/personal_type" />
+
+            <RadioButton
+                android:id="@+id/radDonationType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/donation_type" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radGroupLostFound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/food_type" />
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/editDescription" >
 
-        <RadioButton
-            android:id="@+id/radClothingType"
+            <RadioButton
+                android:id="@+id/radLost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/lost_item_rad" />
+
+            <RadioButton
+                android:id="@+id/radFound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/found_item_rad" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/clothing_type" />
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/editItemName"
+            android:text="@string/item_description"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <RadioButton
-            android:id="@+id/radPersonalType"
+        <EditText
+            android:id="@+id/editDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/personal_type" />
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/txtDescription"
+            android:ems="10"
+            android:inputType="textMultiLine" />
 
-        <RadioButton
-            android:id="@+id/radDonationType"
+        <Button
+            android:id="@+id/btnAddItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/donation_type" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/add_lostfound_item" />
 
-    </RadioGroup>
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/item_name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/txtType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/radGroupLostFound"
-        android:text="@string/item_type_lbl"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText
+            android:id="@+id/editItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/txtName"
+            android:ems="10"
+            android:inputType="text" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/cancel" />
+
+    </RelativeLayout>
+
+</ScrollView>

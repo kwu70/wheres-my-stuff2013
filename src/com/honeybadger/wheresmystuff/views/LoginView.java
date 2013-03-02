@@ -2,6 +2,7 @@ package com.honeybadger.wheresmystuff.views;
 
 import com.honeybadger.wheresmystuff.R;
 import com.honeybadger.wheresmystuff.support.Login;
+import com.honeybadger.wheresmystuff.support.Security;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -113,14 +114,20 @@ public class LoginView extends Activity{
 			focusView.requestFocus();
 		}
 		else {
-			if(lg.validate(email, password)){
+			if(lg.validate(email, password) && !lg.lockOut(Security.getMember(email))){
 				i.putExtra("userEmail", email);
 				startActivity(i);
 				finish();
+			}
+			else if(lg.lockOut(Security.getMember(email))){
+				mEmailView.setError(getString(R.string.error_lock_out));
 			}
 			else{
 				mPasswordView.setError(getString(R.string.error_incorrect_password_email));
 			}
 		}
+	}
+	public void onBackPressed() {
+		finish();
 	}
 }
