@@ -17,7 +17,7 @@ import android.widget.EditText;
  */
 public class LoginView extends Activity{
 	String email;
-	String password;
+	String password; 
 	
 	// UI references.
 	private EditText mEmailView;
@@ -46,14 +46,18 @@ public class LoginView extends Activity{
 		i = new Intent(this, MemberActivity.class);		
 		i2 = new Intent(this, RegisterActivity.class);
 		
+		//login initialized so we can access methods and it sets up a user account since
+		//we do not have persistent data.
 		lg = new Login();
 		
 		email = getIntent().getStringExtra(EXTRA_EMAIL);
+		
 		mEmailView = (EditText) findViewById(R.id.email);
 		mEmailView.setText(email);
 		
 		mPasswordView = (EditText) findViewById(R.id.password);
 		
+		//if sign in button is clicked, then we attempt to login
 		findViewById(R.id.sign_in_button).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
@@ -62,6 +66,7 @@ public class LoginView extends Activity{
 					}
 				});
 		
+		//if create account is clicked, then we go to the register activity
 		findViewById(R.id.btnCreateAccount).setOnClickListener(
 				new View.OnClickListener() {
 					
@@ -80,9 +85,13 @@ public class LoginView extends Activity{
 	 * taken to the MemberActivity screen.
 	 */
 	private void attemptLogin() {
+		
+		//gets email and password from text boxes and puts them in variables.
 		email = mEmailView.getText().toString();
 		password = mPasswordView.getText().toString();
 		
+		//used to focus the view on whatever is incorrect or cancel 
+		//the login process if the correct parameters aren't met
 		boolean cancel = false;
 		View focusView = null;
 		
@@ -121,6 +130,7 @@ public class LoginView extends Activity{
 			}
 			else if(lg.lockOut(Security.getMember(email))){
 				mEmailView.setError(getString(R.string.error_lock_out));
+				mPasswordView.setError(null);
 			}
 			else{
 				mPasswordView.setError(getString(R.string.error_incorrect_password_email));

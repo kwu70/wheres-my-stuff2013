@@ -42,6 +42,9 @@ public class Login {
 				temp.setFailedAttempts(0);
 				return true;
 			}
+			else if(lockOut(temp)){
+				return false;
+			}
 			else{
 				temp.incFailedAttempts();
 				return false;

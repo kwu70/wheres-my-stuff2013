@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 
 public class AddItemActivity extends Activity{
@@ -17,6 +18,8 @@ public class AddItemActivity extends Activity{
 	private String userEmail;
 	private Member currentMember;
 	private Intent returnIntent;
+	private EditText itemName;
+	private EditText itemDescription;
 	
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +30,13 @@ public class AddItemActivity extends Activity{
 		userEmail = intent.getExtras().getString("userEmail");
 		
 		currentMember = Security.getMember(userEmail);
-
 		
 		returnIntent = new Intent(this, MemberActivity.class);
+		returnIntent.putExtra("userEmail", userEmail);
+		
+		itemName = (EditText) findViewById(R.id.editItemName);
+		itemDescription = (EditText) findViewById(R.id.editDescription);
+
 		
 		findViewById(R.id.btnCancel).setOnClickListener(new CancelClickListener());
 		
@@ -41,6 +48,7 @@ public class AddItemActivity extends Activity{
 		@Override
 		public void onClick(View v) {
 			startActivity(returnIntent);
+			finish();
 		}
 		
 	}
@@ -49,8 +57,8 @@ public class AddItemActivity extends Activity{
 
 		@Override
 		public void onClick(View v) {
-			String name = findViewById(R.id.editItemName).toString();
-			String description = findViewById(R.id.editDescription).toString();
+			String name = itemName.getText().toString();
+			String description = itemDescription.getText().toString();
 			//false is lost and true is found
 			Boolean lostFound;
 			if(findViewById(R.id.radFound).isPressed()){
@@ -72,6 +80,7 @@ public class AddItemActivity extends Activity{
 			
 			//goes back to member activity and displays item
 			startActivity(returnIntent);
+			finish();
 		}
 		
 	}

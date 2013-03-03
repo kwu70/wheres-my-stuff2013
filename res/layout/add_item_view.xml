@@ -5,8 +5,8 @@
     android:layout_height="match_parent" >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="444dp" >
+        android:layout_width="wrap_content"
+        android:layout_height="470dp" >
 
         <TextView
             android:id="@+id/txtType"
@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/radGroupType"
             android:text="@string/cancel" />
 
     </RelativeLayout>
