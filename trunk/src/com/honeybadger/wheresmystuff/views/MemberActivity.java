@@ -19,9 +19,17 @@ import android.widget.ListView;
  */
 public class MemberActivity extends Activity{
 	
+	//Intent to go to addItemActivity
 	private Intent addItem;
+	
+	//current Users email
 	private String userEmail;
+	
+	//current user
 	private Member currentMember;
+	
+	//used in the ListViews to properly display
+	//the lost items and found items
 	private ArrayAdapter<String> adapterFound;
 	private ArrayAdapter<String> adapterLost;
 	
@@ -55,6 +63,9 @@ public class MemberActivity extends Activity{
 		
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddItemClickListener());
 		
+		//Iterates through the members items and if
+		//they have any then it assigns them to the appropriate
+		//adapter
 		if(currentMember.getItems() != null){
 			for(Item item: currentMember.getItems()){
 				if(item.getStatus() == false){
@@ -68,6 +79,10 @@ public class MemberActivity extends Activity{
 		
 	}
 	
+	/*
+	 * This method is called when the back button is pressed
+	 * and returns to the previous activity
+	 */
 	public void onBackPressed() {
 	    Intent i = new Intent(this, LoginView.class);
 	    startActivity(i);

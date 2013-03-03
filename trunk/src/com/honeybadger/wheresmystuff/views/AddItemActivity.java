@@ -11,17 +11,34 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+/*
+ * This class contains the proper text fields and radio buttons to create a new item.
+ */
 public class AddItemActivity extends Activity{
 	
+	//email of user that is accessing the app
 	private String userEmail;
+	
+	//instance of user currently using the app
 	private Member currentMember;
+	
+	//intent to return to MemberActivity
 	private Intent returnIntent;
+	
+	//Texts fields for the item's name and description.
 	private EditText itemName;
 	private EditText itemDescription;
 	
-	
+	/**
+	 * Called when the activity is first created.
+	 * Creates Intent object which moves to MemberActivity.class.
+	 * and sends the user email that is being used, back to the class.
+	 * 
+	 * @param state of activity
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_item_view);
@@ -43,6 +60,10 @@ public class AddItemActivity extends Activity{
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddClickListener());
 	}
 	
+	/*
+	 * This class is a listener for the cancel button and when it is clicked
+	 * just returns back to MemberActivity
+	 */
 	private class CancelClickListener implements OnClickListener{
 
 		@Override
@@ -53,6 +74,11 @@ public class AddItemActivity extends Activity{
 		
 	}
 	
+	/*
+	 * This class is a listener for the Add Item button and when it is clicked gets 
+	 * all the data from the fields and buttons and creates a new item. Then it goes back
+	 * to member activity so that it can be displayed.
+	 */
 	private class AddClickListener implements OnClickListener{
 
 		@Override
@@ -61,11 +87,13 @@ public class AddItemActivity extends Activity{
 			String description = itemDescription.getText().toString();
 			//false is lost and true is found
 			Boolean lostFound;
-			if(findViewById(R.id.radFound).isPressed()){
-				lostFound = true;
+			RadioButton radLost = (RadioButton)findViewById(R.id.radLost);
+			
+			if(radLost.isChecked()){
+				lostFound = false;
 			}
 			else{
-				lostFound = false;
+				lostFound = true;
 			}
 			//defalut false because the user is creating
 			Boolean resolved = false;
@@ -73,10 +101,11 @@ public class AddItemActivity extends Activity{
 			//gets currently selected type
 			RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radGroupType);
 			int radioButtonID = radioGroup.getCheckedRadioButtonId();
-			String type = findViewById(radioButtonID).toString();
+			RadioButton rad = (RadioButton) findViewById(radioButtonID);
+			String type = rad.getText().toString();
 			
 			//creates and adds a new item to the current members item list
-			currentMember.addItem(new Item(name, description,currentMember, lostFound,resolved,type));
+			currentMember.addItem(new Item(name, description,currentMember, lostFound, resolved, type));
 			
 			//goes back to member activity and displays item
 			startActivity(returnIntent);
