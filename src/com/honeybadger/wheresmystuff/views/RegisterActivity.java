@@ -59,8 +59,11 @@ public class RegisterActivity extends Activity{
 		findViewById(R.id.btnRegister).setOnClickListener(new RegisterClickListener());
 		
 	}
-	
-	//When back button is pressed, the screen goes back to the login screen
+
+	/*
+	 * This method is called when the back button is pressed
+	 * and returns to the previous activity
+	 */
 	public void onBackPressed() {
 	  	startActivity(i);
 	}
@@ -76,6 +79,7 @@ public class RegisterActivity extends Activity{
 		 */
 		@Override
 		public void onClick(View arg0) {
+			
 			email = eEmail.getText().toString();
 			password = ePassword.getText().toString();
 			confirmPassword = eConfirmPassword.getText().toString();
@@ -111,6 +115,8 @@ public class RegisterActivity extends Activity{
 				focusView.requestFocus();
 			}
 			else {
+				//Check if both password fields are the same and
+				//then shows a confirmation box
 				if(password.equals(confirmPassword)){
 					builder.show();
 				}

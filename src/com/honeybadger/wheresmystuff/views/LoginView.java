@@ -16,18 +16,23 @@ import android.widget.EditText;
  * can access their MemberActivity screen.
  */
 public class LoginView extends Activity{
+	
+	//Email and password user typed in
 	String email;
 	String password; 
 	
-	// UI references.
+	// Email and password Text boxes
 	private EditText mEmailView;
 	private EditText mPasswordView;
 	
+	//Used to show the user that email belongs in that text box
 	public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
 	
-	//Intent to switch to next activity
-	private Intent i;
-	private Intent i2;
+	//Intent to switch MemberActivity
+	private Intent memberIntent;
+	
+	//Intent to switch to RegisterActivity
+	private Intent registerIntent;
 	
 	private Login lg;
 
@@ -43,8 +48,8 @@ public class LoginView extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		i = new Intent(this, MemberActivity.class);		
-		i2 = new Intent(this, RegisterActivity.class);
+		memberIntent = new Intent(this, MemberActivity.class);		
+		registerIntent = new Intent(this, RegisterActivity.class);
 		
 		//login initialized so we can access methods and it sets up a user account since
 		//we do not have persistent data.
@@ -72,7 +77,7 @@ public class LoginView extends Activity{
 					
 					@Override
 					public void onClick(View v) {
-						startActivity(i2);
+						startActivity(registerIntent);
 						finish();
 					}
 				});
@@ -124,8 +129,8 @@ public class LoginView extends Activity{
 		}
 		else {
 			if(lg.validate(email, password) && !lg.lockOut(Security.getMember(email))){
-				i.putExtra("userEmail", email);
-				startActivity(i);
+				memberIntent.putExtra("userEmail", email);
+				startActivity(memberIntent);
 				finish();
 			}
 			else if(lg.lockOut(Security.getMember(email))){
@@ -137,6 +142,11 @@ public class LoginView extends Activity{
 			}
 		}
 	}
+	
+	/*
+	 * This method is called when the back button is pressed
+	 * and returns to home
+	 */
 	public void onBackPressed() {
 		finish();
 	}
