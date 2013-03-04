@@ -10,14 +10,7 @@ public class Item {
 	private static String[] category = new String[]{"Food", "Clothing", "Personal","Donation"};
 	private boolean status, resolved;
 	private Member owner;
-	
-	/**
-	 * Default Constructor for Item
-	 */
-	public Item(){
 		
-	}
-	
 	/**
 	 * Basic Constructor for Item includes only a String name
 	 * @param name The name of the Item

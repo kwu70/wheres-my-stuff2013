@@ -29,5 +29,6 @@
     <string name="error_lock_out">You have been locked out. Contact an Admin</string>
     <string name="add_lostfound_item">Add Lost or Found Item</string>
     <string name="cancel">Cancel</string>
+    <string name="btn_admin">Admin Settings</string>
 
 </resources>

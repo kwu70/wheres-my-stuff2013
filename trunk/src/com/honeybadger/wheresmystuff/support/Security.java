@@ -13,7 +13,7 @@ public class Security {
 	 * it initiates them with default emails and passwords
 	 */
 	public Security(){
-		members.add(new Member("example@example.com", "example"));
+		members.add(new Member("admin@admin", "admin", true));
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class Security {
 				return members.get(i);
 			}
 		}
-		return new Member();
+		return new Member("default","default");
 	}
 	
 	/**
