@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 /**
@@ -51,7 +52,11 @@ public class MemberActivity extends Activity{
 		Intent intent = getIntent();
 		userEmail = intent.getExtras().getString("userEmail");
 		currentMember = Security.getMember(userEmail);
-				
+		
+		View btn = (Button) findViewById(R.id.btnAdmin);
+		if(currentMember.getAdmin()){
+			btn.setVisibility(0);
+		}
 		addItem = new Intent(this, AddItemActivity.class);
 		addItem.putExtra("userEmail", userEmail);
 		

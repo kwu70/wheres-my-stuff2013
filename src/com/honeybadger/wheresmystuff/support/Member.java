@@ -9,25 +9,34 @@ public class Member{
 	
 	private String name, email, password;
 	private int failedAttempts;
-	private boolean lockout;
 	private ArrayList<Item> items;
 	
-	//Constructors
-	public Member(){
-		this("default@email.com", "password");
-	}
+	//if true, user is an admin
+	private Boolean admin;
 	
+	//Constructors	
 	public Member(String email, String password){
-		this(email, password, "default");
+		this(email, password, "default", false);
 	}
 	
-	public Member(String email, String password, String name){
+	public Member(String email, String password, Boolean admin){
+		this(email, password, "default", admin);
+	}
+	
+	public Member(String email, String password, String name, Boolean admin){
 		this.email = email;
 		this.password = password;
 		this.name = name;
-		this.lockout = false;
 		this.failedAttempts = 0;
 		items = new ArrayList<Item>();
+		this.admin = admin;
+	}
+	/*
+	 * getter for admin status
+	 * @return admin True if admin, false if regular user.
+	 */
+	public Boolean getAdmin(){
+		return admin;
 	}
 	
 	/**
