@@ -23,6 +23,7 @@ public class MemberActivity extends Activity{
 	
 	//Intent to go to addItemActivity
 	private Intent addItem;
+	private Intent adminSetting;
 	
 	//current Users email
 	private String userEmail;
@@ -58,6 +59,12 @@ public class MemberActivity extends Activity{
 		if(currentMember instanceof Admin){
 			btn.setVisibility(0);
 		}
+		
+		//Create new Admin Setting intent pass userEmail
+		adminSetting = new Intent(this, AdminSettingActivity.class);
+		adminSetting.putExtra("userEmail", userEmail);
+		
+		//Create Add Item Intent
 		addItem = new Intent(this, AddItemActivity.class);
 		addItem.putExtra("userEmail", userEmail);
 		
@@ -68,6 +75,9 @@ public class MemberActivity extends Activity{
 		lostList.setAdapter(adapterLost);
 		
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddItemClickListener());
+		
+		//Adds ClickListener to AdminSetting Button
+		findViewById(R.id.btnAdmin).setOnClickListener(new AdminSettingClickListener());
 		
 		//Iterates through the members items and if
 		//they have any then it assigns them to the appropriate
@@ -85,7 +95,7 @@ public class MemberActivity extends Activity{
 		
 	}
 	
-	/*
+	/**
 	 * This method is called when the back button is pressed
 	 * and returns to the previous activity
 	 */
@@ -95,6 +105,10 @@ public class MemberActivity extends Activity{
 	    finish();
 	}
 	
+	/**
+	 * AddItem Listener for the Add Item Button
+	 * Once button is clicked takes user to AddItemActivity
+	 */
 	private class AddItemClickListener implements OnClickListener{
 
 		@Override
@@ -103,4 +117,17 @@ public class MemberActivity extends Activity{
 		}
 		
 	}
+	
+	/**
+	 * AdminSetting Listener for the Admin Setting Button only visible to Admins
+	 * Once button is clicked takes user to AdminSettingActivity
+	 */
+	private class AdminSettingClickListener implements OnClickListener{
+
+		@Override
+		public void onClick(View arg0) {
+			startActivity(adminSetting);
+		}
+	}
+	
 }
