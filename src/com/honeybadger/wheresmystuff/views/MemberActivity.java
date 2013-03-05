@@ -1,6 +1,7 @@
 package com.honeybadger.wheresmystuff.views;
 
 import com.honeybadger.wheresmystuff.R;
+import com.honeybadger.wheresmystuff.support.Admin;
 import com.honeybadger.wheresmystuff.support.Item;
 import com.honeybadger.wheresmystuff.support.Member;
 import com.honeybadger.wheresmystuff.support.Security;
@@ -54,7 +55,7 @@ public class MemberActivity extends Activity{
 		currentMember = Security.getMember(userEmail);
 		
 		View btn = (Button) findViewById(R.id.btnAdmin);
-		if(currentMember.getAdmin()){
+		if(currentMember instanceof Admin){
 			btn.setVisibility(0);
 		}
 		addItem = new Intent(this, AddItemActivity.class);

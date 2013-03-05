@@ -13,7 +13,7 @@ public class Security {
 	 * it initiates them with default emails and passwords
 	 */
 	public Security(){
-		members.add(new Member("admin@admin", "admin", true));
+		members.add(new Admin("admin@admin", "admin"));
 	}
 	
 	/**
@@ -78,6 +78,19 @@ public class Security {
 	}
 	
 	/**
+	 * Adds a new Admin to the member list. 
+	 * 
+	 * NOTE: MAKE SURE THAT THE EMAIL DOES NOT ALREADY EXIST BEFORE CALLING THIS METHOD
+	 * YOU CAN DO THIS USING CONTAINS METHOD
+	 * 
+	 * @param email of the Admin being added to the member list
+	 * @param password  of the Admin being added to the member list
+	 */
+	public static void addAdmin(String email, String password){
+		members.add(new Admin(email, password));
+	}
+	
+	/**
 	 * Remove a Member from the member list based on email.
 	 * 
 	 * @param email
@@ -91,6 +104,10 @@ public class Security {
 			}
 		}
 		return false;
+	}
+
+	public static void resetAttempts(Member mem) {
+		mem.setFailedAttempts(0);
 	}
 	
 }
