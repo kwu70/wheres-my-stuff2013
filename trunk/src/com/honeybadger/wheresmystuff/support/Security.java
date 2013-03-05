@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Security {
 	
 	private static ArrayList<Member> members = new ArrayList<Member>();
+	private static ArrayList<Item> items = new ArrayList<Item>();
 	
 	/**
 	 * Security constructor that sets up the ArrayLists emails, passwords, and members
@@ -14,6 +15,7 @@ public class Security {
 	 */
 	public Security(){
 		members.add(new Admin("admin@admin", "admin"));
+		items.add(new Item("defaultItem"));
 	}
 	
 	/**
@@ -26,6 +28,15 @@ public class Security {
 	}
 	
 	/**
+	 * Getter for item list
+	 * 
+	 * @return items the list that contains all the items (general list of items)
+	 */
+	public static ArrayList<Item> getItemList(){
+		return items;
+	}
+	
+	/**
 	 * Getter for member list Size
 	 *  
 	 * @return members.size() an int indicating the size of the list.
@@ -33,6 +44,16 @@ public class Security {
 	public static int getMemberListSize(){
 		return members.size();
 	}
+	
+	/**
+	 * Getter for item size
+	 * 
+	 * @return items.size() an int indicating the size of the list.
+	 */
+	public static int getItemListSize(){
+		return items.size();
+	}
+	
 	
 	/**
 	 * Searches through the list of all members for the member with the specified email
@@ -78,6 +99,15 @@ public class Security {
 	}
 	
 	/**
+	 * Adds a new Item to the item list
+	 *
+	 * @param item the Item being added to the item list
+	 */
+	public static void addItem(Item item){
+		items.add(item);
+	}
+	
+	/**
 	 * Adds a new Admin to the member list. 
 	 * 
 	 * NOTE: MAKE SURE THAT THE EMAIL DOES NOT ALREADY EXIST BEFORE CALLING THIS METHOD
@@ -106,8 +136,13 @@ public class Security {
 		return false;
 	}
 
-	public static void resetAttempts(Member mem) {
-		mem.setFailedAttempts(0);
+	/**
+	 * resets failed attempts of specified member 
+	 * 
+	 * @param member the member that is having their failed attempts reset to zero.
+	 */
+	public static void resetAttempts(Member member) {
+		member.setFailedAttempts(0);
 	}
 	
 }
