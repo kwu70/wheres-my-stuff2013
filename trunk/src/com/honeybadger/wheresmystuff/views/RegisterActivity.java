@@ -98,12 +98,12 @@ public class RegisterActivity extends Activity{
 				cancel = true;
 			}
 
-			// Check for a valid email address.
+			// Check for a valid and non-duplicate email address.
 			if (TextUtils.isEmpty(email)) {
 				eEmail.setError(getString(R.string.error_field_required));
 				focusView = eEmail;
 				cancel = true;
-			} else if (!email.contains("@")) {
+			} else if (!email.contains("@") || !email.contains(".com") || Security.contains(email)) {
 				eEmail.setError(getString(R.string.error_invalid_email));
 				focusView = eEmail;
 				cancel = true;
