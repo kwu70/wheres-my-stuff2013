@@ -103,7 +103,12 @@ public class RegisterActivity extends Activity{
 				eEmail.setError(getString(R.string.error_field_required));
 				focusView = eEmail;
 				cancel = true;
-			} else if (!email.contains("@") || !email.contains(".com") || Security.contains(email)) {
+			} else if (!email.contains("@") || !email.contains(".com")) {
+				eEmail.setError(getString(R.string.error_invalid_email));
+				focusView = eEmail;
+				cancel = true;
+			} else if (Security.contains(email)) {
+				// TODO: change error to "already existing email" error once XML updated
 				eEmail.setError(getString(R.string.error_invalid_email));
 				focusView = eEmail;
 				cancel = true;
