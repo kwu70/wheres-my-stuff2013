@@ -16,7 +16,7 @@ public class Item {
 	 * @param name The name of the Item
 	 */
 	public Item(String name){
-		this.name = name;
+		this(name, "", null, false);
 	}
 	
 	/**
@@ -28,10 +28,7 @@ public class Item {
 	 * @param status Whether the Item is lost or found
 	 */
 	public Item(String name, String description, Member owner, boolean status){
-		this.name = name;
-		this.description = description;
-		this.owner = owner;
-		this.status = status;
+		this(name, description, owner, status, false);
 	}
 	/**
 	 * Second advanced constructor for Item. Includes: name, description, owner, status, resolved, and type
@@ -43,11 +40,7 @@ public class Item {
 	 * @param resolved Whether the item has been claimed or is still in circulation in the app
 	 */
 	public Item(String name, String description, Member owner, boolean status, boolean resolved){
-		this.name = name;
-		this.description = description;
-		this.owner = owner;
-		this.status = status;
-		this.resolved = resolved;
+		this(name, description, owner, status, resolved, null);
 	}
 	/**
 	 * Third advanced constructor for Item. Includes: name, description, owner, status, resolved, and type
