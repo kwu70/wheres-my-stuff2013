@@ -30,5 +30,10 @@
     <string name="add_lostfound_item">Add Lost or Found Item</string>
     <string name="cancel">Cancel</string>
     <string name="btn_admin">Admin Settings</string>
+    <string name="btn_create">Create Admin</string>
+    <string name="lbl_userEmail">User Email</string>
+    <string name="btn_remove_member">Remove Member</string>
+    <string name="btn_unlock_account">Unlock Account</string>
+    <string name="admin_settings_view">Admin Settings</string>
 
 </resources>
