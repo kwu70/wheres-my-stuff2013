@@ -1,5 +1,7 @@
 package com.honeybadger.wheresmystuff.support;
 
+import android.os.Bundle;
+
 /*
  * This class is used to create Admins and for Views to access admin only methods
  */
@@ -56,5 +58,10 @@ public class Admin extends Member {
 	 */
 	public void unlockAccount(Member mem){
 		Security.resetAttempts(mem);
+	}
+
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		
 	}
 }
