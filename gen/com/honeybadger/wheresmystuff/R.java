@@ -7,6 +7,8 @@
 
 package com.honeybadger.wheresmystuff;
 
+import android.view.View;
+
 public final class R {
     public static final class attr {
     }
@@ -56,6 +58,11 @@ public final class R {
         public static final int txtName=0x7f080014;
         public static final int txtPassword=0x7f080021;
         public static final int txtType=0x7f080007;
+		public static int btnUnlockAccount;
+		public static int toUnlock;
+		public static Object btnRemoveMember;
+		public static Object btnCreateAdmin;
+		public static int removeEmail;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -63,6 +70,7 @@ public final class R {
         public static final int member_view=0x7f030002;
         public static final int register_view=0x7f030003;
         public static final int remove_member_view=0x7f030004;
+		public static View unlock_account_view;
     }
     public static final class menu {
         public static final int activity_login=0x7f070000;
