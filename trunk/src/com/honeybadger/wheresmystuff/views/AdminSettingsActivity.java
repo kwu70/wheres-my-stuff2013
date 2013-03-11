@@ -23,7 +23,6 @@ public class AdminSettingsActivity extends Admin{
 	
 	public AdminSettingsActivity(String email, String password) {
 		super(email, password);
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
@@ -50,34 +49,30 @@ public class AdminSettingsActivity extends Admin{
 		setContentView(R.layout.member_view);
 			
 		Intent intent = getIntent();
-		adminEmail = intent.getExtras().getString("adminEmail");
-		currentAdmin = Security.getMember(adminEmail);
-		
-		View btn = (Button) findViewById(R.id.btnAdmin);
-		if(currentMember instanceof Admin){
-			btn.setVisibility(1);
-		}
+		userEmail = intent.getExtras().getString("userEmail");
+		currentMember = Security.getMember(userEmail);
+	
 		
 		//create remove member intent
-		removeMember = new Intent(this, RemoveMember.class);
+		removeMember = new Intent();
 		removeMember.putExtra("userEmail", userEmail);
-		View btn = (Button) findViewById(R.id.btnRemoveMember);
+		View btn1 = (Button) findViewById(R.id.btnRemoveMember);
 		
-		findViewById(R.id.btnRemoveMember).setOnClickListener(new removeMemberClickListener());
+		findViewById(R.id.btnRemoveMember).setOnClickListener(new RemoveMemberClickListener());
 		
 		//creates 'create admin' intent
-		createAdmin = new Intent(this, CreateAdmin.class);
+		createAdmin = new Intent();
 		createAdmin.putExtra("userEmail", userEmail);
-		View btn =(Button) findViewById(R.id.btnCreateAdmin);
+		View btn2 =(Button) findViewById(R.id.btnCreateAdmin);
 		
-		findViewById(R.id.btnCreateAdmin).setOnClickListener(new createAdminClickListener());
+		findViewById(R.id.btnCreateAdmin).setOnClickListener(new CreateAdminClickListener());
 		
 		//create unlock account intent
-		unlockAccount = new Intent(this, UnlockAccount.class);
+		unlockAccount = new Intent();
 		unlockAccount.putExtra("userEmail", userEmail);
-		View btn = (Button) findViewById(R.id.btnUnlockAccount);
+		View btn3 = (Button) findViewById(R.id.btnUnlockAccount);
 		
-		findViewById(R.id.btnUnlockAccount).setOnClickListener(new unlockAccountClickListener());
+		findViewById(R.id.btnUnlockAccount).setOnClickListener(new UnlockAccountClickListener());
 		
 	}
 	
@@ -86,29 +81,34 @@ public class AdminSettingsActivity extends Admin{
 	 * and returns to the previous activity
 	 */
 	public void onBackPressed() {
-	    Intent i = new Intent(this, LoginView.class);
+	    Intent i = new Intent();
 	    startActivity(i);
 	    finish();
 	}
 	
+	private void finish() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/*
 	 * button listeners for admin activities
 	 */
-	private class removeMemberClickListener implements OnClickListener{
+	private class RemoveMemberClickListener implements OnClickListener{
 		@Override
 		public void onClick(View arg0) {
 			startActivity(removeMember);
 		}
 		
 	}
-	private class createAdminClickListener implements OnClickListener{
+	private class CreateAdminClickListener implements OnClickListener{
 		@Override
 		public void onClick(View arg0) {
 			startActivity(createAdmin);
 		}
 		
 	}
-	private class unlockAccountClickListener implements OnClickListener{
+	private class UnlockAccountClickListener implements OnClickListener{
 		@Override
 		public void onClick(View arg0) {
 			startActivity(unlockAccount);

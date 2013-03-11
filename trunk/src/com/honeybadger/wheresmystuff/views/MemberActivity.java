@@ -23,7 +23,7 @@ public class MemberActivity extends Activity{
 	
 	//Intent to go to addItemActivity
 	private Intent addItem;
-	private Intent adminSetting;
+	private Intent adminSettings;
 	
 	//current Users email
 	private String userEmail;

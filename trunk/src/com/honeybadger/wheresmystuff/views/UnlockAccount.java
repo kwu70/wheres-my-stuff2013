@@ -85,7 +85,8 @@ public class UnlockAccount extends Activity{
 			String name = toUnlock.getText().toString();
 			
 			//creates and adds a new item to the current members item list
-			Security.resetAttempts(name;)
+			Security s = new Security();
+			s.resetAttempts(Security.getMember(name));
 			
 			//goes back to member activity and displays item
 			startActivity(returnIntent);
