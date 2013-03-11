@@ -60,8 +60,8 @@ public final class R {
         public static final int txtType=0x7f080007;
 		public static int btnUnlockAccount;
 		public static int toUnlock;
-		public static Object btnRemoveMember;
-		public static Object btnCreateAdmin;
+		public static int btnRemoveMember;
+		public static int btnCreateAdmin;
 		public static int removeEmail;
     }
     public static final class layout {
@@ -70,7 +70,7 @@ public final class R {
         public static final int member_view=0x7f030002;
         public static final int register_view=0x7f030003;
         public static final int remove_member_view=0x7f030004;
-		public static View unlock_account_view;
+		public static int unlock_account_view;
     }
     public static final class menu {
         public static final int activity_login=0x7f070000;
