@@ -59,9 +59,4 @@ public class Admin extends Member {
 	public void unlockAccount(Member mem){
 		Security.resetAttempts(mem);
 	}
-
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		
-	}
 }

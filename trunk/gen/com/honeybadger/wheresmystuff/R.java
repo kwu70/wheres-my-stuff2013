@@ -7,8 +7,6 @@
 
 package com.honeybadger.wheresmystuff;
 
-import android.view.View;
-
 public final class R {
     public static final class attr {
     }
@@ -20,26 +18,33 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
+        public static final int AdminSettingsConfirmPassword=0x7f08001c;
         public static final int RelativeLayout1=0x7f080016;
         public static final int ScrollView1=0x7f080006;
-        public static final int btnAccount=0x7f080018;
+        public static final int btnAccount=0x7f080023;
         public static final int btnAddItem=0x7f080013;
-        public static final int btnAdmin=0x7f08001d;
+        public static final int btnAdmin=0x7f080028;
         public static final int btnCancel=0x7f080015;
         public static final int btnCreateAccount=0x7f080005;
-        public static final int btnRegister=0x7f080024;
-        public static final int btnSearch=0x7f080017;
+        public static final int btnCreateAdmin=0x7f08001d;
+        public static final int btnRegister=0x7f08002f;
+        public static final int btnRemoveMember=0x7f08001f;
+        public static final int btnSearch=0x7f080022;
+        public static final int btnUnlockAccount=0x7f08001e;
         public static final int editDescription=0x7f08000e;
         public static final int editItemName=0x7f080012;
         public static final int email=0x7f080001;
-        public static final int lblConfirm=0x7f080022;
-        public static final int lblEmail=0x7f08001e;
-        public static final int lblPassword=0x7f080020;
-        public static final int listFound=0x7f080019;
-        public static final int listLost=0x7f08001b;
+        public static final int lblAdminSettingEmail=0x7f080017;
+        public static final int lblAdminSettingPassword=0x7f080019;
+        public static final int lblAdminSettingUserEmail=0x7f080020;
+        public static final int lblConfirm=0x7f08002d;
+        public static final int lblEmail=0x7f080029;
+        public static final int lblPassword=0x7f08002b;
+        public static final int listFound=0x7f080024;
+        public static final int listLost=0x7f080026;
         public static final int login=0x7f080003;
         public static final int login_form=0x7f080000;
-        public static final int menu_forgot_password=0x7f080025;
+        public static final int menu_forgot_password=0x7f080030;
         public static final int password=0x7f080002;
         public static final int radClothingType=0x7f08000b;
         public static final int radDonationType=0x7f08000d;
@@ -50,52 +55,54 @@ public final class R {
         public static final int radLost=0x7f08000f;
         public static final int radPersonalType=0x7f08000c;
         public static final int sign_in_button=0x7f080004;
-        public static final int txtConfirm=0x7f080023;
+        public static final int textView1=0x7f08001b;
+        public static final int txtAdminSettingAdminEmail=0x7f080018;
+        public static final int txtAdminSettingAdminPassword=0x7f08001a;
+        public static final int txtAdminSettingUserEmail=0x7f080021;
+        public static final int txtConfirm=0x7f08002e;
         public static final int txtDescription=0x7f080011;
-        public static final int txtEmail=0x7f08001f;
-        public static final int txtFound=0x7f08001a;
-        public static final int txtLost=0x7f08001c;
+        public static final int txtEmail=0x7f08002a;
+        public static final int txtFound=0x7f080025;
+        public static final int txtLost=0x7f080027;
         public static final int txtName=0x7f080014;
-        public static final int txtPassword=0x7f080021;
+        public static final int txtPassword=0x7f08002c;
         public static final int txtType=0x7f080007;
-		public static int btnUnlockAccount;
-		public static int toUnlock;
-		public static int btnRemoveMember;
-		public static int btnCreateAdmin;
-		public static int removeEmail;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
         public static final int add_item_view=0x7f030001;
-        public static final int member_view=0x7f030002;
-        public static final int register_view=0x7f030003;
-        public static final int remove_member_view=0x7f030004;
-		public static int unlock_account_view;
+        public static final int admin_settings_view=0x7f030002;
+        public static final int member_view=0x7f030003;
+        public static final int register_view=0x7f030004;
     }
     public static final class menu {
         public static final int activity_login=0x7f070000;
     }
     public static final class string {
         public static final int account_preferences=0x7f050002;
-        public static final int action_sign_in_register=0x7f050020;
-        public static final int action_sign_in_short=0x7f050021;
+        public static final int action_sign_in_register=0x7f050025;
+        public static final int action_sign_in_short=0x7f050026;
         public static final int add_item=0x7f050006;
         public static final int add_item_view=0x7f050010;
         public static final int add_lostfound_item=0x7f05001b;
+        public static final int admin_settings_view=0x7f050022;
         public static final int app_name=0x7f050000;
         public static final int btn_admin=0x7f05001d;
+        public static final int btn_create=0x7f05001e;
+        public static final int btn_remove_member=0x7f050020;
+        public static final int btn_unlock_account=0x7f050021;
         public static final int cancel=0x7f05001c;
         public static final int clothing_type=0x7f050017;
         public static final int confirm_password=0x7f05000f;
         public static final int create_account=0x7f05000a;
         public static final int donation_type=0x7f050019;
-        public static final int error_field_required=0x7f050027;
-        public static final int error_incorrect_password=0x7f050026;
-        public static final int error_incorrect_password_email=0x7f050028;
-        public static final int error_invalid_email=0x7f050024;
-        public static final int error_invalid_password=0x7f050025;
+        public static final int error_field_required=0x7f05002c;
+        public static final int error_incorrect_password=0x7f05002b;
+        public static final int error_incorrect_password_email=0x7f05002d;
+        public static final int error_invalid_email=0x7f050029;
+        public static final int error_invalid_password=0x7f05002a;
         public static final int error_lock_out=0x7f05001a;
-        public static final int error_no_match=0x7f050029;
+        public static final int error_no_match=0x7f05002e;
         public static final int first_name=0x7f050007;
         public static final int food_type=0x7f050016;
         public static final int found_item_rad=0x7f050014;
@@ -105,17 +112,18 @@ public final class R {
         public static final int item_name=0x7f050011;
         public static final int item_type_lbl=0x7f050015;
         public static final int last_name=0x7f050008;
-        public static final int login_progress_signing_in=0x7f050023;
+        public static final int lbl_userEmail=0x7f05001f;
+        public static final int login_progress_signing_in=0x7f050028;
         public static final int lost_item_rad=0x7f050013;
         public static final int lost_items=0x7f050005;
         public static final int lost_items_list=0x7f05000c;
         public static final int member_activity=0x7f050001;
-        public static final int menu_forgot_password=0x7f050022;
+        public static final int menu_forgot_password=0x7f050027;
         public static final int personal_type=0x7f050018;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f05001e;
-        public static final int prompt_password=0x7f05001f;
+        public static final int prompt_email=0x7f050023;
+        public static final int prompt_password=0x7f050024;
         public static final int register=0x7f050009;
         public static final int register_email=0x7f05000d;
         public static final int register_password=0x7f05000e;
