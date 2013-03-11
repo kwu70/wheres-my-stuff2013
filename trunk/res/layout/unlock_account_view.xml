@@ -15,7 +15,6 @@
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnAccount"
         android:layout_centerHorizontal="true"
         android:text="@string/search_for_users" />
 
@@ -24,18 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnUnlockAccount"
-        android:layout_alignRight="@+id/btnAccount"
 
     </ListView>
-
-    <Button
-        android:id="@+id/btnAccount"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/account_preferences"
-        android:textSize="@dimen/btnAccount" />
 
     <TextView
         android:id="@+id/txtUsers"
@@ -46,5 +35,20 @@
         android:layout_marginLeft="32dp"
         android:text="@string/users"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+    
+    <EditText
+            android:id="@+id/toUnlock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
+            android:inputType="text" />
+    
+	<Button
+	            android:id="@+id/btnCancel"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:text="@string/cancel" />
+    
 </RelativeLayout>

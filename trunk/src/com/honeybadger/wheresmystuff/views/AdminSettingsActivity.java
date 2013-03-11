@@ -38,6 +38,8 @@ public class AdminSettingsActivity extends Admin{
 	//current admin
 	private Admin currentAdmin;
 	
+	private ArrayAdapter<String> adaptorUsers;
+	
 	/**
 	 * Called when the activity is first created.
 	 * 
