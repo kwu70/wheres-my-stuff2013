@@ -14,6 +14,7 @@ public class Security {
 	 * it initiates them with default emails and passwords
 	 */
 	public Security(){
+		members.add(new Member("foobar@example.com", "hello"));
 		members.add(new Admin("admin@admin", "admin"));
 		items.add(new Item("defaultItem"));
 	}

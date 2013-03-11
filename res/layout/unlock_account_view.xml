@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/btnUnlockAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/unlock_account" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnAccount"
+        android:layout_centerHorizontal="true"
+        android:text="@string/search_for_users" />
+
+    <ListView
+        android:id="@+id/listUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnUnlockAccount"
+        android:layout_alignRight="@+id/btnAccount"
+
+    </ListView>
+
+    <Button
+        android:id="@+id/btnAccount"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/account_preferences"
+        android:textSize="@dimen/btnAccount" />
+
+    <TextView
+        android:id="@+id/txtUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/listUsers"
+        android:layout_alignLeft="@+id/listUsers"
+        android:layout_marginLeft="32dp"
+        android:text="@string/users"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

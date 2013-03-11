@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+<Button
+        android:id="@+id/btnRemoveMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/remove_member" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnAccount"
+        android:layout_centerHorizontal="true"
+        android:text="@string/search_for_users" />
+
+
+    <TextView
+        android:id="@+id/txtUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/listUsers"
+        android:layout_alignLeft="@+id/listUsers"
+        android:layout_marginLeft="32dp"
+        android:text="@string/users"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
