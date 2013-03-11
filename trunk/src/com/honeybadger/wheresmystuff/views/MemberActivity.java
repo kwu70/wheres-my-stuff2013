@@ -61,7 +61,7 @@ public class MemberActivity extends Activity{
 		}
 		
 		//Create new Admin Setting intent pass userEmail
-		adminSettings = new Intent(this, s.class);
+		adminSettings = new Intent(this, AdminSettingsActivity.class);
 		adminSettings.putExtra("userEmail", userEmail);
 		
 		//Create Add Item Intent
@@ -126,7 +126,7 @@ public class MemberActivity extends Activity{
 
 		@Override
 		public void onClick(View arg0) {
-			startActivity(adminSetting);
+			startActivity(adminSettings);
 		}
 	}
 	

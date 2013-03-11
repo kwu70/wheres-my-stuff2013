@@ -19,12 +19,7 @@ import android.widget.ListView;
  * AdminSettingsActivity contains the UI screen administrators
  * are shown after successfully logging in to the application.
  */
-public class AdminSettingsActivity extends Admin{
-	
-	public AdminSettingsActivity(String email, String password) {
-		super(email, password);
-	}
-	
+public class AdminSettingsActivity extends Activity{
 	/**
 	 * Intent to go (respectively) to removeMember, create Admin,
 	 * and unlockAccount activities.
@@ -35,9 +30,8 @@ public class AdminSettingsActivity extends Admin{
 	private String userEmail;
 	
 	//current admin
-	private Admin currentAdmin;
+	private Member currentMember;
 	
-	private ArrayAdapter<String> adaptorUsers;
 	
 	/**
 	 * Called when the activity is first created.
@@ -85,12 +79,6 @@ public class AdminSettingsActivity extends Admin{
 	    startActivity(i);
 	    finish();
 	}
-	
-	private void finish() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	/*
 	 * button listeners for admin activities
 	 */
