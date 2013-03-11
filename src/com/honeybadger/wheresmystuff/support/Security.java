@@ -146,4 +146,17 @@ public class Security {
 		member.setFailedAttempts(0);
 	}
 	
+	/**
+	 * Resets failed attempts to zero.
+	 * 
+	 * @param email Email of the memebr that is being unlocked.
+	 */
+	public static void unlockMember(String email){
+		for(int i = 0; i < members.size(); i++){
+			if(email.equals(members.get(i).getEmail())){
+				members.get(i).setFailedAttempts(0);
+			}
+		}
+	}
+	
 }
