@@ -16,64 +16,73 @@ import android.widget.EditText;
 public class AdminSettingActivity extends Activity{
 	
 	private String userEmail;
-	private Member currentMember;
-	
 	private Intent memberActivity;
 	
+	//Textfields
 	private EditText adminEmail;
 	private EditText adminPassword;
 	private EditText adminConfirmPassword;
 	private EditText email;
 	
+	//Dialog boxes
 	private AlertDialog.Builder builder;
 	private AlertDialog.Builder remover;
 	private AlertDialog.Builder unlocker;
-	
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.admin_settings_view);
 		
+		//gets the email of the current member
 		Intent intent = getIntent();
 		userEmail = intent.getExtras().getString("userEmail");
-		currentMember = Security.getMember(userEmail);
 		
+		//creating the intent to go back and passing in user email
 		memberActivity = new Intent(this, MemberActivity.class);
 		memberActivity.putExtra("userEmail", userEmail);
 		
+		//Getting all the textfields from admin_settings_view
 		adminEmail = (EditText) findViewById(R.id.txtAdminSettingAdminEmail);
 		adminPassword = (EditText) findViewById(R.id.txtAdminSettingAdminPassword);
 		adminConfirmPassword = (EditText) findViewById(R.id.AdminSettingsConfirmPassword);
 		email = (EditText) findViewById(R.id.txtAdminSettingUserEmail);
 		
+		//dialog box for Create Admin
 		builder = new AlertDialog.Builder(this);
 		builder.setMessage("Are you sure?").setPositiveButton("Yes", new DialogClickListener())
 	    .setNegativeButton("No", new DialogClickListener());
 		
+		//dialog box for remove Member
 		remover = new AlertDialog.Builder(this);
 		remover.setMessage("Are you sure?").setPositiveButton("Yes", new RemoverClickListener())
 	    .setNegativeButton("No", new RemoverClickListener());
 		
+		//dialog box for unlock member
 		unlocker = new AlertDialog.Builder(this);
 		unlocker.setMessage("Are you sure?").setPositiveButton("Yes", new UnlockerClickListener())
 	    .setNegativeButton("No", new UnlockerClickListener());
 		
+		//listeners for buttons in admin_settings_view
 		findViewById(R.id.btnCreateAdmin).setOnClickListener(new CreateAdminOnClickListener());
 		findViewById(R.id.btnRemoveMember).setOnClickListener(new RemoveMemberOnClickListner());
 		findViewById(R.id.btnUnlockAccount).setOnClickListener(new UnlockMemberOnClickListner());
 
-		
 	}
 	
+	//When user presses back.
 	public void onBackPressed() {
 	  	startActivity(memberActivity);
 	}
 	
-	//CREATE ADMIN
+	/**
+	 * Listener for Create Admin button.
+	 * Checks three textfields for valid user.
+	 * Works exactly the same as register.
+	 */
 	private class CreateAdminOnClickListener implements OnClickListener{
-
 		@Override
 		public void onClick(View v) {
+			//Strings from textfields
 			String email = adminEmail.getText().toString();
 			String password = adminPassword.getText().toString();
 			String confirmPassword = adminConfirmPassword.getText().toString();
@@ -128,7 +137,10 @@ public class AdminSettingActivity extends Activity{
 
 	}
 	
-	//REMOVE MEMBER
+	/**
+	 * Remove Member Listener is the listener for the Remove Member button.
+	 * If the member in the textfield exists then it is removed otherwise it throws an error
+	 */
 	private class RemoveMemberOnClickListner implements OnClickListener{
 		@Override
 		public void onClick(View arg0) {
@@ -142,7 +154,10 @@ public class AdminSettingActivity extends Activity{
 		}	
 	}
 	
-	//UNLOCK MEMBER
+	/**
+	 * Unlock Member Listener is the listener for the Unlock Member button
+	 * If the member in the textfield exists then their failedAttempts is reset to 0
+	 */
 	private class UnlockMemberOnClickListner implements OnClickListener{
 		@Override
 		public void onClick(View v) {
@@ -157,8 +172,13 @@ public class AdminSettingActivity extends Activity{
 		}
 	}
 	
+	/**
+	 * Dialog for the Create Admin
+	 * 
+	 * This just brings up a box asking whether the user wants to create the Admin
+	 * if they do then the Admin is created.
+	 */
 	private class DialogClickListener implements DialogInterface.OnClickListener{
-
 		/*
 		 * If the user clicks yes on the display box, the activity
 		 * creates a new member and starts the login activity
@@ -172,7 +192,7 @@ public class AdminSettingActivity extends Activity{
 	        switch (which){
 	        case DialogInterface.BUTTON_POSITIVE:
 	        	startActivity(memberActivity);
-	        	Security.addAdmin(email, password); //(register's new admin)
+	        	Security.addAdmin(email, password); //register's admin if yes
 	        	finish();
 	        	break;
 	        case DialogInterface.BUTTON_NEGATIVE:
@@ -182,6 +202,11 @@ public class AdminSettingActivity extends Activity{
 		
 	}
 	
+	/**
+	 * Remove Click Listener is the Dialog for the Remove Member button
+	 * Yes or No dialog that asks if the user wants to remove the member from the system
+	 * If yes then the member will be removed from the system.
+	 */
 	private class RemoverClickListener implements DialogInterface.OnClickListener{
 
 		@Override
@@ -190,7 +215,7 @@ public class AdminSettingActivity extends Activity{
 	        switch (which){
 	        case DialogInterface.BUTTON_POSITIVE:
 	        	startActivity(memberActivity);
-	        	Security.removeMember(userEmail);
+	        	Security.removeMember(userEmail); //removes member if yes
 	        	finish();
 	        	break;
 	        case DialogInterface.BUTTON_NEGATIVE:
@@ -199,23 +224,25 @@ public class AdminSettingActivity extends Activity{
 		}
 	}
 	
+	/**
+	 * Unlock Click Listener for Unlock Member button
+	 * Yes or No Dialog to check that the user wants to unlock the member
+	 * If Yes then the user unlocks the member by resetting their failedAttempts to 0.
+	 */
 	private class UnlockerClickListener implements DialogInterface.OnClickListener{
-
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
 			String userEmail = email.getText().toString();
 	        switch (which){
 	        case DialogInterface.BUTTON_POSITIVE:
 	        	startActivity(memberActivity);
-	        	Security.unlockMember(userEmail);
+	        	Security.unlockMember(userEmail); //unlocks member if yes
 	        	finish();
 	        	break;
 	        case DialogInterface.BUTTON_NEGATIVE:
 	        	break;
 	        }
-			
 		}
-		
 	}
 
 }
