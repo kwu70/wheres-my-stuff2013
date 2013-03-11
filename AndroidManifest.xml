@@ -34,6 +34,10 @@
        	 	android:name="com.honeybadger.wheresmystuff.views.AddItemActivity"
         	android:label="@string/add_item_view">
         </activity>
+        <activity
+       	 	android:name="com.honeybadger.wheresmystuff.views.AdminSettingActivity"
+        	android:label="@string/admin_settings_view">
+        </activity>
     </application>
 
 </manifest>
