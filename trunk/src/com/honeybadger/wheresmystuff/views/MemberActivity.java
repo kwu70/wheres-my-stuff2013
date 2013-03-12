@@ -11,9 +11,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * MemberActivity contains the UI screen members are shown after successfully 
@@ -36,6 +40,8 @@ public class MemberActivity extends Activity{
 	private ArrayAdapter<String> adapterFound;
 	private ArrayAdapter<String> adapterLost;
 	
+	private Spinner spinner;
+	
 	/**
 	 * Called when the activity is first created.
 	 * 
@@ -55,10 +61,14 @@ public class MemberActivity extends Activity{
 		userEmail = intent.getExtras().getString("userEmail");
 		currentMember = Security.getMember(userEmail);
 		
+		//Admin Settings Button shows if the user is an Admin
 		View btn = (Button) findViewById(R.id.btnAdmin);
 		if(currentMember instanceof Admin){
 			btn.setVisibility(0);
 		}
+		
+		spinner = (Spinner) findViewById(R.id.category_spinner);
+		spinner.setOnItemSelectedListener(new CategorySpinnerOnItemSelectedListener());
 		
 		//Create new Admin Setting intent pass userEmail
 		adminSettings = new Intent(this, AdminSettingActivity.class);
@@ -130,4 +140,22 @@ public class MemberActivity extends Activity{
 		}
 	}
 	
+	private class CategorySpinnerOnItemSelectedListener implements OnItemSelectedListener{
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+			Toast.makeText(parent.getContext(), 
+					"Whatup! : " + parent.getItemAtPosition(pos).toString(),
+					Toast.LENGTH_SHORT).show();
+			
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		
+	}
 }
