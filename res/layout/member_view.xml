@@ -15,14 +15,6 @@
         android:layout_alignParentRight="true"
         android:text="@string/add_item" />
 
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnAccount"
-        android:layout_centerHorizontal="true"
-        android:text="@string/search_for_items" />
-
     <ListView
         android:id="@+id/listFound"
         android:layout_width="match_parent"
@@ -43,15 +35,6 @@
         android:layout_toRightOf="@+id/listFound" >
 
     </ListView>
-
-    <Button
-        android:id="@+id/btnAccount"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/account_preferences"
-        android:textSize="@dimen/btnAccount" />
 
     <TextView
         android:id="@+id/txtLost"
@@ -81,5 +64,33 @@
         android:layout_alignParentTop="true"
         android:text="@string/btn_admin"
         android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnAccount"
+        android:text="@string/search_for_items" />
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnSearch"
+        android:layout_below="@+id/btnAccount"
+        android:layout_toLeftOf="@+id/btnSearch"
+        android:entries="@array/entries"
+        android:prompt="@string/prompt" />
+
+    <Button
+        android:id="@+id/btnAccount"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnAdmin"
+        android:layout_alignBottom="@+id/btnAdmin"
+        android:layout_alignParentLeft="true"
+        android:text="@string/account_preferences"
+        android:textSize="@dimen/btnAccount" />
 
 </RelativeLayout>
