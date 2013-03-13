@@ -127,7 +127,7 @@ public class AddItemActivity extends Activity{
 			Time date = new Time(Time.getCurrentTimezone());
 			date.setToNow();
 			
-			month = date.month;
+			month = date.month + 1;
 			day = date.monthDay;
 			year = date.year;
 			
