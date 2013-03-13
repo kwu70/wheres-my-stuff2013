@@ -1,5 +1,7 @@
 package com.honeybadger.wheresmystuff.views;
 
+import java.util.Calendar;
+
 import com.honeybadger.wheresmystuff.R;
 import com.honeybadger.wheresmystuff.support.Item;
 import com.honeybadger.wheresmystuff.support.Member;
@@ -7,15 +9,13 @@ import com.honeybadger.wheresmystuff.support.Security;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ImageView;
 
 /*
  * This class contains the proper text fields and radio buttons to create a new item.
@@ -34,6 +34,11 @@ public class AddItemActivity extends Activity{
 	//Texts fields for the item's name and description.
 	private EditText itemName;
 	private EditText itemDescription;
+	
+	//current date
+	private int month;
+	private int day;
+	private int year;
 	
 	/**
 	 * Called when the activity is first created.
@@ -62,17 +67,7 @@ public class AddItemActivity extends Activity{
 		
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddClickListener());
 		
-		
-		//create a button that take us to the image view
-		Button imageBtn = (Button) findViewById(R.id.AddPictureButton);
-		imageBtn.setOnClickListener(new View.OnClickListener() {
-            
-            @Override
-            public void onClick(View v) {
-            	startActivity(new Intent(AddItemActivity.this, PictureView.class));
-            }
-        });
-		
+		findViewById(R.id.AddPictureButton).setOnClickListener(new AddPictureListener());
 		
 	}
 	
@@ -88,6 +83,14 @@ public class AddItemActivity extends Activity{
 			finish();
 		}
 		
+	}
+	
+	private class AddPictureListener implements OnClickListener {
+		
+		@Override
+        public void onClick(View v) {
+        	startActivity(new Intent(AddItemActivity.this, PictureView.class));
+        }
 	}
 	
 	/*
@@ -120,8 +123,16 @@ public class AddItemActivity extends Activity{
 			RadioButton rad = (RadioButton) findViewById(radioButtonID);
 			String type = rad.getText().toString();
 			
+			//get date from system
+			Time date = new Time(Time.getCurrentTimezone());
+			date.setToNow();
+			
+			month = date.month;
+			day = date.monthDay;
+			year = date.year;
+			
 			//creates and adds a new item to the current members item list
-			currentMember.addItem(new Item(name, description,currentMember, lostFound, resolved, type));
+			currentMember.addItem(new Item(name, description,currentMember, lostFound, resolved, type, month, day, year));
 			
 			//goes back to member activity and displays item
 			startActivity(returnIntent);
