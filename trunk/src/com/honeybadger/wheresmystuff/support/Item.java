@@ -10,6 +10,7 @@ public class Item {
 	private static String[] category = new String[]{"Food", "Clothing", "Personal","Donation"};
 	private boolean status, resolved;
 	private Member owner;
+	private int month, day, year;
 		
 	/**
 	 * Basic Constructor for Item includes only a String name
@@ -40,7 +41,7 @@ public class Item {
 	 * @param resolved Whether the item has been claimed or is still in circulation in the app
 	 */
 	public Item(String name, String description, Member owner, boolean status, boolean resolved){
-		this(name, description, owner, status, resolved, null);
+		this(name, description, owner, status, resolved, null, 0, 0, 0);
 	}
 	/**
 	 * Third advanced constructor for Item. Includes: name, description, owner, status, resolved, and type
@@ -52,15 +53,18 @@ public class Item {
 	 * @param resolved Whether the item has been claimed or is still in circulation in the app
 	 * @param type The category the item is listed as
 	 */
-	public Item(String name, String description, Member owner, boolean status, boolean resolved, String type){
+	public Item(String name, String description, Member owner, boolean status, boolean resolved, String type, int month, int day, int year){
 		this.name = name;
 		this.description = description;
 		this.owner = owner;
 		this.status = status;
 		this.resolved = resolved;
 		this.type = type;
+		this.month = month;
+		this.day = day;
+		this.year = year;
 	}
-	
+
 	//Getters/Setters
 	public String getName(){
 		return name;
@@ -104,6 +108,30 @@ public class Item {
 	
 	public String getType(){
 		return type;
+	}
+	
+	public int getMonth(){
+		return month;
+	}
+	
+	public int getDay(){
+		return day;
+	}
+	
+	public int getYear(){
+		return year;
+	}
+	
+	public int setMonth(){
+		return month;
+	}
+	
+	public int setDay(){
+		return day;
+	}
+	
+	public int setYear(){
+		return year;
 	}
 	
 	public void setType(String type){
