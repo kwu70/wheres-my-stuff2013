@@ -35,5 +35,13 @@
     <string name="btn_remove_member">Remove Member</string>
     <string name="btn_unlock_account">Unlock Account</string>
     <string name="admin_settings_view">Admin Settings</string>
+    <string name="prompt">Sort By</string>
+    <string-array name="entries">
+        <item>Food</item>
+        <item>Clothing</item>
+        <item>Personal</item>
+        <item>Donation</item>
+    </string-array>
+    	
 
 </resources>

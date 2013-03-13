@@ -93,4 +93,12 @@
         android:text="@string/account_preferences"
         android:textSize="@dimen/btnAccount" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Button" />
+
 </RelativeLayout>
