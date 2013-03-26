@@ -98,7 +98,7 @@ public class Item {
 		this.status = status;
 	}
 	
-	public boolean getResolved(boolean resolved){
+	public boolean getResolved(){
 		return resolved;
 	}
 	
