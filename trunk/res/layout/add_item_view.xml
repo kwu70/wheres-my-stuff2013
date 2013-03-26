@@ -123,22 +123,6 @@
             android:layout_below="@+id/radGroupType"
             android:text="@string/cancel" />
 
-        <ImageView
-	        android:id="@+id/imgView"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1">   
-        </ImageView>
-
-   		<Button
-   		    android:id="@+id/AddPictureButton"
-   		    android:layout_width="wrap_content"
-   		    android:layout_height="wrap_content"
-   		    android:layout_alignParentLeft="true"
-   		    android:layout_below="@+id/radGroupType"
-   		    android:layout_weight="0"
-   		    android:text="Picture" />
-
     </RelativeLayout>
 
 </ScrollView>

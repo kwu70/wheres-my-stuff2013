@@ -67,8 +67,6 @@ public class AddItemActivity extends Activity{
 		
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddClickListener());
 		
-		findViewById(R.id.AddPictureButton).setOnClickListener(new AddPictureListener());
-		
 	}
 	
 	/*
@@ -83,14 +81,6 @@ public class AddItemActivity extends Activity{
 			finish();
 		}
 		
-	}
-	
-	private class AddPictureListener implements OnClickListener {
-		
-		@Override
-        public void onClick(View v) {
-        	startActivity(new Intent(AddItemActivity.this, PictureView.class));
-        }
 	}
 	
 	/*
