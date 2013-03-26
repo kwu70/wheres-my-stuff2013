@@ -36,12 +36,17 @@
     <string name="btn_unlock_account">Unlock Account</string>
     <string name="admin_settings_view">Admin Settings</string>
     <string name="prompt">Sort By</string>
-    <string-array name="entries">
+    <string-array name="entries"><item>Filter</item>
         <item>Food</item>
         <item>Clothing</item>
         <item>Personal</item>
         <item>Donation</item>
+        <item >Lost</item>
+        <item >Found</item>
+        
     </string-array>
+        <string name="date_button">Date</string>
+        <string name="lblDate">Enter Date (mm/dd/yyyy)</string>
     	
 
 </resources>

@@ -1,11 +1,13 @@
 package com.honeybadger.wheresmystuff.views;
 
+import java.util.ArrayList;
+
 import com.honeybadger.wheresmystuff.R;
 import com.honeybadger.wheresmystuff.support.Admin;
 import com.honeybadger.wheresmystuff.support.Item;
 import com.honeybadger.wheresmystuff.support.Member;
+import com.honeybadger.wheresmystuff.support.Search;
 import com.honeybadger.wheresmystuff.support.Security;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -35,10 +38,13 @@ public class MemberActivity extends Activity{
 	//current user
 	private Member currentMember;
 	
+	
+	private EditText date;
+	
 	//used in the ListViews to properly display
 	//the lost items and found items
-	private ArrayAdapter<String> adapterFound;
-	private ArrayAdapter<String> adapterLost;
+	private ArrayAdapter<String> adapterItems;
+	private ArrayAdapter<String> adapterTemp;
 	
 	private Spinner spinner;
 	
@@ -51,9 +57,10 @@ public class MemberActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.member_view);
 		
-		adapterFound = new ArrayAdapter<String>(this, 
+		adapterItems = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1);
-		adapterLost = new ArrayAdapter<String>(this,
+		
+		adapterTemp = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1);
 		
 		
@@ -67,6 +74,11 @@ public class MemberActivity extends Activity{
 			btn.setVisibility(0);
 		}
 		
+		//date
+		date = (EditText) findViewById(R.id.txtDateChooser);	
+		
+		findViewById(R.id.date_button).setOnClickListener(new DateClickListener());
+		
 		spinner = (Spinner) findViewById(R.id.category_spinner);
 		spinner.setOnItemSelectedListener(new CategorySpinnerOnItemSelectedListener());
 		
@@ -78,12 +90,11 @@ public class MemberActivity extends Activity{
 		addItem = new Intent(this, AddItemActivity.class);
 		addItem.putExtra("userEmail", userEmail);
 		
-		ListView foundList = (ListView) findViewById(R.id.listFound);
-		ListView lostList = (ListView) findViewById(R.id.listLost);
+		//item List
+		ListView itemsList = (ListView) findViewById(R.id.listFound);
+		itemsList.setAdapter(adapterItems);
 		
-		foundList.setAdapter(adapterFound);
-		lostList.setAdapter(adapterLost);
-		
+		//Button listener
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddItemClickListener());
 		
 		//Adds ClickListener to AdminSetting Button
@@ -94,12 +105,7 @@ public class MemberActivity extends Activity{
 		//adapter
 		if(currentMember.getItems() != null){
 			for(Item item: currentMember.getItems()){
-				if(item.getStatus() == false){
-					adapterLost.add(item.getName());
-				}
-				else {
-					adapterFound.add(item.getName());
-				}
+					adapterItems.add(item.getName());
 			}
 		}
 		
@@ -129,6 +135,27 @@ public class MemberActivity extends Activity{
 	}
 	
 	/**
+	 * Date Click Listener for filtering by the date
+	 *
+	 */
+	private class DateClickListener implements OnClickListener{
+
+		public void onClick(View arg0) {
+			String tempDate = date.getText().toString();
+			adapterTemp.clear();
+			
+			ArrayList<Item> tempItemList;
+			tempItemList = Search.filterCategory(currentMember, tempDate);
+			if(currentMember.getItems() != null){
+				for(Item item: tempItemList){
+						adapterTemp.add(item.getName());
+				}
+			}
+			adapterItems = adapterTemp;	
+		}
+	}
+	
+	/**
 	 * AdminSetting Listener for the Admin Setting Button only visible to Admins
 	 * Once button is clicked takes user to AdminSettingActivity
 	 */
@@ -140,6 +167,10 @@ public class MemberActivity extends Activity{
 		}
 	}
 	
+	
+	/**
+	 * Spinner Filter
+	 */
 	private class CategorySpinnerOnItemSelectedListener implements OnItemSelectedListener{
 
 		@Override
@@ -148,11 +179,32 @@ public class MemberActivity extends Activity{
 					"Whatup! : " + parent.getItemAtPosition(pos).toString(),
 					Toast.LENGTH_SHORT).show();
 			
+			adapterTemp.clear();
+			ArrayList<Item> tempItemList = new ArrayList<Item>();
+			String spinnerString = parent.getItemAtPosition(pos).toString();
+			if(spinnerString == "Filter"){
+				adapterItems = adapterItems;
+			}
+			else{
+	//			if(spinnerString == "Found" || spinnerString == "Lost"){
+	//				tempItemList = Search.filterStatus(currentMember, spinnerString);
+	//			}
+	//			else{
+					tempItemList = Search.filterCategory(currentMember, spinnerString);
+	//			}
+				
+				if(currentMember.getItems() != null){
+					for(Item item: tempItemList){
+							adapterTemp.add(item.getName());
+					}
+				}
+				adapterItems = adapterTemp;
+			}
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		

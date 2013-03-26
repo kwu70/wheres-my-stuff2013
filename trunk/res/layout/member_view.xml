@@ -7,54 +7,15 @@
     android:gravity="left"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btnAddItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/add_item" />
-
     <ListView
         android:id="@+id/listFound"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnAddItem"
         android:layout_alignRight="@+id/btnAccount"
-        android:layout_below="@+id/txtFound" >
+        android:layout_below="@+id/btnSearch" >
 
     </ListView>
-
-    <ListView
-        android:id="@+id/listLost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/listFound"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/txtFound"
-        android:layout_toRightOf="@+id/listFound" >
-
-    </ListView>
-
-    <TextView
-        android:id="@+id/txtLost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/listLost"
-        android:layout_alignLeft="@+id/listLost"
-        android:layout_marginLeft="32dp"
-        android:text="@string/lost_items"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/txtFound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnSearch"
-        android:layout_marginLeft="24dp"
-        android:text="@string/found_items"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
         android:id="@+id/btnAdmin"
@@ -64,24 +25,6 @@
         android:layout_alignParentTop="true"
         android:text="@string/btn_admin"
         android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/btnAccount"
-        android:text="@string/search_for_items" />
-
-    <Spinner
-        android:id="@+id/category_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btnSearch"
-        android:layout_below="@+id/btnAccount"
-        android:layout_toLeftOf="@+id/btnSearch"
-        android:entries="@array/entries"
-        android:prompt="@string/prompt" />
 
     <Button
         android:id="@+id/btnAccount"
@@ -94,11 +37,58 @@
         android:textSize="@dimen/btnAccount" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnAccount"
+        android:text="@string/search_for_items" />
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/listFound"
+        android:layout_toRightOf="@+id/btnSearch"
+        android:entries="@array/entries"
+        android:prompt="@string/prompt" />
+
+    <Button
+        android:id="@+id/btnAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="Button" />
+        android:layout_marginLeft="19dp"
+        android:text="@string/add_item" />
+
+    <EditText
+        android:id="@+id/txtDateChooser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/date_button"
+        android:layout_toRightOf="@+id/btnSearch"
+        android:ems="10"
+        android:inputType="text|date" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtDateChooser"
+        android:layout_toRightOf="@+id/btnSearch"
+        android:text="@string/lblDate" />
+
+    <Button
+        android:id="@+id/date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/listFound"
+        android:layout_alignLeft="@+id/txtDateChooser"
+        android:layout_marginBottom="36dp"
+        android:text="@string/date_button" />
 
 </RelativeLayout>
