@@ -19,16 +19,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager";
 
-	// places table name
+	// table names
 	private static final String TABLE_ITEMS = "items";
 	private static final String TABLE_MEMBERS = "members";
 
-	// places Table Columns names
-	private static final String KEY_ID = "id";
-	private static final String KEY_NAME = "name";
-	//private static final String KEY_PH_NO = "phone_number";
-	private static final String KEY_LAT = "latitude";
-	private static final String KEY_LON = "longitude";
+	// Table Item Columns names
+	private static final String KEY_IDI = "itemID";
+	private static final String KEY_INAME = "name";
+	private static final String KEY_DESC = "description";
+	private static final String KEY_MEMID = "memberid";
+	private static final String KEY_STATUS = "itemstatus";
+	private static final String KEY_RESOL = "resolved";
+	private static final String KEY_TYPE = "type";
+	private static final String KEY_MONTH = "month";
+	private static final String KEY_DAY = "day";
+	private static final String KEY_YEAR = "year";
+	
+	// Table Member Column names
+	private static final String KEY_IDM = "memberID";
+	private static final String KEY_EMAIL = "email";
+	private static final String KEY_PSWD = "password";
+	private static final String KEY_MNAME = "membername";
+
 
 	public DatabaseHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,11 +50,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_ITEMS_TABLE = "CREATE TABLE " + TABLE_ITEMS + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-				+ KEY_LAT + " TEXT, " + KEY_LON + " TEXT" + ")";
+				+ KEY_IDI + " INTEGER PRIMARY KEY," + KEY_INAME + " TEXT,"
+				+ KEY_DESC + " TEXT, " + KEY_MEMID+ " TEXT" + KEY_STATUS 
+				+ " TEXT" + KEY_RESOL + " TEXT" + KEY_TYPE + " TEXT" + KEY_MONTH
+				+ " TEXT" + KEY_DAY + " TEXT" + KEY_YEAR + " TEXT" + ")";
 		String CREATE_MEMBERS_TABLE = "CREATE TABLE " + TABLE_MEMBERS + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-				+ KEY_LAT + " TEXT, " + KEY_LON + " TEXT" + ")";
+				+ KEY_IDM + " INTEGER PRIMARY KEY," + KEY_EMAIL + " TEXT,"
+				+ KEY_PSWD + " TEXT, " + KEY_MNAME + " TEXT" + ")";
 		db.execSQL(CREATE_ITEMS_TABLE);
 		db.execSQL(CREATE_MEMBERS_TABLE);
 	}
@@ -65,12 +79,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	// Adding new place
 	void addMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
-
+		
 		ContentValues values = new ContentValues();
-		values.put(KEY_ID, mem.getID()); //place id
-		values.put(KEY_NAME, mem.getName()); // place Name
-		values.put(KEY_LAT, mem.getLat()); // place latitude
-		values.put(KEY_LON, mem.getLon()); //place longitude
+		//values.put(KEY_IDM, mem.getID());
+		values.put(KEY_EMAIL, mem.getEmail());
+		values.put(KEY_PSWD, mem.getPassword());
+		values.put(KEY_MNAME, mem.getName());
 
 		// Inserting Row
 		db.insert(TABLE_MEMBERS, null, values);
@@ -82,10 +96,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(KEY_ID, item.getID()); //place id
-		values.put(KEY_NAME, item.getName()); // place Name
-		values.put(KEY_LAT, item.getLat()); // place latitude
-		values.put(KEY_LON, item.getLon()); //place longitude
+		//values.put(KEY_IDI, item.getID());
+		values.put(KEY_INAME, item.getName());
+		values.put(KEY_DESC, item.getDescription());
+		//values.put(KEY_MEMID, item.getOwner().getID());
+		values.put(KEY_STATUS, item.getStatus());
+		values.put(KEY_RESOL, item.getResolved());
+		values.put(KEY_TYPE, item.getType());
+		values.put(KEY_MONTH, item.getMonth());
+		values.put(KEY_DAY, item.getDay());
+		values.put(KEY_YEAR, item.getYear());
+
 
 		// Inserting Row
 		db.insert(TABLE_ITEMS, null, values);
@@ -96,31 +117,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	Member getMember(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_MEMBERS, new String[] { KEY_ID,
-				KEY_NAME, KEY_LAT, KEY_LON }, KEY_ID + "=?",
+		Cursor cursor = db.query(TABLE_MEMBERS, new String[] { KEY_IDM,
+				KEY_EMAIL, KEY_PSWD, KEY_MNAME }, KEY_IDM + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Member mem = new Member(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
-		// return place
-		return mem;
+		//Member mem = new Member(Integer.parseInt(cursor.getString(0)),
+				//cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
+		// return member
+		//return mem;
+				return null;
 	}
 	
 	Item getItem(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
-		Cursor cursor = db.query(TABLE_MEMBERS, new String[] { KEY_ID,
-				KEY_NAME, KEY_LAT, KEY_LON }, KEY_ID + "=?",
+		Cursor cursor = db.query(TABLE_MEMBERS, new String[] { KEY_IDI,
+				KEY_INAME, KEY_DESC, KEY_MEMID, KEY_STATUS, KEY_RESOL,
+				KEY_TYPE, KEY_MONTH, KEY_DAY, KEY_YEAR }, KEY_IDI + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		Item item = new Item(Integer.parseInt(cursor.getString(0)),
-				cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
-		// return place
-		return item;
+		//Item item = new Item(Integer.parseInt(cursor.getString(0)),
+			//	cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
+		// return item
+		//return item;
+		return null;
 	}
 	
 	public List<Member> getAllMembers(){
@@ -135,10 +159,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-				Member member = new Member(Integer.parseInt(cursor.getString(0)),
-						cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
+			//	Member member = new Member(Integer.parseInt(cursor.getString(0)),
+				//		cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
 				// Adding member to list
-				members.add(member);
+				//members.add(member);
 			} while (cursor.moveToNext());
 		}
 		
@@ -157,10 +181,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-				Item item = new Item(Integer.parseInt(cursor.getString(0)),
-						cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
+			//	Item item = new Item(Integer.parseInt(cursor.getString(0)),
+				//		cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
 				// Adding item to list
-				items.add(item);
+				//items.add(item);
 			} while (cursor.moveToNext());
 		}
 		
@@ -203,47 +227,57 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 	}
 
-	// Updating single place
+	// Updating single member
 	public int updateMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(KEY_NAME, mem.getName());
-		values.put(KEY_LAT, mem.getLat());
-		values.put(KEY_LON, mem.getLon());
+		//values.put(KEY_IDM, mem.getID());
+		values.put(KEY_EMAIL, mem.getEmail());
+		values.put(KEY_PSWD, mem.getPassword());
+		values.put(KEY_MNAME, mem.getName());
 
 		// updating row
-		return db.update(TABLE_MEMBERS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(mem.getID()) });
+		//return db.update(TABLE_MEMBERS, values, KEY_IDM + " = ?",
+			//	new String[] { String.valueOf(mem.getID()) });
+		return 0;
 	}
 	
-	// Updating single place
+	// Updating single item
 	public int updateItem(Item item) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(KEY_NAME, item.getName());
-		values.put(KEY_LAT, item.getLat());
-		values.put(KEY_LON, item.getLon());
+		//values.put(KEY_IDI, item.getID());
+		values.put(KEY_INAME, item.getName());
+		values.put(KEY_DESC, item.getDescription());
+		//values.put(KEY_MEMID, item.getOwner().getID());
+		values.put(KEY_STATUS, item.getStatus());
+		values.put(KEY_RESOL, item.getResolved());
+		values.put(KEY_TYPE, item.getType());
+		values.put(KEY_MONTH, item.getMonth());
+		values.put(KEY_DAY, item.getDay());
+		values.put(KEY_YEAR, item.getYear());
 
 		// updating row
-		return db.update(TABLE_MEMBERS, values, KEY_ID + " = ?",
-				new String[] { String.valueOf(item.getID()) });
+		//return db.update(TABLE_ITEMS, values, KEY_IDI + " = ?",
+			//	new String[] { String.valueOf(item.getID()) });
+		return 0;
 	}
 
 	// Deleting single place
 	public void deleteMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_MEMBERS, KEY_ID + " = ?",
-				new String[] { String.valueOf(mem.getID()) });
+	//	db.delete(TABLE_MEMBERS, KEY_IDM + " = ?",
+		//		new String[] { String.valueOf(mem.getID()) });
 		db.close();
 	}
 	
 	// Deleting single place
 	public void deleteItem(Item item) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		db.delete(TABLE_MEMBERS, KEY_ID + " = ?",
-				new String[] { String.valueOf(item.getID()) });
+		//db.delete(TABLE_ITEMS, KEY_IDI + " = ?",
+			//	new String[] { String.valueOf(item.getID()) });
 		db.close();
 	}
 
