@@ -5,9 +5,12 @@ public class Search {
 	
 	public static ArrayList<Item> filterCategory(Member member, String category){
 		
-	
-		ArrayList<Item> list = Security.getItemList();
+		if((null != category) && (category.length() == 0)) {
+			throw new NullPointerException("Category is null.");
+		}
+		ArrayList<Item> list = member.getItems();
 		ArrayList<Item> matches = new ArrayList<Item>();
+		
 		for(int i = 0; i < Security.getItemListSize(); i++){
 			Item currItem = list.get(i);
 			if(currItem.getType().equals(category)){
@@ -19,7 +22,11 @@ public class Search {
 	
 	public static ArrayList<Item> filterDate(Member member, String date){
 		
-		ArrayList<Item> list = Security.getItemList();
+		if((null != date) && (date.length() == 0)) {
+			throw new NullPointerException("Date is null.");
+		}
+		
+		ArrayList<Item> list = member.getItems();
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
 		String[] mdy = date.split("/");
@@ -28,8 +35,8 @@ public class Search {
 		int year = Integer.parseInt(mdy[2]);
 		for(int i = 0; i < Security.getItemListSize(); i++){
 			Item currItem = list.get(i);
-			if(currItem.getDay() == month
-					&& currItem.getMonth() == day
+			if(currItem.getMonth() == month
+					&& currItem.getDay() == day
 					&& currItem.getYear() == year){
 				matches.add(list.get(i));
 			}
@@ -38,9 +45,9 @@ public class Search {
 	}
 	public static ArrayList<Item> filterStatus(Member member, Boolean status){
 		
-		
-		ArrayList<Item> list = Security.getItemList();
+		ArrayList<Item> list = member.getItems();
 		ArrayList<Item> matches = new ArrayList<Item>();
+		
 		for(int i = 0; i < Security.getItemListSize(); i++){
 			Item currItem = list.get(i);
 			if(currItem.getStatus() == status){
