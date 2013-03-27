@@ -6,11 +6,11 @@ public class Search {
 	public static ArrayList<Item> filterCategory(Member member, String category){
 		ArrayList<Item> matches = new ArrayList<Item>();
 
-		if((category == null) && (category.length() == 0)) {
+		if((category == null) || (category.length() == 0)) {
 			
 		}
 		else{
-			ArrayList<Item> list = member.getItems();
+			ArrayList<Item> list = Security.getMemberItemList(member);
 			
 			for(int i = 0; i < Security.getItemListSize(); i++){
 				Item currItem = list.get(i);
@@ -28,7 +28,7 @@ public class Search {
 			throw new NullPointerException("Date is null.");
 		}
 		
-		ArrayList<Item> list = member.getItems();
+		ArrayList<Item> list = Security.getMemberItemList(member);
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
 		String[] mdy = date.split("/");
@@ -47,7 +47,7 @@ public class Search {
 	}
 	public static ArrayList<Item> filterStatus(Member member, Boolean status){
 		
-		ArrayList<Item> list = member.getItems();
+		ArrayList<Item> list = Security.getMemberItemList(member);
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
 		for(int i = 0; i < Security.getItemListSize(); i++){
