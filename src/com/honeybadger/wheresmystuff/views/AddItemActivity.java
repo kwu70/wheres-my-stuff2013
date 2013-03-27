@@ -117,11 +117,8 @@ public class AddItemActivity extends Activity{
 			//get date from system
 			Calendar date = Calendar.getInstance();
 			month = date.get(Calendar.MONTH) + 1;
-			System.out.println(month);
 			day = date.get(Calendar.DAY_OF_MONTH);
-			System.out.println(day);
 			year = date.get(Calendar.YEAR);
-			System.out.println(year);
 
 			
 			
