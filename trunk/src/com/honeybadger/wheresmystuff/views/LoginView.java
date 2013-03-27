@@ -128,12 +128,12 @@ public class LoginView extends Activity{
 			focusView.requestFocus();
 		}
 		else {
-			if(lg.validate(email, password, this) && !lg.lockOut(Security.getMember(email, this))){
+			if(lg.validate(email, password) && !lg.lockOut(Security.getMember(email))){
 				memberIntent.putExtra("userEmail", email);
 				startActivity(memberIntent);
 				finish();
 			}
-			else if(lg.lockOut(Security.getMember(email,this))){
+			else if(lg.lockOut(Security.getMember(email))){
 				mEmailView.setError(getString(R.string.error_lock_out));
 				mPasswordView.setError(null);
 			}

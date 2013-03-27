@@ -58,7 +58,16 @@ public class Member{
 	 * @return items list of items
 	 */
 	public ArrayList<Item> getItems(){
-		return items;
+		DatabaseHandlerItems db = Security.getDBI();
+		ArrayList<Item> item = db.getAllItems();
+		ArrayList<Item> temp = item;
+		temp.clear();
+		for(Item i: item){
+			if(i.getOwner().equals(this)){
+				temp.add(i);
+			}
+		}
+		return temp;
 	}
 	
 	/**

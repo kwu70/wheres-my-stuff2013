@@ -4,17 +4,19 @@ import java.util.ArrayList;
 public class Search {
 	
 	public static ArrayList<Item> filterCategory(Member member, String category){
-		
-		if((null != category) && (category.length() == 0)) {
-			throw new NullPointerException("Category is null.");
-		}
-		ArrayList<Item> list = member.getItems();
 		ArrayList<Item> matches = new ArrayList<Item>();
-		
-		for(int i = 0; i < Security.getItemListSize(); i++){
-			Item currItem = list.get(i);
-			if(currItem.getType().equals(category)){
-				matches.add(list.get(i));
+
+		if((category == null) && (category.length() == 0)) {
+			
+		}
+		else{
+			ArrayList<Item> list = member.getItems();
+			
+			for(int i = 0; i < Security.getItemListSize(); i++){
+				Item currItem = list.get(i);
+				if(currItem.getType().equals(category)){
+					matches.add(list.get(i));
+				}
 			}
 		}
 		return matches;
