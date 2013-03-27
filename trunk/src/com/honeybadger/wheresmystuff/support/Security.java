@@ -172,8 +172,10 @@ public class Security {
 		ArrayList<Item> temp = dbHandlerI.getAllItems();
 		temp.clear();
 		for(Item i: items){
-			if(i.getOwner().getID() == mem.getID()){
-				temp.add(i);
+			if(i.getOwner() != null){
+				if(i.getOwner().getID() == mem.getID()){
+					temp.add(i);
+				}
 			}
 		}
 		return temp;
