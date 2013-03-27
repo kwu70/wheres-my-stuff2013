@@ -1,5 +1,8 @@
 package com.honeybadger.wheresmystuff.views;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import com.honeybadger.wheresmystuff.R;
 import com.honeybadger.wheresmystuff.support.Item;
 import com.honeybadger.wheresmystuff.support.Member;
@@ -112,13 +115,14 @@ public class AddItemActivity extends Activity{
 			String type = rad.getText().toString();
 			
 			//get date from system
-			Time date = new Time(Time.getCurrentTimezone());
-			date.setToNow();
-			
-			month = date.month + 1;
-			day = date.monthDay;
-			year = date.year;
-			
+			Calendar date = Calendar.getInstance();
+			month = date.get(Calendar.MONTH) + 1;
+			System.out.println(month);
+			day = date.get(Calendar.DAY_OF_MONTH);
+			System.out.println(day);
+			year = date.get(Calendar.YEAR);
+			System.out.println(year);
+
 			
 			
 			//creates and adds a new item to the current members item list
