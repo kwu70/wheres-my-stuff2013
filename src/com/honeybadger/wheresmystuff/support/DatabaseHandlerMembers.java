@@ -99,15 +99,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		if((cursor.getString(3).equals("Admin"))){
 			
 			Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
-					cursor.getString(1), cursor.getString(2), cursor.getString(3));
-			
-			ArrayList <Item> item = Security.getDBI().getAllItems();
-			
-			for(Item i: item){
-				if(i.getOwner().getID() == admin.getID()){
-					admin.addItem(i);
-				}
-			}
+					cursor.getString(1), cursor.getString(2), cursor.getString(3));			
 			cursor.close();
 			db.close();
 			return admin;
@@ -115,12 +107,6 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		else{
 			Member mem = new Member(Integer.parseInt(cursor.getString(0)),
 					cursor.getString(1), cursor.getString(2), cursor.getString(3));
-			ArrayList <Item> item = Security.getDBI().getAllItems();
-			for(Item i: item){
-				if(i.getOwner() == mem){
-					mem.addItem(i);
-				}
-			}
 			cursor.close();
 			db.close();
 			return mem;

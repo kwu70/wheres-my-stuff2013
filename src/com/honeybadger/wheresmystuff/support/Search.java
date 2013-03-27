@@ -13,7 +13,7 @@ public class Search {
 	public static ArrayList<Item> filterCategory(Member member, String category){
 		ArrayList<Item> matches = new ArrayList<Item>();
 
-		if((category == null) && (category.length() == 0)) {
+		if((category == null) || (category.length() == 0)) {
 			return null;
 		}
 		else{
