@@ -48,7 +48,7 @@ public class Security {
 	 * @return members.size() an int indicating the size of the list.
 	 */
 	public static int getMemberListSize(){
-		return dbHandlerM.getAllMembers().size();
+		return dbHandlerM.getAllMembers().size() - 1;
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class Security {
 	 * @return items.size() an int indicating the size of the list.
 	 */
 	public static int getItemListSize(){
-		return dbHandlerI.getAllItems().size();
+		return dbHandlerI.getAllItems().size() - 1;
 	}
 	
 	
