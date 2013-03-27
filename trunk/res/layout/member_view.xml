@@ -16,15 +16,6 @@
         android:text="@string/btn_admin"
         android:visibility="invisible" />
 
-    <Spinner
-        android:id="@+id/category_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/listFound"
-        android:layout_toRightOf="@+id/btnSearch"
-        android:entries="@array/entries"
-        android:prompt="@string/prompt" />
-
     <ListView
         android:id="@+id/listFound"
         android:layout_width="match_parent"
@@ -59,33 +50,68 @@
         android:layout_alignParentLeft="true"
         android:text="@string/add_item" />
 
+    <TextView
+        android:id="@+id/lbl_Filtering"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/category_spinner"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_marginRight="24dp"
+        android:text="@string/lbl_filter" />
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lbl_Filtering"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/listFound"
+        android:layout_marginTop="34dp"
+        android:entries="@array/entries"
+        android:prompt="@string/prompt" />
+
+    <TextView
+        android:id="@+id/lbl_filter2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/listFound"
+        android:layout_marginTop="16dp"
+        android:text="@string/lbl_filter2" />
+
     <EditText
         android:id="@+id/txtDateChooser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/date_button"
-        android:layout_toRightOf="@+id/listFound"
+        android:layout_alignLeft="@+id/btnAdmin"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:ems="10"
-        android:inputType="text|date" >
-
-        <requestFocus />
-    </EditText>
+        android:inputType="text|date" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/txtDateChooser"
-        android:layout_toRightOf="@+id/listFound"
+        android:layout_alignParentRight="true"
         android:text="@string/lblDate" />
 
     <Button
         android:id="@+id/date_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/listFound"
-        android:layout_alignLeft="@+id/btnAdmin"
-        android:layout_marginBottom="75dp"
-        android:text="@string/date_button" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtDateChooser"
+        android:text="@string/date_button2" />
+
+    <TextView
+        android:id="@+id/lblFilterByDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/txtDateChooser"
+        android:layout_marginLeft="18dp"
+        android:text="@string/lbl_filter_by_date" />
 
 </RelativeLayout>
