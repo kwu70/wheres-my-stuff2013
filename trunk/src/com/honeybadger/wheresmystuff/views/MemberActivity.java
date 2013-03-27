@@ -38,13 +38,13 @@ public class MemberActivity extends Activity{
 	//current user
 	private Member currentMember;
 	
-	
 	private EditText date;
 	
 	//used in the ListViews to properly display
 	//the lost items and found items
 	private ArrayAdapter<String> adapterItems;
 	private ArrayAdapter<String> adapterTemp;
+	private ListView itemsList;
 	
 	private Spinner spinner;
 	
@@ -91,7 +91,7 @@ public class MemberActivity extends Activity{
 		addItem.putExtra("userEmail", userEmail);
 		
 		//item List
-		ListView itemsList = (ListView) findViewById(R.id.listFound);
+		itemsList = (ListView) findViewById(R.id.listFound);
 		itemsList.setAdapter(adapterItems);
 		
 		//Button listener
@@ -141,17 +141,22 @@ public class MemberActivity extends Activity{
 	private class DateClickListener implements OnClickListener{
 
 		public void onClick(View arg0) {
+			
 			String tempDate = date.getText().toString();
 			adapterTemp.clear();
 			
 			ArrayList<Item> tempItemList;
 			tempItemList = Search.filterCategory(currentMember, tempDate);
-			if(currentMember.getItems() != null){
+			
+			if(tempItemList != null){
 				for(Item item: tempItemList){
 						adapterTemp.add(item.getName());
 				}
 			}
-			adapterItems = adapterTemp;	
+			
+			//Update UI
+			adapterItems = adapterTemp;
+			itemsList.setAdapter(adapterItems);
 		}
 	}
 	
@@ -176,36 +181,59 @@ public class MemberActivity extends Activity{
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 			Toast.makeText(parent.getContext(), 
-					"Whatup! : " + parent.getItemAtPosition(pos).toString(),
+					"Filter By : " + parent.getItemAtPosition(pos).toString(),
 					Toast.LENGTH_SHORT).show();
 			
 			adapterTemp.clear();
 			ArrayList<Item> tempItemList = new ArrayList<Item>();
 			String spinnerString = parent.getItemAtPosition(pos).toString();
-			if(spinnerString == "Filter"){
-				adapterItems = adapterItems;
+			
+			//Show everything
+			if(spinnerString.equals("All")){
+				tempItemList = currentMember.getItems();
+				
+				if(tempItemList != null){
+					for(Item item: tempItemList){
+							adapterTemp.add(item.getName());
+					}
+				}
+				
 			}
 			else{
-	//			if(spinnerString == "Found" || spinnerString == "Lost"){
-	//				tempItemList = Search.filterStatus(currentMember, spinnerString);
-	//			}
-	//			else{
+				//Filter by lost and found
+				if(spinnerString.equals("Found") || spinnerString.equals("Lost")){
+					if(spinnerString.equals("Found")){
+						tempItemList = Search.filterStatus(currentMember, true);
+					}
+					else{
+						tempItemList = Search.filterStatus(currentMember, false);
+					}
+				}
+				//Filter by category
+				else{
 					tempItemList = Search.filterCategory(currentMember, spinnerString);
-	//			}
-				
+				}
+				//make the new array adapter for the list
 				if(currentMember.getItems() != null){
 					for(Item item: tempItemList){
 							adapterTemp.add(item.getName());
 					}
 				}
-				adapterItems = adapterTemp;
 			}
+			//update the UI
+			adapterItems = adapterTemp;
+			itemsList.setAdapter(adapterItems);
+			
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
-			
-			
+			if(currentMember.getItems() != null){
+				for(Item item: currentMember.getItems()){
+						adapterItems.add(item.getName());
+				}
+			}
+			itemsList.setAdapter(adapterItems);	
 		}
 		
 		
