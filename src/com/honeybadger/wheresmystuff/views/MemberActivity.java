@@ -66,7 +66,7 @@ public class MemberActivity extends Activity{
 		
 		Intent intent = getIntent();
 		userEmail = intent.getExtras().getString("userEmail");
-		currentMember = Security.getMember(userEmail, this);
+		currentMember = Security.getMember(userEmail);
 		
 		//Admin Settings Button shows if the user is an Admin
 		View btn = (Button) findViewById(R.id.btnAdmin);
@@ -103,11 +103,17 @@ public class MemberActivity extends Activity{
 		//Iterates through the members items and if
 		//they have any then it assigns them to the appropriate
 		//adapter
-		if(currentMember.getItems() != null){
-			for(Item item: currentMember.getItems()){
+		/*
+		ArrayList<Item> temp = Security.getMemberItemList(currentMember);
+		
+		
+		if(temp != null){
+			for(Item item: temp){
+					System.out.println("Hello!");
 					adapterItems.add(item.getName());
 			}
 		}
+		*/
 		
 	}
 	
@@ -190,14 +196,13 @@ public class MemberActivity extends Activity{
 			
 			//Show everything
 			if(spinnerString.equals("All")){
-				tempItemList = currentMember.getItems();
+				ArrayList<Item> temp = Security.getMemberItemList(currentMember);
 				
-				if(tempItemList != null){
-					for(Item item: tempItemList){
+				if(temp != null){
+					for(Item item: temp){
 							adapterTemp.add(item.getName());
 					}
-				}
-				
+				}				
 			}
 			else{
 				//Filter by lost and found

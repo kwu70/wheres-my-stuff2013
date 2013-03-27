@@ -1,7 +1,5 @@
 package com.honeybadger.wheresmystuff.views;
 
-import java.util.Calendar;
-
 import com.honeybadger.wheresmystuff.R;
 import com.honeybadger.wheresmystuff.support.Item;
 import com.honeybadger.wheresmystuff.support.Member;
@@ -54,7 +52,7 @@ public class AddItemActivity extends Activity{
 		Intent intent = getIntent();
 		userEmail = intent.getExtras().getString("userEmail");
 		
-		currentMember = Security.getMember(userEmail, this);
+		currentMember = Security.getMember(userEmail);
 		
 		returnIntent = new Intent(this, MemberActivity.class);
 		returnIntent.putExtra("userEmail", userEmail);
@@ -124,8 +122,8 @@ public class AddItemActivity extends Activity{
 			
 			
 			//creates and adds a new item to the current members item list
-			currentMember.addItem(new Item(Security.getDB().getCurrentItemID() ,name, description,currentMember, lostFound, resolved, type, month, day, year));
-			
+			currentMember.addItem(new Item(Security.getDBI().getCurrentItemID() ,name, description,currentMember, lostFound, resolved, type, month, day, year));
+			Security.addItem(new Item(Security.getDBI().getCurrentItemID() ,name, description,currentMember, lostFound, resolved, type, month, day, year));
 			//goes back to member activity and displays item
 			startActivity(returnIntent);
 			finish();

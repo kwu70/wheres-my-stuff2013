@@ -37,9 +37,9 @@ public class Login {
 	 * @param psswd User's inputed password.
 	 * @return boolean Whether combination of login credentials exists or not. 
 	 */
-	public boolean validate(String email, String password, Context c){	
+	public boolean validate(String email, String password){	
 		if(Security.contains(email)){
-			Member temp = Security.getMember(email, c);
+			Member temp = Security.getMember(email);
 			if(password.equals(temp.getPassword()) && !lockOut(temp)){
 				temp.setFailedAttempts(0);
 				return true;
