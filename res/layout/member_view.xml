@@ -7,16 +7,6 @@
     android:gravity="left"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/listFound"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnAddItem"
-        android:layout_alignRight="@+id/btnAccount"
-        android:layout_below="@+id/btnSearch" >
-
-    </ListView>
-
     <Button
         android:id="@+id/btnAdmin"
         android:layout_width="wrap_content"
@@ -25,24 +15,6 @@
         android:layout_alignParentTop="true"
         android:text="@string/btn_admin"
         android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/btnAccount"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnAdmin"
-        android:layout_alignBottom="@+id/btnAdmin"
-        android:layout_alignParentLeft="true"
-        android:text="@string/account_preferences"
-        android:textSize="@dimen/btnAccount" />
-
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnAccount"
-        android:text="@string/search_for_items" />
 
     <Spinner
         android:id="@+id/category_spinner"
@@ -53,13 +25,38 @@
         android:entries="@array/entries"
         android:prompt="@string/prompt" />
 
+    <ListView
+        android:id="@+id/listFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnAddItem"
+        android:layout_alignRight="@+id/btnSearch"
+        android:layout_below="@+id/lblMemberItemList" >
+    </ListView>
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/search_for_items" />
+
+    <TextView
+        android:id="@+id/lblMemberItemList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnSearch"
+        android:layout_marginLeft="23dp"
+        android:text="@string/item_list" />
+
     <Button
         android:id="@+id/btnAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="19dp"
         android:text="@string/add_item" />
 
     <EditText
@@ -67,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/date_button"
-        android:layout_toRightOf="@+id/btnSearch"
+        android:layout_toRightOf="@+id/listFound"
         android:ems="10"
         android:inputType="text|date" >
 
@@ -79,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/txtDateChooser"
-        android:layout_toRightOf="@+id/btnSearch"
+        android:layout_toRightOf="@+id/listFound"
         android:text="@string/lblDate" />
 
     <Button
@@ -87,8 +84,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/listFound"
-        android:layout_alignLeft="@+id/txtDateChooser"
-        android:layout_marginBottom="36dp"
+        android:layout_alignLeft="@+id/btnAdmin"
+        android:layout_marginBottom="75dp"
         android:text="@string/date_button" />
 
 </RelativeLayout>

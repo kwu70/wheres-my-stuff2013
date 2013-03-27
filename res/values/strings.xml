@@ -47,6 +47,8 @@
     </string-array>
         <string name="date_button">Date</string>
         <string name="lblDate">Enter Date (mm/dd/yyyy)</string>
+        <string name="lbl_item_list">Items List</string>
+        <string name="item_list">Item List</string>
     	
 
 </resources>

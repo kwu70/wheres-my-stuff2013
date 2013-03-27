@@ -152,10 +152,12 @@ public class MemberActivity extends Activity{
 			adapterTemp.clear();
 			
 			ArrayList<Item> tempItemList;
-			tempItemList = Search.filterCategory(currentMember, tempDate);
+			System.out.println(tempDate);
+			tempItemList = Search.filterDate(currentMember, tempDate);
 			
 			if(tempItemList != null){
 				for(Item item: tempItemList){
+						System.out.println(item.getName());
 						adapterTemp.add(item.getName());
 				}
 			}
