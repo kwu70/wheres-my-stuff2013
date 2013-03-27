@@ -51,9 +51,9 @@ public class Search {
 		int year = Integer.parseInt(mdy[2]);
 		for(int i = 0; i < list.size(); i++){
 			Item currItem = list.get(i);
-			if(currItem.getMonth() == month
-					&& currItem.getDay() == day
-					&& currItem.getYear() == year){
+			if(currItem.getMonth() >= month
+					&& currItem.getDay() >= day
+					&& currItem.getYear() >= year){
 				matches.add(list.get(i));
 			}
 		}
