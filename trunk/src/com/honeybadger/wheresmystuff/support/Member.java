@@ -9,7 +9,6 @@ public class Member{
 	
 	private String name, email, password;
 	private int failedAttempts;
-	private ArrayList<Item> items;
 	private int ID;
 	
 	public Member(int ID, String email, String password, String name){
@@ -18,7 +17,6 @@ public class Member{
 		this.password = password;
 		this.name = name;
 		this.failedAttempts = 0;
-		items = new ArrayList<Item>();
 	}
 	
 	/**
@@ -103,39 +101,10 @@ public class Member{
 	}
 	
 	/**
-	 * Setter for items
-	 * @param items add items to list
-	 */
-	public void setItems(ArrayList<Item> items){
-		this.items = items;
-	}
-	
-	/**
 	 * increments failedAttempts (Login Attempts) by 1
 	 */
 	public void incFailedAttempts(){
 		this.failedAttempts++;
-	}
-	
-	/**
-	 * look for an item in the arraylist
-	 */
-	public void findItem(Item item){
-		items.contains(item);
-	}
-	
-	/**
-	 * add an item to the arraylist
-	 */
-	public void addItem(Item item){
-		items.add(item);
-	}
-	
-	/**
-	 * remove an item from the arraylist
-	 */
-	public void removeItem(Item item){
-		items.remove(item);
 	}
 	
 	public int getID(){

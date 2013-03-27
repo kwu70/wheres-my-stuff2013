@@ -1,7 +1,6 @@
 package com.honeybadger.wheresmystuff.views;
 
 import com.honeybadger.wheresmystuff.R;
-import com.honeybadger.wheresmystuff.support.Member;
 import com.honeybadger.wheresmystuff.support.Security;
 import android.app.Activity;
 import android.app.AlertDialog;
