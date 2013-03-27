@@ -17,7 +17,7 @@ public class Search {
 			return null;
 		}
 		else{
-			ArrayList<Item> list = member.getItems();
+			ArrayList<Item> list = Security.getMemberItemList(member);
 			
 			for(int i = 0; i < list.size(); i++){
 				Item currItem = list.get(i);
@@ -42,7 +42,7 @@ public class Search {
 			return null;
 		}
 		
-		ArrayList<Item> list = member.getItems();
+		ArrayList<Item> list = Security.getMemberItemList(member);
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
 		String[] mdy = date.split("/");
@@ -69,7 +69,7 @@ public class Search {
 	 */
 	public static ArrayList<Item> filterStatus(Member member, Boolean status){
 		
-		ArrayList<Item> list = member.getItems();
+		ArrayList<Item> list = Security.getMemberItemList(member);
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
 		for(int i = 0; i < list.size(); i++){
