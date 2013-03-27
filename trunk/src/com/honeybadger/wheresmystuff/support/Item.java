@@ -11,38 +11,8 @@ public class Item {
 	private boolean status, resolved;
 	private Member owner;
 	private int month, day, year;
+	private int ID;
 		
-	/**
-	 * Basic Constructor for Item includes only a String name
-	 * @param name The name of the Item
-	 */
-	public Item(String name){
-		this(name, "", null, false);
-	}
-	
-	/**
-	 * Advanced Constructor for Item includes name, description, owner, and status
-	 * 
-	 * @param name The Name of the Item
-	 * @param description Description of the Item 
-	 * @param owner Who is the Member that owns this Item
-	 * @param status Whether the Item is lost or found
-	 */
-	public Item(String name, String description, Member owner, boolean status){
-		this(name, description, owner, status, false);
-	}
-	/**
-	 * Second advanced constructor for Item. Includes: name, description, owner, status, resolved, and type
-	 * 
-	 * @param name The name of the item
-	 * @param description Description of the item
-	 * @param owner Member that owns the item
-	 * @param status Whether the item is listed as Lost or Found
-	 * @param resolved Whether the item has been claimed or is still in circulation in the app
-	 */
-	public Item(String name, String description, Member owner, boolean status, boolean resolved){
-		this(name, description, owner, status, resolved, null, 0, 0, 0);
-	}
 	/**
 	 * Third advanced constructor for Item. Includes: name, description, owner, status, resolved, and type
 	 * 
@@ -53,7 +23,8 @@ public class Item {
 	 * @param resolved Whether the item has been claimed or is still in circulation in the app
 	 * @param type The category the item is listed as
 	 */
-	public Item(String name, String description, Member owner, boolean status, boolean resolved, String type, int month, int day, int year){
+	public Item(int ID, String name, String description, Member owner, boolean status, boolean resolved, String type, int month, int day, int year){
+		this.ID = ID;
 		this.name = name;
 		this.description = description;
 		this.owner = owner;
@@ -143,6 +114,10 @@ public class Item {
 	
 	public int sizeOfCategoryList(){
 		return category.length;
+	}
+	
+	public int getID(){
+		return ID;
 	}
 	/**
 	 * TODO setter for coordinate location

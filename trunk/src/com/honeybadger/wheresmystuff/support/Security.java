@@ -1,22 +1,25 @@
 package com.honeybadger.wheresmystuff.support;
 
 import java.util.ArrayList;
+
+import android.content.Context;
 /**
  * The Security class contains member list which contains all the members that exist in the system.
  */
 public class Security {
 	
-	private static ArrayList<Member> members = new ArrayList<Member>();
-	private static ArrayList<Item> items = new ArrayList<Item>();
+	//private static ArrayList<Member> members = new ArrayList<Member>();
+	//private static ArrayList<Item> items = new ArrayList<Item>();
+	private static DatabaseHandler dbHandler;
 	
 	/**
 	 * Security constructor that sets up the ArrayLists emails, passwords, and members
 	 * it initiates them with default emails and passwords
 	 */
-	public Security(){
-		members.add(new Member("foobar@example.com", "hello"));
-		members.add(new Admin("admin@admin", "admin"));
-		items.add(new Item("defaultItem"));
+	public Security(Context c){
+		Security.dbHandler = new DatabaseHandler(c);
+		dbHandler.addMember(new Member(dbHandler.getCurrentMemberID(), "foobar@example.com", "hello", ""));
+		dbHandler.addMember(new Admin(dbHandler.getCurrentMemberID(), "admin@admin", "admin", ""));
 	}
 	
 	/**
@@ -25,7 +28,7 @@ public class Security {
 	 * @return members the list that contains all the members
 	 */
 	public static ArrayList<Member> getMemberList(){
-		return members;
+		return dbHandler.getAllMembers();
 	}
 	
 	/**
@@ -34,7 +37,7 @@ public class Security {
 	 * @return items the list that contains all the items (general list of items)
 	 */
 	public static ArrayList<Item> getItemList(){
-		return items;
+		return dbHandler.getAllItems();
 	}
 	
 	/**
@@ -43,7 +46,7 @@ public class Security {
 	 * @return members.size() an int indicating the size of the list.
 	 */
 	public static int getMemberListSize(){
-		return members.size();
+		return dbHandler.getAllMembers().size();
 	}
 	
 	/**
@@ -52,7 +55,7 @@ public class Security {
 	 * @return items.size() an int indicating the size of the list.
 	 */
 	public static int getItemListSize(){
-		return items.size();
+		return dbHandler.getAllItems().size();
 	}
 	
 	
@@ -62,13 +65,15 @@ public class Security {
 	 * @param email Email of the specific member
 	 * @return Member with the email. If the email is not found then return default Member.
 	 */
-	public static Member getMember(String email){
-		for(int i = 0; i < members.size(); i++){
-			if(email.equals(members.get(i).getEmail())){
-				return members.get(i);
+	public static Member getMember(String email, Context c){
+		Security.dbHandler = new DatabaseHandler(c);
+		ArrayList<Member> mem = dbHandler.getAllMembers();
+		for(int i = 0; i < mem.size(); i++){
+			if(email.equals(mem.get(i).getEmail())){
+				return mem.get(i);
 			}
 		}
-		return new Member("default","default");
+		return new Member(0,"default","default","");
 	}
 	
 	/**
@@ -78,8 +83,9 @@ public class Security {
 	 * @return boolean based on whether the Member is in the list.
 	 */
 	public static boolean contains(String email){
-		for(int i = 0; i < members.size(); i++){
-			if(email.equals(members.get(i).getEmail())){
+		ArrayList<Member> mem = dbHandler.getAllMembers();
+		for(int i = 0; i < mem.size(); i++){
+			if(email.equals(mem.get(i).getEmail())){
 				return true;
 			}
 		}
@@ -96,7 +102,7 @@ public class Security {
 	 * @param password  of the Member being added to the member list
 	 */
 	public static void addMember(String email, String password){
-		members.add(new Member(email, password));
+		dbHandler.addMember(new Member(dbHandler.getCurrentMemberID(), email,password, ""));
 	}
 	
 	/**
@@ -105,7 +111,7 @@ public class Security {
 	 * @param item the Item being added to the item list
 	 */
 	public static void addItem(Item item){
-		items.add(item);
+		dbHandler.addItem(item);
 	}
 	
 	/**
@@ -118,7 +124,7 @@ public class Security {
 	 * @param password  of the Admin being added to the member list
 	 */
 	public static void addAdmin(String email, String password){
-		members.add(new Admin(email, password));
+		dbHandler.addMember(new Admin(dbHandler.getCurrentMemberID(), email, password, ""));
 	}
 	
 	/**
@@ -128,9 +134,10 @@ public class Security {
 	 * @param password
 	 */
 	public static boolean removeMember(String email){
-		for(int i = 0; i < members.size(); i++){
-			if(email.equals(members.get(i).getEmail())){
-				members.remove(i);
+		ArrayList<Member> mem = dbHandler.getAllMembers();
+		for(int i = 0; i < mem.size(); i++){
+			if(email.equals(mem.get(i).getEmail())){
+				mem.remove(i);
 				return true;
 			}
 		}
@@ -143,7 +150,7 @@ public class Security {
 	 * @param member the member that is having their failed attempts reset to zero.
 	 */
 	public static void resetAttempts(Member member) {
-		member.setFailedAttempts(0);
+		dbHandler.getMember(member.getID()).setFailedAttempts(0);
 	}
 	
 	/**
@@ -152,11 +159,16 @@ public class Security {
 	 * @param email Email of the memebr that is being unlocked.
 	 */
 	public static void unlockMember(String email){
-		for(int i = 0; i < members.size(); i++){
-			if(email.equals(members.get(i).getEmail())){
-				members.get(i).setFailedAttempts(0);
+		ArrayList<Member> mem = dbHandler.getAllMembers();
+		for(int i = 0; i < mem.size(); i++){
+			if(email.equals(mem.get(i).getEmail())){
+				mem.get(i).setFailedAttempts(0);
 			}
 		}
+	}
+	
+	public static DatabaseHandler getDB(){
+		return dbHandler;
 	}
 	
 }

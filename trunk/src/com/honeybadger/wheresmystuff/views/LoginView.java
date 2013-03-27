@@ -53,7 +53,7 @@ public class LoginView extends Activity{
 		
 		//login initialized so we can access methods and it sets up a user account since
 		//we do not have persistent data.
-		lg = new Login();
+		lg = new Login(this);
 		
 		email = getIntent().getStringExtra(EXTRA_EMAIL);
 		
@@ -128,12 +128,12 @@ public class LoginView extends Activity{
 			focusView.requestFocus();
 		}
 		else {
-			if(lg.validate(email, password) && !lg.lockOut(Security.getMember(email))){
+			if(lg.validate(email, password, this) && !lg.lockOut(Security.getMember(email, this))){
 				memberIntent.putExtra("userEmail", email);
 				startActivity(memberIntent);
 				finish();
 			}
-			else if(lg.lockOut(Security.getMember(email))){
+			else if(lg.lockOut(Security.getMember(email,this))){
 				mEmailView.setError(getString(R.string.error_lock_out));
 				mPasswordView.setError(null);
 			}

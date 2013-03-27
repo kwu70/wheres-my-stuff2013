@@ -10,13 +10,10 @@ public class Member{
 	private String name, email, password;
 	private int failedAttempts;
 	private ArrayList<Item> items;
+	private int ID;
 	
-	//Constructors	
-	public Member(String email, String password){
-		this(email, password, "default");
-	}
-	
-	public Member(String email, String password, String name){
+	public Member(int ID, String email, String password, String name){
+		this.ID = ID;
 		this.email = email;
 		this.password = password;
 		this.name = name;
@@ -130,6 +127,10 @@ public class Member{
 	 */
 	public void removeItem(Item item){
 		items.remove(item);
+	}
+	
+	public int getID(){
+		return ID;
 	}
 	
 }

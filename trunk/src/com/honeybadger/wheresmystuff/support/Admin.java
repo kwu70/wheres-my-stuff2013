@@ -1,21 +1,10 @@
 package com.honeybadger.wheresmystuff.support;
 
-import android.os.Bundle;
-
 /*
  * This class is used to create Admins and for Views to access admin only methods
  */
 public class Admin extends Member {
 
-	/*
-	 * This constructor calls the super constructor to make a new admin
-	 * 
-	 * @param email - email of new Admin
-	 * @param password - password of new Admin
-	 */
-	public Admin(String email, String password) {
-		super(email, password);
-	}
 	
 	/*
 	 * This constructor is a more detailed constructor and allows their 
@@ -25,8 +14,8 @@ public class Admin extends Member {
 	 * @param password - password of new Admin
 	 * @param name - name of new Admin
 	 */
-	public Admin(String email, String password, String name){
-		super(email, password, name);
+	public Admin(int ID, String email, String password, String name){
+		super(ID, email, password, name);
 	}
 	
 	/*

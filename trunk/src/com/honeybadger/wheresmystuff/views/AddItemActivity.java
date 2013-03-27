@@ -54,7 +54,7 @@ public class AddItemActivity extends Activity{
 		Intent intent = getIntent();
 		userEmail = intent.getExtras().getString("userEmail");
 		
-		currentMember = Security.getMember(userEmail);
+		currentMember = Security.getMember(userEmail, this);
 		
 		returnIntent = new Intent(this, MemberActivity.class);
 		returnIntent.putExtra("userEmail", userEmail);
@@ -121,8 +121,10 @@ public class AddItemActivity extends Activity{
 			day = date.monthDay;
 			year = date.year;
 			
+			
+			
 			//creates and adds a new item to the current members item list
-			currentMember.addItem(new Item(name, description,currentMember, lostFound, resolved, type, month, day, year));
+			currentMember.addItem(new Item(Security.getDB().getCurrentItemID() ,name, description,currentMember, lostFound, resolved, type, month, day, year));
 			
 			//goes back to member activity and displays item
 			startActivity(returnIntent);

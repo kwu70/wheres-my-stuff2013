@@ -14,7 +14,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager";
@@ -79,12 +79,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	// Adding new place
 	void addMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		
 		ContentValues values = new ContentValues();
-		//values.put(KEY_IDM, mem.getID());
-		values.put(KEY_EMAIL, mem.getEmail());
-		values.put(KEY_PSWD, mem.getPassword());
-		values.put(KEY_MNAME, mem.getName());
+		
+		if(mem instanceof Admin){
+			values.put(KEY_IDM, mem.getID());
+			values.put(KEY_EMAIL, mem.getEmail());
+			values.put(KEY_PSWD, mem.getPassword());
+			values.put(KEY_MNAME, "Admin");
+		}
+		else{
+			values.put(KEY_IDM, mem.getID());
+			values.put(KEY_EMAIL, mem.getEmail());
+			values.put(KEY_PSWD, mem.getPassword());
+			values.put(KEY_MNAME, mem.getName());
+		}
 
 		// Inserting Row
 		db.insert(TABLE_MEMBERS, null, values);
@@ -96,10 +104,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		//values.put(KEY_IDI, item.getID());
+		values.put(KEY_IDI, item.getID());
 		values.put(KEY_INAME, item.getName());
 		values.put(KEY_DESC, item.getDescription());
-		//values.put(KEY_MEMID, item.getOwner().getID());
+		values.put(KEY_MEMID, item.getOwner().getID());
 		values.put(KEY_STATUS, item.getStatus());
 		values.put(KEY_RESOL, item.getResolved());
 		values.put(KEY_TYPE, item.getType());
@@ -122,12 +130,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
-
-		//Member mem = new Member(Integer.parseInt(cursor.getString(0)),
-				//cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
-		// return member
-		//return mem;
-				return null;
+		if((cursor.getString(3).equals("Admin"))){
+			Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
+					cursor.getString(1), cursor.getString(2), cursor.getString(3));
+			return admin;
+		}
+		else{
+			Member mem = new Member(Integer.parseInt(cursor.getString(0)),
+					cursor.getString(1), cursor.getString(2), cursor.getString(3));
+			return mem;
+		}
 	}
 	
 	Item getItem(int id) {
@@ -139,16 +151,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
-
-		//Item item = new Item(Integer.parseInt(cursor.getString(0)),
-			//	cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
-		// return item
-		//return item;
-		return null;
+		int memID = Integer.parseInt(cursor.getString(3));
+		ArrayList<Member>  mem = getAllMembers();
+		Member temp = null;
+		for(Member m : mem){
+			if(m.getID() == memID){
+				temp = m;
+			}
+		}
+		
+		Item item = new Item(Integer.parseInt(cursor.getString(0)),
+				cursor.getString(1), cursor.getString(2), temp, Boolean.getBoolean(cursor.getString(4)), 
+				Boolean.getBoolean(cursor.getString(5)), cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
+				Integer.parseInt(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
+		return item;
 	}
 	
-	public List<Member> getAllMembers(){
-		List<Member> members = new ArrayList<Member>();
+	public ArrayList<Member> getAllMembers(){
+		ArrayList<Member> members = new ArrayList<Member>();
 		
 		// Select All Query
 		String selectQuery = "SELECT  * FROM " + TABLE_MEMBERS;
@@ -159,10 +179,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-			//	Member member = new Member(Integer.parseInt(cursor.getString(0)),
-				//		cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
-				// Adding member to list
-				//members.add(member);
+				if((cursor.getString(3).equals("Admin"))){
+					Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
+							cursor.getString(1), cursor.getString(2), cursor.getString(3));
+					members.add(admin);
+				}
+				else{
+					Member mem = new Member(Integer.parseInt(cursor.getString(0)),
+							cursor.getString(1), cursor.getString(2), cursor.getString(3));
+					members.add(mem);
+				}
 			} while (cursor.moveToNext());
 		}
 		
@@ -170,8 +196,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 	
 	
-	public List<Item> getAllItems(){
-		List<Item> items = new ArrayList<Item>();
+	public ArrayList<Item> getAllItems(){
+		ArrayList<Item> items = new ArrayList<Item>();
 		
 		String selectQuery = "SELECT  * FROM " + TABLE_ITEMS;
 		
@@ -181,10 +207,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		// looping through all rows and adding to list
 		if (cursor.moveToFirst()) {
 			do {
-			//	Item item = new Item(Integer.parseInt(cursor.getString(0)),
-				//		cursor.getString(1), Double.parseDouble(cursor.getString(2)), Double.parseDouble(cursor.getString(3)));
+				int memID = Integer.parseInt(cursor.getString(3));
+				ArrayList<Member>  mem = getAllMembers();
+				Member temp = null;
+				for(Member m : mem){
+					if(m.getID() == memID){
+						temp = m;
+					}
+				}
+				
+				Item item = new Item(Integer.parseInt(cursor.getString(0)),
+						cursor.getString(1), cursor.getString(2), temp, Boolean.getBoolean(cursor.getString(4)), 
+						Boolean.getBoolean(cursor.getString(5)), cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
+						Integer.parseInt(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
 				// Adding item to list
-				//items.add(item);
+				items.add(item);
 			} while (cursor.moveToNext());
 		}
 		
@@ -230,28 +267,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	// Updating single member
 	public int updateMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
-
 		ContentValues values = new ContentValues();
-		//values.put(KEY_IDM, mem.getID());
-		values.put(KEY_EMAIL, mem.getEmail());
-		values.put(KEY_PSWD, mem.getPassword());
-		values.put(KEY_MNAME, mem.getName());
+
+		if(mem instanceof Admin){
+			values.put(KEY_IDM, mem.getID());
+			values.put(KEY_EMAIL, mem.getEmail());
+			values.put(KEY_PSWD, mem.getPassword());
+			values.put(KEY_MNAME, "Admin");
+		}
+		else{
+			values.put(KEY_IDM, mem.getID());
+			values.put(KEY_EMAIL, mem.getEmail());
+			values.put(KEY_PSWD, mem.getPassword());
+			values.put(KEY_MNAME, mem.getName());
+		}
 
 		// updating row
-		//return db.update(TABLE_MEMBERS, values, KEY_IDM + " = ?",
-			//	new String[] { String.valueOf(mem.getID()) });
-		return 0;
+		return db.update(TABLE_MEMBERS, values, KEY_IDM + " = ?",
+				new String[] { String.valueOf(mem.getID()) });
 	}
 	
 	// Updating single item
 	public int updateItem(Item item) {
 		SQLiteDatabase db = this.getWritableDatabase();
+		
 
 		ContentValues values = new ContentValues();
-		//values.put(KEY_IDI, item.getID());
+		values.put(KEY_IDI, item.getID());
 		values.put(KEY_INAME, item.getName());
 		values.put(KEY_DESC, item.getDescription());
-		//values.put(KEY_MEMID, item.getOwner().getID());
+		values.put(KEY_MEMID, item.getOwner().getID());
 		values.put(KEY_STATUS, item.getStatus());
 		values.put(KEY_RESOL, item.getResolved());
 		values.put(KEY_TYPE, item.getType());
@@ -260,24 +305,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		values.put(KEY_YEAR, item.getYear());
 
 		// updating row
-		//return db.update(TABLE_ITEMS, values, KEY_IDI + " = ?",
-			//	new String[] { String.valueOf(item.getID()) });
-		return 0;
+		return db.update(TABLE_ITEMS, values, KEY_IDI + " = ?",
+				new String[] { String.valueOf(item.getID()) });
 	}
 
 	// Deleting single place
 	public void deleteMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
-	//	db.delete(TABLE_MEMBERS, KEY_IDM + " = ?",
-		//		new String[] { String.valueOf(mem.getID()) });
+		db.delete(TABLE_MEMBERS, KEY_IDM + " = ?",
+				new String[] { String.valueOf(mem.getID()) });
 		db.close();
 	}
 	
 	// Deleting single place
 	public void deleteItem(Item item) {
 		SQLiteDatabase db = this.getWritableDatabase();
-		//db.delete(TABLE_ITEMS, KEY_IDI + " = ?",
-			//	new String[] { String.valueOf(item.getID()) });
+		db.delete(TABLE_ITEMS, KEY_IDI + " = ?",
+				new String[] { String.valueOf(item.getID()) });
 		db.close();
 	}
 
