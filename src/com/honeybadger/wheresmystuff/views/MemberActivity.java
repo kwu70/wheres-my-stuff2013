@@ -66,7 +66,7 @@ public class MemberActivity extends Activity{
 		
 		Intent intent = getIntent();
 		userEmail = intent.getExtras().getString("userEmail");
-		currentMember = Security.getMember(userEmail);
+		currentMember = Security.getMember(userEmail, this);
 		
 		//Admin Settings Button shows if the user is an Admin
 		View btn = (Button) findViewById(R.id.btnAdmin);
