@@ -154,7 +154,6 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		}
 		cursor.close();
 		db.close();
-		System.out.println(members.size());
 		return members;
 	}
 
