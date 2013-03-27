@@ -20,24 +20,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 /**
  * MemberActivity contains the UI screen members are shown after successfully 
  * logging in.
+ * 
+ * List of Items that the user has added.
+ * Filtering of that list of items
+ * 	By Category
+ * 	By Status
+ * 	By Date
+ * Admin Settings if the Member is an Admin
+ * Search Button which takes user to search screen
+ * Add Item Button which takes user to add item screen
+ * 
  */
 public class MemberActivity extends Activity{
 	
-	//Intent to go to addItemActivity
+	//Intent to go to different pages
 	private Intent addItem;
 	private Intent adminSettings;
 	
-	//current Users email
+	//current User's email
 	private String userEmail;
 	
 	//current user
 	private Member currentMember;
 	
+	//Date Textfield for filtering by date
 	private EditText date;
 	
 	//used in the ListViews to properly display
@@ -46,6 +56,7 @@ public class MemberActivity extends Activity{
 	private ArrayAdapter<String> adapterTemp;
 	private ListView itemsList;
 	
+	//Drop down box for Filtering
 	private Spinner spinner;
 	
 	/**
@@ -57,30 +68,17 @@ public class MemberActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.member_view);
 		
+		//adapterItems is the Item List that is displayed on the screen
 		adapterItems = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1);
-		
+		//temp for changing adapter item.
 		adapterTemp = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1);
 		
-		
+		//Setting up Intents to go to other activities
 		Intent intent = getIntent();
 		userEmail = intent.getExtras().getString("userEmail");
 		currentMember = Security.getMember(userEmail);
-		
-		//Admin Settings Button shows if the user is an Admin
-		View btn = (Button) findViewById(R.id.btnAdmin);
-		if(currentMember instanceof Admin){
-			btn.setVisibility(0);
-		}
-		
-		//date
-		date = (EditText) findViewById(R.id.txtDateChooser);	
-		
-		findViewById(R.id.date_button).setOnClickListener(new DateClickListener());
-		
-		spinner = (Spinner) findViewById(R.id.category_spinner);
-		spinner.setOnItemSelectedListener(new CategorySpinnerOnItemSelectedListener());
 		
 		//Create new Admin Setting intent pass userEmail
 		adminSettings = new Intent(this, AdminSettingActivity.class);
@@ -90,30 +88,33 @@ public class MemberActivity extends Activity{
 		addItem = new Intent(this, AddItemActivity.class);
 		addItem.putExtra("userEmail", userEmail);
 		
-		//item List
+		//Admin Settings Button visible if the user is an Admin
+		View btn = (Button) findViewById(R.id.btnAdmin);
+		if(currentMember instanceof Admin){
+			btn.setVisibility(0);
+		}
+		
+		//Date filtering setup and actionlistener
+		date = (EditText) findViewById(R.id.txtDateChooser);	
+		findViewById(R.id.date_button).setOnClickListener(new DateClickListener());
+		
+		//Drop down box for filtering set up
+		spinner = (Spinner) findViewById(R.id.category_spinner);
+		spinner.setOnItemSelectedListener(new CategorySpinnerOnItemSelectedListener());
+		
+		//item List array of strings that appears on screen
 		itemsList = (ListView) findViewById(R.id.listFound);
 		itemsList.setAdapter(adapterItems);
 		
-		//Button listener
+		//Button listener for Add Item
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddItemClickListener());
 		
-		//Adds ClickListener to AdminSetting Button
+		//ClickListener to AdminSetting Button
 		findViewById(R.id.btnAdmin).setOnClickListener(new AdminSettingClickListener());
 		
 		//Iterates through the members items and if
 		//they have any then it assigns them to the appropriate
 		//adapter
-		/*
-		ArrayList<Item> temp = Security.getMemberItemList(currentMember);
-		
-		
-		if(temp != null){
-			for(Item item: temp){
-					System.out.println("Hello!");
-					adapterItems.add(item.getName());
-			}
-		}
-		*/
 		
 	}
 	
@@ -142,27 +143,27 @@ public class MemberActivity extends Activity{
 	
 	/**
 	 * Date Click Listener for filtering by the date
-	 *
+	 * Gets the string from the textfield and puts it into filter method
+	 * updates the UI item list to show only dates that are before or equal
+	 * to the date entered into the textfield.
 	 */
 	private class DateClickListener implements OnClickListener{
 
 		public void onClick(View arg0) {
-			
+			//clear temp and get date
 			String tempDate = date.getText().toString();
 			adapterTemp.clear();
-			
+			//filter the list
 			ArrayList<Item> tempItemList;
-			System.out.println(tempDate);
 			tempItemList = Search.filterDate(currentMember, tempDate);
-			
+			//add filtered items into new list
 			if(tempItemList != null){
 				for(Item item: tempItemList){
 						System.out.println(item.getName());
 						adapterTemp.add(item.getName());
 				}
 			}
-			
-			//Update UI
+			//Update UI 
 			adapterItems = adapterTemp;
 			itemsList.setAdapter(adapterItems);
 		}
@@ -182,21 +183,20 @@ public class MemberActivity extends Activity{
 	
 	
 	/**
-	 * Spinner Filter
+	 * Spinner Filter filters the item list by category or status
+	 * sends string in drop down box to filtering method
+	 * updates UI with filtered array
 	 */
 	private class CategorySpinnerOnItemSelectedListener implements OnItemSelectedListener{
 
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-			Toast.makeText(parent.getContext(), 
-					"Filter By : " + parent.getItemAtPosition(pos).toString(),
-					Toast.LENGTH_SHORT).show();
-			
+			//clear and get category
 			adapterTemp.clear();
 			ArrayList<Item> tempItemList = new ArrayList<Item>();
 			String spinnerString = parent.getItemAtPosition(pos).toString();
 			
-			//Show everything
+			//Show all items in member's item list
 			if(spinnerString.equals("All")){
 				ArrayList<Item> temp = Security.getMemberItemList(currentMember);
 				

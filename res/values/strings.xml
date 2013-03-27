@@ -49,6 +49,10 @@
         <string name="lblDate">Enter Date (mm/dd/yyyy)</string>
         <string name="lbl_item_list">Items List</string>
         <string name="item_list">Item List</string>
+        <string name="lbl_filter">Filter Item List</string>
+        <string name="date_button2">Filter Date</string>
+        <string name="lbl_filter2">Filter By Category or Status</string>
+        <string name="lbl_filter_by_date">Filter by Date</string>
     	
 
 </resources>
