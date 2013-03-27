@@ -18,7 +18,7 @@ public class Security {
 	public Security(Context c){
 		Security.dbHandlerM = new DatabaseHandlerMembers(c);
 		Security.dbHandlerI = new DatabaseHandlerItems(c);
-		if(dbHandlerM.getCurrentMemberID() == 0){
+		if(dbHandlerM.getCurrentMemberID() == 1){
 			dbHandlerM.addMember(new Member(dbHandlerM.getCurrentMemberID(), "foobar@example.com", "hello", ""));
 			dbHandlerM.addMember(new Admin(dbHandlerM.getCurrentMemberID(), "admin@admin", "admin", ""));
 		}

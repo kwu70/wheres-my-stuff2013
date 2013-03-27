@@ -155,8 +155,6 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 				for(Member m : mem){
 					if(m.getID() == memID){
 						temp = m;
-					//	System.out.println("Match!");
-						//System.out.println(m.getID());
 					}
 				}
 				Boolean temp1;
@@ -173,9 +171,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 				else{
 					temp2 = true;
 				}
-				
-				//System.out.println("Hello");
-				
+								
 				Item item = new Item(Integer.parseInt(cursor.getString(0)),
 						cursor.getString(1), cursor.getString(2), temp, temp1, 
 						temp2, cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
@@ -186,7 +182,6 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 		}
 		cursor.close();
 		db.close();
-		System.out.println(items.size());
 		return items;
 	}
 
