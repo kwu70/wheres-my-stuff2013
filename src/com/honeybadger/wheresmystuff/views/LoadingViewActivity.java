@@ -20,7 +20,7 @@ public class LoadingViewActivity extends Activity{
 		pd.setIndeterminate(true);
 		pd.setCancelable(true);
 		
-		Button b = (Button) findViewById(R.id.sign_in_button);
+		Button b = (Button) findViewById(R.id.btnRegister);
 		b.setOnClickListener(new OnClickListener(){
 		
 			@Override
