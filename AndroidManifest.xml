@@ -1,51 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.honeybadger.wheresmystuff"
-    android:versionCode="1"
-    android:versionName="1.0" >
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
-
-    <application
-        android:allowBackup="true"
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest android:versionCode="1" android:versionName="1.0"
+    package="com.honeybadger.wheresmystuff" xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
+    <application android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.honeybadger.wheresmystuff.views.LoginView"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+        android:label="@string/app_name" android:theme="@style/AppTheme">
+        <activity android:label="@string/app_name"
+            android:name="com.honeybadger.wheresmystuff.views.LoginView" android:windowSoftInputMode="adjustResize|stateVisible">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-       	 	android:name="com.honeybadger.wheresmystuff.views.MemberActivity"
-        	android:label="@string/member_activity">
-        </activity>
-     	<activity
-       	 	android:name="com.honeybadger.wheresmystuff.views.RegisterActivity"
-        	android:label="@string/register">
-        </activity>
-       	<activity
-       	 	android:name="com.honeybadger.wheresmystuff.views.AddItemActivity"
-        	android:label="@string/add_item_view">
-        </activity>
-        <activity
-       	 	android:name="com.honeybadger.wheresmystuff.views.AdminSettingActivity"
-        	android:label="@string/admin_settings_view">
-        </activity>
-        <activity 
-            android:label="@string/app_name" 
-            android:name=".LoadingViewActivity">
-            <intent-filter><action 
-                android:name="android.intent.action.MAIN"/>
-            <category android:name="android.intent.category.LAUNCHER"/>
+        <activity android:label="@string/member_activity" android:name="com.honeybadger.wheresmystuff.views.MemberActivity"/>
+        <activity android:label="@string/register" android:name="com.honeybadger.wheresmystuff.views.RegisterActivity"/>
+        <activity android:label="@string/add_item_view" android:name="com.honeybadger.wheresmystuff.views.AddItemActivity"/>
+        <activity android:label="@string/admin_settings_view" android:name="com.honeybadger.wheresmystuff.views.AdminSettingActivity"/>
+        <activity android:label="@string/app_name" android:name="com.honeybadger.wheresmystuff.views.Loading">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            </activity>
+        </activity>
+     
     </application>
-
 </manifest>
