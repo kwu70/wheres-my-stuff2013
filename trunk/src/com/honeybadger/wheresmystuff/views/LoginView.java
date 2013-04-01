@@ -34,6 +34,8 @@ public class LoginView extends Activity{
 	//Intent to switch to RegisterActivity
 	private Intent registerIntent;
 		
+	private Intent load;
+	
 	private Login lg;
 
 	/**
@@ -50,6 +52,7 @@ public class LoginView extends Activity{
 		
 		memberIntent = new Intent(this, MemberActivity.class);		
 		registerIntent = new Intent(this, RegisterActivity.class);
+		load = new Intent(this, Loading.class);
 		
 		//login initialized so we can access methods and it sets up a user account since
 		//we do not have persistent data.
@@ -90,7 +93,7 @@ public class LoginView extends Activity{
 	 * taken to the MemberActivity screen.
 	 */
 	private void attemptLogin() {
-		
+		startActivity(load);
 		//gets email and password from text boxes and puts them in variables.
 		email = mEmailView.getText().toString();
 		password = mPasswordView.getText().toString();
