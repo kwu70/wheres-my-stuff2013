@@ -25,7 +25,7 @@ public class Loading extends Activity {
 		addButtonListener();
 	}
 	public void addButtonListener(){
-		init = (Button)findViewById(R.id.login);
+		init = (Button)findViewById(R.id.sign_in_button);
 		
 		init.setOnClickListener(
 				new OnClickListener(){
