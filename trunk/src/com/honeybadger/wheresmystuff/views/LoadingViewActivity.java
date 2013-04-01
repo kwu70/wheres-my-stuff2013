@@ -21,7 +21,7 @@ public class LoadingViewActivity extends Activity{
 		pd.setIndeterminate(true);
 		pd.setCancelable(true);
 		
-		findViewById(R.id.sign_in_button).setOnClickListener(new OnClickListener(){
+		findViewById(this)).setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View arg0) {
 					pd.show();
