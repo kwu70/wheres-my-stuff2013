@@ -53,6 +53,4 @@
         <string name="date_button2">Filter Date</string>
         <string name="lbl_filter2">Filter By Category or Status</string>
         <string name="lbl_filter_by_date">Filter by Date</string>
-    <string name="app_name">Progressbar</string>	
-
 </resources>
