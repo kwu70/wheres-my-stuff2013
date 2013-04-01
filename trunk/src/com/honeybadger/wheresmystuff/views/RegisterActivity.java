@@ -35,7 +35,7 @@ public class RegisterActivity extends Activity{
 	
 	//Used to declare the intent to go back to login activity after the user has registered
 	private Intent i;
-	private Intent load;
+	//private Intent load;
 			
 	/*
 	 * When the activity is created, the intent is initialized, the builder is initialized, and the
@@ -46,7 +46,7 @@ public class RegisterActivity extends Activity{
 		setContentView(R.layout.register_view);
 		
 	    i = new Intent(this, LoginView.class);
-	    load = new Intent(this, LoadingViewActivity.class);
+	    //load = new Intent(this, LoadingViewActivity.class);
 	    	    
 	    builder = new AlertDialog.Builder(this);
 		builder.setMessage("Are you sure?").setPositiveButton("Yes", new DialogClickListener())
@@ -126,7 +126,7 @@ public class RegisterActivity extends Activity{
 				//then shows a confirmation box
 				if(password.equals(confirmPassword)){
 					builder.show();
-					startActivity(load);
+					//startActivity(load);
 				}
 				else{
 					ePassword.setError(getString(R.string.error_no_match));
