@@ -15,19 +15,19 @@ public class LoadingViewActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		final ProgressDialog pd = new ProgressDialog(this);
+		final ProgressDialog pd = new ProgressDialog(load.xml);
 		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		pd.setIndeterminate(true);
 		pd.setCancelable(true);
 		
-		Button b = (Button) findViewById(R.id.btnRegister);
-		b.setOnClickListener(new OnClickListener(){
+		findViewById(R.id.btnRegister).setOnClickListener(new loadListener());
 		
-			@Override
-			public void onClick(View arg0){
+		private class loadListener implements OnClickListener{
+				@Override
+				public void OnClick(View arg0){
 				pd.show();
 			}
-		});
+		}
 	}
 }
 		
