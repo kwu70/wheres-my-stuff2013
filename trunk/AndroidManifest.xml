@@ -38,6 +38,10 @@
        	 	android:name="com.honeybadger.wheresmystuff.views.AdminSettingActivity"
         	android:label="@string/admin_settings_view">
         </activity>
+        <activity
+            android:name="com.honeybadger.wheresmystuff.views.LoadingViewActivity"
+            android:label="@string/load">
+        </activity>
     </application>
 
 </manifest>
