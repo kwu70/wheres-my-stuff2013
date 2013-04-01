@@ -40,6 +40,7 @@ public class MemberActivity extends Activity{
 	//Intent to go to different pages
 	private Intent addItem;
 	private Intent adminSettings;
+	private Intent search;
 	
 	//current User's email
 	private String userEmail;
@@ -88,6 +89,10 @@ public class MemberActivity extends Activity{
 		addItem = new Intent(this, AddItemActivity.class);
 		addItem.putExtra("userEmail", userEmail);
 		
+		//Create Search Intent
+//		search = new Intent(this, SearchActivity.class);
+//		search.putExtra("userEmail", userEmail);
+		
 		//Admin Settings Button visible if the user is an Admin
 		View btn = (Button) findViewById(R.id.btnAdmin);
 		if(currentMember instanceof Admin){
@@ -111,6 +116,9 @@ public class MemberActivity extends Activity{
 		
 		//ClickListener to AdminSetting Button
 		findViewById(R.id.btnAdmin).setOnClickListener(new AdminSettingClickListener());
+		
+		//ClickListener for Search Button
+//		findViewById(R.id.btnSearch).setOnClickListener(new SearchClickListener());
 		
 		//Iterates through the members items and if
 		//they have any then it assigns them to the appropriate
@@ -137,6 +145,20 @@ public class MemberActivity extends Activity{
 		@Override
 		public void onClick(View arg0) {
 			startActivity(addItem);
+		}
+		
+	}
+	
+	/**
+	 * Search Listener for the Search for Items Button
+	 * Once button is clicked takes user to Search Activity where they
+	 * can search for Items.
+	 */
+	private class SearchClickListener implements OnClickListener{
+
+		@Override
+		public void onClick(View arg0) {
+			startActivity(search);	
 		}
 		
 	}
