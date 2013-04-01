@@ -4,6 +4,7 @@ import com.honeybadger.wheresmystuff.R;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.content.Loader;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -15,19 +16,17 @@ public class LoadingViewActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		final ProgressDialog pd = new ProgressDialog(load.xml);
+		final ProgressDialog pd = new ProgressDialog(this);
 		pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		pd.setIndeterminate(true);
 		pd.setCancelable(true);
 		
-		findViewById(R.id.btnRegister).setOnClickListener(new loadListener());
-		
-		private class loadListener implements OnClickListener{
+		findViewById(R.id.sign_in_button).setOnClickListener(new OnClickListener(){
 				@Override
-				public void OnClick(View arg0){
-				pd.show();
-			}
-		}
+				public void onClick(View arg0) {
+					pd.show();
+				}
+		});
 	}
 }
 		

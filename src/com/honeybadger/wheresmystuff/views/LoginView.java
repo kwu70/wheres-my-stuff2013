@@ -34,9 +34,6 @@ public class LoginView extends Activity{
 	//Intent to switch to RegisterActivity
 	private Intent registerIntent;
 	
-	//Intent to switch to LoadingViewActivity
-	private Intent loadIntent;
-	
 	private Login lg;
 
 	/**
@@ -53,7 +50,6 @@ public class LoginView extends Activity{
 		
 		memberIntent = new Intent(this, MemberActivity.class);		
 		registerIntent = new Intent(this, RegisterActivity.class);
-		loadIntent = new Intent(this, LoadingViewActivity.class);
 		
 		//login initialized so we can access methods and it sets up a user account since
 		//we do not have persistent data.
@@ -71,7 +67,6 @@ public class LoginView extends Activity{
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						startActivity(loadIntent);
 						attemptLogin();
 					}
 				});
@@ -82,7 +77,6 @@ public class LoginView extends Activity{
 					
 					@Override
 					public void onClick(View v) {
-						startActivity(loadIntent);
 						startActivity(registerIntent);
 						finish();
 					}
@@ -136,7 +130,6 @@ public class LoginView extends Activity{
 		else {
 			if(lg.validate(email, password) && !lg.lockOut(Security.getMember(email))){
 				memberIntent.putExtra("userEmail", email);
-				startActivity(loadIntent);
 				startActivity(memberIntent);
 				finish();
 			}
