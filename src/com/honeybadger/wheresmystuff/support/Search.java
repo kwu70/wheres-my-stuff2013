@@ -91,6 +91,9 @@ public class Search {
 	public static ArrayList<Item> searchByName(String name){
 		ArrayList<Item> list = Security.getItemList();
 		ArrayList<Item> matches = new ArrayList<Item>();
+		if(list==null) {
+			return null;
+		}
 		for(int i = 0; i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getName().contains(name)){
