@@ -88,12 +88,12 @@ public class Search {
 	 * @param name The name of the particular item
 	 * @return matches the list that contains items with the specified names
 	 */
-	public static ArrayList<Item> filterName(Member member, String name){
-		ArrayList<Item> list = Security.getMemberItemList(member);
+	public static ArrayList<Item> searchByName(String name){
+		ArrayList<Item> list = Security.getItemList();
 		ArrayList<Item> matches = new ArrayList<Item>();
 		for(int i = 0; i<list.size();i++){
 			Item cur = list.get(i);
-			if(cur.getName() == name){
+			if(cur.getName().contains(name)){
 				matches.add(list.get(i));
 			}
 		}
