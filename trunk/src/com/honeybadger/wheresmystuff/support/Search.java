@@ -1,4 +1,5 @@
 package com.honeybadger.wheresmystuff.support;
+
 import java.util.ArrayList;
 
 public class Search {
@@ -91,6 +92,7 @@ public class Search {
 	public static ArrayList<Item> searchByName(String name){
 		ArrayList<Item> list = Security.getItemList();
 		ArrayList<Item> matches = new ArrayList<Item>();
+		
 		if(list==null) {
 			return null;
 		}
@@ -101,5 +103,29 @@ public class Search {
 			}
 		}
 		return matches;
+	}
+	
+	/**
+	 * Filter a member's items by location.
+	 * 
+	 * @param member A member
+	 * @param location Item location
+	 * @return matches A list of items in the specified location
+	 */
+	public static ArrayList<Item> searchByLocation(String location){
+		ArrayList<Item> list = Security.getItemList();
+		ArrayList<Item> matches = new ArrayList<Item>();
+		
+		if(list==null) {
+			return null;
+		}
+		for(int i = 0; i<list.size();i++){
+			Item cur = list.get(i);
+			if(cur.getLocation().contains(location)){
+				matches.add(list.get(i));
+			}
+		}
+		return matches;
+		
 	}
 }
