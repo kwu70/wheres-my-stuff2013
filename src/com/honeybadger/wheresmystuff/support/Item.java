@@ -12,6 +12,7 @@ public class Item {
 	private Member owner;
 	private int month, day, year;
 	private int ID;
+	private String location;
 		
 	/**
 	 * Third advanced constructor for Item. Includes: name, description, owner, status, resolved, and type
@@ -23,7 +24,7 @@ public class Item {
 	 * @param resolved Whether the item has been claimed or is still in circulation in the app
 	 * @param type The category the item is listed as
 	 */
-	public Item(int ID, String name, String description, Member owner, boolean status, boolean resolved, String type, int month, int day, int year){
+	public Item(int ID, String name, String description, Member owner, boolean status, boolean resolved, String type, int month, int day, int year, String location){
 		this.ID = ID;
 		this.name = name;
 		this.description = description;
@@ -34,6 +35,7 @@ public class Item {
 		this.month = month;
 		this.day = day;
 		this.year = year;
+		this.location = location;
 	}
 
 	//Getters/Setters
@@ -93,16 +95,8 @@ public class Item {
 		return year;
 	}
 	
-	public int setMonth(){
-		return month;
-	}
-	
-	public int setDay(){
-		return day;
-	}
-	
-	public int setYear(){
-		return year;
+	public String getLocation(){
+		return location;
 	}
 	
 	public void setType(String type){

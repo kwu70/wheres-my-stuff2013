@@ -12,7 +12,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 5;
 
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager Members";
@@ -56,7 +56,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 */
 
 	// Adding new member
-	void addMember(Member mem) {
+	public void addMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		
