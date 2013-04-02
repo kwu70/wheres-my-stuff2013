@@ -83,9 +83,8 @@ public class Search {
 	}
 	
 	/**
-	 * Filter's member's items to show those with matching names
+	 * Filter items to show those with matching names
 	 * 
-	 * @param member A member
 	 * @param name The name of the particular item
 	 * @return matches the list that contains items with the specified names
 	 */
@@ -106,9 +105,8 @@ public class Search {
 	}
 	
 	/**
-	 * Filter a member's items by location.
+	 * Filter items by location.
 	 * 
-	 * @param member A member
 	 * @param location Item location
 	 * @return matches A list of items in the specified location
 	 */
@@ -127,5 +125,34 @@ public class Search {
 		}
 		return matches;
 		
+	}
+	
+	/*
+	 * given a String with an item name and location, return any matching items 
+	 * from the list of items
+	 * 
+	 * @param s String containing the item name and location
+	 * @return matches A list of items with the specified name and location
+	 */
+	public static ArrayList<Item> searchNameAndLocation(String s){
+		ArrayList<Item> list = Security.getItemList();
+		ArrayList<Item> matches = new ArrayList<Item>();
+		
+		String[] nl = s.split(" in ");
+		String name = nl[0];
+		String location = nl[1];
+		
+		if(list==null){return null;}
+		for(int i =0;i<list.size();i++){
+			Item cur = list.get(i);
+			if(cur.getName().contains(name) && cur.getLocation().contains(location)){
+				matches.add(list.get(i));
+			}else{
+				return null;
+			}
+		}
+		
+		
+		return matches;
 	}
 }
