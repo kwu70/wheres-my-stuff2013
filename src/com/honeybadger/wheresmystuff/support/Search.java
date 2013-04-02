@@ -80,4 +80,23 @@ public class Search {
 		}
 		return matches;
 	}
+	
+	/**
+	 * Filter's member's items to show those with matching names
+	 * 
+	 * @param member A member
+	 * @param name The name of the particular item
+	 * @return matches the list that contains items with the specified names
+	 */
+	public static ArrayList<Item> filterName(Member member, String name){
+		ArrayList<Item> list = Security.getMemberItemList(member);
+		ArrayList<Item> matches = new ArrayList<Item>;
+		for(int i = 0; i<list.size();i++){
+			Item cur = list.get(i);
+			if(cur.getName() == name){
+				matches.add(list.get(i));
+			}
+		}
+		return matches;
+	}
 }
