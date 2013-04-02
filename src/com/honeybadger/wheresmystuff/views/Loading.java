@@ -27,12 +27,11 @@ public class Loading extends Activity {
 			pd = new ProgressDialog(Loading.this);
 			pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			pd.setTitle("Loading...");
-			pd.setMessage("Loading application view, please wait");
+			pd.setMessage("Loading application, please wait");
 			pd.setCancelable(true);
 			pd.setIndeterminate(false);
 			pd.setMax(100);
 			pd.setProgress(0);
-			pd.setIcon(R.drawable.honey_badger);
 			pd.show();
 			
 		}
@@ -72,7 +71,7 @@ public class Loading extends Activity {
 		protected void onPostExecute(Void result) {
 			//close the load screen
 			pd.dismiss();
-			setContentView(R.layout.member_view);
+			setContentView(R.layout.activity_login);
 		}
     }
     
