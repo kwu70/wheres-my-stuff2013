@@ -12,7 +12,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	private static final int DATABASE_VERSION = 6;
+	private static final int DATABASE_VERSION = 9;
 
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager Items";
@@ -46,7 +46,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 				+ KEY_IDI + " INTEGER PRIMARY KEY," + KEY_INAME + " TEXT,"
 				+ KEY_DESC + " TEXT, " + KEY_MEMID  + " TEXT," + KEY_STATUS 
 				+ " TEXT," + KEY_RESOL + " TEXT," + KEY_TYPE + " TEXT," + KEY_MONTH
-				+ " TEXT," + KEY_DAY + " TEXT," + KEY_YEAR + " TEXT" + KEY_LOC + " TEXT" + ")";
+				+ " TEXT," + KEY_DAY + " TEXT," + KEY_YEAR + " TEXT," + KEY_LOC + " TEXT" + ")";
 		db.execSQL(CREATE_ITEMS_TABLE);
 	}
 
@@ -104,7 +104,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 
 		Cursor cursor = db.query(TABLE_ITEMS, new String[] { KEY_IDI,
 				KEY_INAME, KEY_DESC, KEY_MEMID, KEY_STATUS, KEY_RESOL,
-				KEY_TYPE, KEY_MONTH, KEY_DAY, KEY_YEAR }, KEY_IDI + "=?",
+				KEY_TYPE, KEY_MONTH, KEY_DAY, KEY_YEAR, KEY_LOC }, KEY_IDI + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		if (cursor != null)
 			cursor.moveToFirst();
