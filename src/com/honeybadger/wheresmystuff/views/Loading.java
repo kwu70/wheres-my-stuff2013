@@ -3,46 +3,37 @@ package com.honeybadger.wheresmystuff.views; // 41 Post - Created by DimasTheDri
 import com.honeybadger.wheresmystuff.R;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.ProgressBar;
-import android.widget.ViewSwitcher;
 
 public class Loading extends Activity {
-	//creates a ViewSwitcher object, to switch between Views
-	private ViewSwitcher viewSwitcher;
+	//a ProgressDialog object
+	private ProgressDialog pd;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-		//Initialize a LoadViewTask object and call the execute() method
         new LoadViewTask().execute();
     }
     
     //subclass for AsyncTask
     private class LoadViewTask extends AsyncTask<Void, Integer, Void>{
-    	//A ProgressBar object
-    	private ProgressBar pb_progressBar;
     	
-    	//Before running code in the separate thread
 		@Override
-		protected void onPreExecute() 
-		{
-			//Initialize the ViewSwitcher object
-	        viewSwitcher = new ViewSwitcher(Loading.this);
-	        /* Initialize the loading screen with data from the 'loadingscreen.xml' layout xml file. 
-	         * Add the initialized View to the viewSwitcher.*/
-			viewSwitcher.addView(ViewSwitcher.inflate(Loading.this, R.layout.load, null));
+		protected void onPreExecute() {
+			//initialize a new instance of Progress Dialog and configure settings
+			pd = new ProgressDialog(Loading.this);
+			pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			pd.setTitle("Loading...");
+			pd.setMessage("Loading application view, please wait");
+			pd.setCancelable(true);
+			pd.setIndeterminate(false);
+			pd.setMax(100);
+			pd.setProgress(0);
+			pd.show();
 			
-			//Initialize ProgressBar instance
-			pb_progressBar = (ProgressBar) viewSwitcher.findViewById(R.id.pb_progressbar);
-			//Sets the maximum value to 100 			
-			pb_progressBar.setMax(100);
-			
-			//Set ViewSwitcher instance as the current View.
-			setContentView(viewSwitcher);
 		}
 
 		//The code to be executed in a background thread.
@@ -69,30 +60,23 @@ public class Loading extends Activity {
 			return null;
 		}
 
-		//Update the progress at progress bar
+		//Update the progress
 		@Override
 		protected void onProgressUpdate(Integer... values){ 
-			//Update the progress at the UI if progress value is smaller than 100
-			if(values[0] <= 100){
-				pb_progressBar.setProgress(values[0]);
-			}
+			pd.setProgress(values[0]);
 		}
 		
 		//After executing the code in the thread
 		@Override
-		protected void onPostExecute(Void result) 
-		{
-			/* Initialize the application's main interface from the 'main.xml' layout xml file. 
-	         * Add the initialized View to the viewSwitcher.*/
-			viewSwitcher.addView(ViewSwitcher.inflate(Loading.this, R.layout.load, null));
-			//Switch the Views
-			viewSwitcher.showNext();
+		protected void onPostExecute(Void result) {
+			//close the load screen
+			pd.dismiss();
+			setContentView(R.layout.member_view);
 		}
     }
     
     @Override
     public void onBackPressed() {
-    		//Finishes the current Activity
     		super.onBackPressed();
     }
 }
