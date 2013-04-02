@@ -145,44 +145,45 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 				System.out.println("No member ID was inputted");
 				System.out.println(e.getStackTrace());
 			}
-		}
-		ArrayList<Member>  mem = Security.getDBM().getAllMembers();
-		Member temp = null;
-		for(Member m : mem){
-			if(m.getID() == memID){
-				temp = m;
+			ArrayList<Member>  mem = Security.getDBM().getAllMembers();
+			Member temp = null;
+			for(Member m : mem){
+				if(m.getID() == memID){
+					temp = m;
+				}
 			}
+			Boolean temp1;
+			Boolean temp2;
+			if(cursor.getString(4).equals("false")){
+				temp1 = false;
+			}
+			else{
+				temp1 = true;
+			}
+			if(cursor.getString(5).equals("false")){
+				temp2 = false;
+			}
+			else{
+				temp2 = true;
+			}
+			Item item = null;
+			try{
+				item = new Item(Integer.parseInt(cursor.getString(0)),
+						cursor.getString(1), cursor.getString(2), temp, temp1, 
+						temp2, cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
+						Integer.parseInt(cursor.getString(8)), 
+						Integer.parseInt(cursor.getString(9)), cursor.getString(10));
+			}
+			catch(Exception e){
+				System.out.println("No member ID was inputted");
+				System.out.println(e.getStackTrace());
+			}
+			
+			cursor.close();
+			db.close();
+			return item;
 		}
-		Boolean temp1;
-		Boolean temp2;
-		if(cursor.getString(4).equals("false")){
-			temp1 = false;
-		}
-		else{
-			temp1 = true;
-		}
-		if(cursor.getString(5).equals("false")){
-			temp2 = false;
-		}
-		else{
-			temp2 = true;
-		}
-		Item item = null;
-		try{
-			item = new Item(Integer.parseInt(cursor.getString(0)),
-					cursor.getString(1), cursor.getString(2), temp, temp1, 
-					temp2, cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
-					Integer.parseInt(cursor.getString(8)), 
-					Integer.parseInt(cursor.getString(9)), cursor.getString(10));
-		}
-		catch(Exception e){
-			System.out.println("No member ID was inputted");
-			System.out.println(e.getStackTrace());
-		}
-		
-		cursor.close();
-		db.close();
-		return item;
+		return null;
 	}
 	
 	/**

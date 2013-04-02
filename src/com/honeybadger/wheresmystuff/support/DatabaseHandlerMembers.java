@@ -110,34 +110,34 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		//if it is not null make it move to the first position of the table
 		if (cursor != null){
 			cursor.moveToFirst();
-		}
-		
-		//if the user is an admin, then creates a new admin
-		if((cursor.getString(3).equals("Admin"))){
-			try{
-				Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
-						cursor.getString(1), cursor.getString(2),
-						cursor.getString(3));	
-				cursor.close();
-				db.close();
-				return admin;
+
+			//if the user is an admin, then creates a new admin
+			if((cursor.getString(3).equals("Admin"))){
+				try{
+					Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
+							cursor.getString(1), cursor.getString(2),
+							cursor.getString(3));	
+					cursor.close();
+					db.close();
+					return admin;
+				}
+				catch(Exception e){
+					System.out.println("Admin failed to be added " +
+							"because the cursor reached a null");
+				}
 			}
-			catch(Exception e){
-				System.out.println("Admin failed to be added " +
-						"because the cursor reached a null");
-			}
-		}
-		else{
-			try{
-				Member mem = new Member(Integer.parseInt(cursor.getString(0)),
-						cursor.getString(1), cursor.getString(2), cursor.getString(3));
-				cursor.close();
-				db.close();
-				return mem;
-			}
-			catch(Exception e){
-				System.out.println("Member failed to be added " +
-						"because the cursor reached a null");				
+			else{
+				try{
+					Member mem = new Member(Integer.parseInt(cursor.getString(0)),
+							cursor.getString(1), cursor.getString(2), cursor.getString(3));
+					cursor.close();
+					db.close();
+					return mem;
+				}
+				catch(Exception e){
+					System.out.println("Member failed to be added " +
+							"because the cursor reached a null");				
+				}
 			}
 		}
 		return null;
