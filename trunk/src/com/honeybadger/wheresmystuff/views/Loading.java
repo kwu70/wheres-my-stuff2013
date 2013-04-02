@@ -1,94 +1,98 @@
-package com.honeybadger.wheresmystuff.views;
+package com.honeybadger.wheresmystuff.views; // 41 Post - Created by DimasTheDriver on Jan/26/2012 . Part of the 'Android: how to create a loading screen – Part 3' post. Available at: http://www.41post.com/?p=4650 
 
 import com.honeybadger.wheresmystuff.R;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.Button;
-import android.view.View;
-import android.view.View.OnClickListener;
-
+import android.widget.ProgressBar;
+import android.widget.ViewSwitcher;
 
 public class Loading extends Activity {
-	Button init;
-	ProgressDialog pd;
-	private int pdStatus = 0;
-	private Handler pdHandler = new Handler();
-	private long progress = 0;
-	
-	@Override
-	public void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.load);
-		addButtonListener();
-	}
-	public void addButtonListener(){
-		init = (Button)findViewById(R.id.sign_in_button);
-		
-		init.setOnClickListener(
-				new OnClickListener(){
-					public void OnClick(View v){
-						pd = new ProgressDialog(v.getContext());
-						pd.setCancelable(true);
-						pd.setMessage("Loading...");
-						pd.setProgress(0);
-						pd.setMax(100);
-						pd.show();
-						
-						//reset load status
-						pdStatus = 0;
-						progress = 0;
-						
-						new Thread(new Runnable(){
-							public void run(){
-								while(pdStatus<100){
-									pdStatus = task();
-									try{
-										Thread.sleep(1000);
-									} catch(InterruptedException e){
-										e.printStackTrace();
-									}
-									//update load status
-									pdHandler.post(new Runnable(){
-										public void run(){
-											pd.setProgress(pdStatus);
-										}
-									});
-								}
-								if(pdStatus>=100){
-									try{
-										Thread.sleep(2000);
-									} catch(InterruptedException e) {
-										e.printStackTrace();
-									}
-									//close the progress bar
-									pd.dismiss();
-								}
-							}
-						}).start();
-					}
+	//creates a ViewSwitcher object, to switch between Views
+	private ViewSwitcher viewSwitcher;
 
-					@Override
-					public void onClick(View arg0) {
-						// TODO Auto-generated method stub
-						
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+		//Initialize a LoadViewTask object and call the execute() method
+        new LoadViewTask().execute();
+    }
+    
+    //subclass for AsyncTask
+    private class LoadViewTask extends AsyncTask<Void, Integer, Void>{
+    	//A ProgressBar object
+    	private ProgressBar pb_progressBar;
+    	
+    	//Before running code in the separate thread
+		@Override
+		protected void onPreExecute() 
+		{
+			//Initialize the ViewSwitcher object
+	        viewSwitcher = new ViewSwitcher(Loading.this);
+	        /* Initialize the loading screen with data from the 'loadingscreen.xml' layout xml file. 
+	         * Add the initialized View to the viewSwitcher.*/
+			viewSwitcher.addView(ViewSwitcher.inflate(Loading.this, R.layout.load, null));
+			
+			//Initialize ProgressBar instance
+			pb_progressBar = (ProgressBar) viewSwitcher.findViewById(R.id.pb_progressbar);
+			//Sets the maximum value to 100 			
+			pb_progressBar.setMax(100);
+			
+			//Set ViewSwitcher instance as the current View.
+			setContentView(viewSwitcher);
+		}
+
+		//The code to be executed in a background thread.
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				//Get the current thread's token
+				synchronized (this) {
+					//Initialize an integer (that will act as a counter) to zero
+					int counter = 0;
+					//While the counter is smaller than four
+					while(counter <= 4){
+						//Wait 850 milliseconds
+						this.wait(850);
+						counter++;
+						//Set the current progress. 
+						publishProgress(counter*25);
 					}
-				});
-	}
-	
-	public int task(){
-		while(progress<=10000){
-			progress++;
-			if(progress==10000){
-				return 10;
-			}else if(progress==20000){
-				return 20;
-			}else if(progress ==3000){
-				return 30;
+				}
+			} 
+			catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		//Update the progress at progress bar
+		@Override
+		protected void onProgressUpdate(Integer... values){ 
+			//Update the progress at the UI if progress value is smaller than 100
+			if(values[0] <= 100){
+				pb_progressBar.setProgress(values[0]);
 			}
 		}
-		return 100;
-	}
+		
+		//After executing the code in the thread
+		@Override
+		protected void onPostExecute(Void result) 
+		{
+			/* Initialize the application's main interface from the 'main.xml' layout xml file. 
+	         * Add the initialized View to the viewSwitcher.*/
+			viewSwitcher.addView(ViewSwitcher.inflate(Loading.this, R.layout.load, null));
+			//Switch the Views
+			viewSwitcher.showNext();
+		}
+    }
+    
+    @Override
+    public void onBackPressed() {
+    		//Finishes the current Activity
+    		super.onBackPressed();
+    }
 }
