@@ -8,6 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * This class is used to run the database for members
+ * @author TheHoneyBadger
+ * @version 1
+ */
 public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 
 	// All Static variables
@@ -22,16 +27,23 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	
 	// Table Member Column names
 	private static final String KEY_IDM = "memberID";
+	
 	private static final String KEY_EMAIL = "email";
+	
 	private static final String KEY_PSWD = "password";
+	
 	private static final String KEY_MNAME = "membername";
-
-
+	
+	/**
+	 * Used to create a table
+	 */
 	public DatabaseHandlerMembers(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	// Creating Tables
+	/**
+	 * @see android.database.sqlite.SQLiteOpenHelper#onCreate(android.database.sqlite.SQLiteDatabase)
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		//creating tables
@@ -41,7 +53,10 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		db.execSQL(CREATE_MEMBERS_TABLE);
 	}
 
-	// Upgrading database
+	/**
+	 * (non-Javadoc)
+	 * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
+	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// Drop older table if existed
@@ -52,22 +67,20 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * All CRUD(Create, Read, Update, Delete) Operations
+	 * Adds a member to the list
+	 * @param mem - member to be added
 	 */
-
-	// Adding new member
 	public void addMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		
-		
+				
 		//if member is an Admin we make the name "Admin" so it is easy to check if the
 		//user is an admin when pulling from the DB.
 		if(mem instanceof Admin){
 			values.put(KEY_IDM, mem.getID());
 			values.put(KEY_EMAIL, mem.getEmail());
 			values.put(KEY_PSWD, mem.getPassword());
-			values.put(KEY_MNAME, "Admin");	
+			values.put(KEY_MNAME, "Admin");
 		}
 		else{
 			values.put(KEY_IDM, mem.getID());
@@ -81,9 +94,12 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		db.close(); // Closing database connection
 	}
 
-
-	// Getting single member
-	Member getMember(int id) {
+	/**
+	 * 
+	 * @param id - id of member to retrieve
+	 * @return member that was retrieved using the ID
+	 */
+	public Member getMember(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		//starts cursor at beginning of member table
@@ -92,28 +108,45 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		
 		//if it is not null make it move to the first position of the table
-		if (cursor != null)
+		if (cursor != null){
 			cursor.moveToFirst();
+		}
 		
 		//if the user is an admin, then creates a new admin
 		if((cursor.getString(3).equals("Admin"))){
-			
-			Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
-					cursor.getString(1), cursor.getString(2), cursor.getString(3));			
-			cursor.close();
-			db.close();
-			return admin;
+			try{
+				Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
+						cursor.getString(1), cursor.getString(2),
+						cursor.getString(3));	
+				cursor.close();
+				db.close();
+				return admin;
+			}
+			catch(Exception e){
+				System.out.println("Admin failed to be added " +
+						"because the cursor reached a null");
+			}
 		}
 		else{
-			Member mem = new Member(Integer.parseInt(cursor.getString(0)),
-					cursor.getString(1), cursor.getString(2), cursor.getString(3));
-			cursor.close();
-			db.close();
-			return mem;
+			try{
+				Member mem = new Member(Integer.parseInt(cursor.getString(0)),
+						cursor.getString(1), cursor.getString(2), cursor.getString(3));
+				cursor.close();
+				db.close();
+				return mem;
+			}
+			catch(Exception e){
+				System.out.println("Member failed to be added " +
+						"because the cursor reached a null");				
+			}
 		}
+		return null;
 	}
 	
-	
+	/**
+	 * 
+	 * @return all members in the database
+	 */
 	public ArrayList<Member> getAllMembers(){
 		ArrayList<Member> members = new ArrayList<Member>();
 		
@@ -127,13 +160,29 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()) {
 			do {
 				if((cursor.getString(3).equals("Admin"))){
-					Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
-							cursor.getString(1), cursor.getString(2), cursor.getString(3));
+					Admin admin = null;
+					try{
+						 admin = new Admin(Integer.parseInt(cursor.getString(0)),
+								cursor.getString(1), cursor.getString(2), 
+								cursor.getString(3));			
+					}
+					catch(Exception e){
+						System.out.println("Admin failed to be added " +
+								"because the cursor reached a null");
+					}
 					members.add(admin);
 				}
 				else{
-					Member mem = new Member(Integer.parseInt(cursor.getString(0)),
-							cursor.getString(1), cursor.getString(2), cursor.getString(3));
+					Member mem = null;
+					try{
+						mem = new Member(Integer.parseInt(cursor.getString(0)),
+								cursor.getString(1), cursor.getString(2), 
+								cursor.getString(3));
+					}
+					catch(Exception e){
+						System.out.println("Member failed to be added " +
+								"because the cursor reached a null");				
+					}
 					members.add(mem);
 				}
 			} while (cursor.moveToNext());
@@ -143,27 +192,32 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		return members;
 	}
 
-	//We need to have a unique id for each place. Since a database is persistent, we need to find where to start the id
-	//This method should be called in onCreate of the ListView fragment
-	public int getCurrentMemberID()
-	{
-		ArrayList<Member> members = (ArrayList<Member>) getAllMembers();
-		return members.size() +1;
+	/**
+	 * 
+	 * @return ID to be used for next member that is added
+	 */
+	public int getCurrentMemberID(){
+		ArrayList<Member> members = getAllMembers();
+		return members.size() + 1;
 	}
-
 	
-	void logMembers()
-	{
+	/**
+	 * logs all members into the log
+	 */
+	public void logMembers(){
 		Log.d("DatabaseHandler: ", "Inside Log Members()");
-		ArrayList<Member> members = (ArrayList<Member>) getAllMembers();
-		for(Member m: members)
-		{
+		ArrayList<Member> members = getAllMembers();
+		for(Member m: members){
 			Log.d("DatabaseHandler: ", m.toString());
 		}
 
 	}
 
-	// Updating single member
+	/**
+	 * 
+	 * @param mem - member to be updated
+	 * @return updates the member and returns 1 if it works
+	 */
 	public int updateMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -186,7 +240,10 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 				new String[] { String.valueOf(mem.getID()) });
 	}
 
-	// Deleting single place
+	/**
+	 * Deletes the member inputted
+	 * @param mem - member to be deleted
+	 */
 	public void deleteMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_MEMBERS, KEY_IDM + " = ?",
@@ -194,7 +251,10 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		db.close();
 	}
 
-	// Getting member Count
+	/**
+	 * 
+	 * @return the number of members in the database
+	 */
 	public int getMemberscount() {
 		String countQuery = "SELECT  * FROM " + TABLE_MEMBERS;
 		SQLiteDatabase db = this.getReadableDatabase();

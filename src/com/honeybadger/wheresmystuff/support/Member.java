@@ -3,16 +3,32 @@ import java.util.ArrayList;
 
 /**
  * Member class represents a member in the system.
+ * @author - TheHoneyBadgers
+ * @version - 1
  */
 
 public class Member{
 	
-	private String name, email, password;
-	private int failedAttempts;
-	private int ID;
+	//name email and password of member
+	private final String name, email;
+
+	private final String password;
 	
-	public Member(int ID, String email, String password, String name){
-		this.ID = ID;
+	//number of failed logins
+	private int failedAttempts;
+	
+	//ID of member inside database
+	private final int id;
+	
+	/**
+	 * 
+	 * @param id - id of member in database
+	 * @param email - email of member
+	 * @param password - password of member
+	 * @param name - name of member
+	 */
+	public Member(int id, String email, String password, String name){
+		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.name = name;
@@ -56,9 +72,9 @@ public class Member{
 	 * @return items list of items
 	 */
 	public ArrayList<Item> getItems(){
-		DatabaseHandlerItems db = Security.getDBI();
-		ArrayList<Item> item = db.getAllItems();
-		ArrayList<Item> temp = item;
+		final DatabaseHandlerItems db = Security.getDBI();
+		final ArrayList<Item> item = db.getAllItems();
+		final ArrayList<Item> temp = item;
 		temp.clear();
 		for(Item i: item){
 			if(i.getOwner().equals(this)){
@@ -66,30 +82,6 @@ public class Member{
 			}
 		}
 		return temp;
-	}
-	
-	/**
-	 * Setter for Name
-	 * @param name String replaces old name
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
-	
-	/**
-	 * Setter for email
-	 * @param email String replaces old email
-	 */
-	public void setEmail(String email){
-		this.email = email;
-	}
-	
-	/**
-	 * Setter for password
-	 * @param password String replaces old password
-	 */
-	public void setPassword(String password){
-		this.password = password;
 	}
 	
 	/**
@@ -107,8 +99,12 @@ public class Member{
 		this.failedAttempts++;
 	}
 	
+	/**
+	 * 
+	 * @return id of member in database
+	 */
 	public int getID(){
-		return ID;
+		return id;
 	}
 	
 }
