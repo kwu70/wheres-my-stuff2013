@@ -1,4 +1,4 @@
-package com.honeybadger.wheresmystuff.views; // 41 Post - Created by DimasTheDriver on Jan/26/2012 . Part of the 'Android: how to create a loading screen – Part 3' post. Available at: http://www.41post.com/?p=4650 
+package com.honeybadger.wheresmystuff.views; 
 
 import com.honeybadger.wheresmystuff.R;
 
@@ -32,6 +32,7 @@ public class Loading extends Activity {
 			pd.setIndeterminate(false);
 			pd.setMax(100);
 			pd.setProgress(0);
+			pd.setIcon(R.drawable.honey_badger);
 			pd.show();
 			
 		}
