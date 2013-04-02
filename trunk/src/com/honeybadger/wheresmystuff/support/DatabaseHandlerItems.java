@@ -12,7 +12,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 6;
 
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager Items";
@@ -31,6 +31,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	private static final String KEY_MONTH = "month";
 	private static final String KEY_DAY = "day";
 	private static final String KEY_YEAR = "year";
+	private static final String KEY_LOC = "location";
 
 
 	public DatabaseHandlerItems(Context context) {
@@ -45,7 +46,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 				+ KEY_IDI + " INTEGER PRIMARY KEY," + KEY_INAME + " TEXT,"
 				+ KEY_DESC + " TEXT, " + KEY_MEMID  + " TEXT," + KEY_STATUS 
 				+ " TEXT," + KEY_RESOL + " TEXT," + KEY_TYPE + " TEXT," + KEY_MONTH
-				+ " TEXT," + KEY_DAY + " TEXT," + KEY_YEAR + " TEXT" + ")";
+				+ " TEXT," + KEY_DAY + " TEXT," + KEY_YEAR + " TEXT" + KEY_LOC + " TEXT" + ")";
 		db.execSQL(CREATE_ITEMS_TABLE);
 	}
 
@@ -90,6 +91,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 		values.put(KEY_MONTH, item.getMonth());
 		values.put(KEY_DAY, item.getDay());
 		values.put(KEY_YEAR, item.getYear());
+		values.put(KEY_LOC, item.getLocation());
 
 		// Inserting Row
 		db.insert(TABLE_ITEMS, null, values);
@@ -132,7 +134,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 		Item item = new Item(Integer.parseInt(cursor.getString(0)),
 				cursor.getString(1), cursor.getString(2), temp, temp1, 
 				temp2, cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
-				Integer.parseInt(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
+				Integer.parseInt(cursor.getString(8)), Integer.parseInt(cursor.getString(9)), cursor.getString(10));
 		cursor.close();
 		db.close();
 		return item;
@@ -175,7 +177,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 				Item item = new Item(Integer.parseInt(cursor.getString(0)),
 						cursor.getString(1), cursor.getString(2), temp, temp1, 
 						temp2, cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
-						Integer.parseInt(cursor.getString(8)), Integer.parseInt(cursor.getString(9)));
+						Integer.parseInt(cursor.getString(8)), Integer.parseInt(cursor.getString(9)), cursor.getString(10));
 				// Adding item to list
 				items.add(item);
 			} while (cursor.moveToNext());
@@ -220,6 +222,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 		values.put(KEY_MONTH, item.getMonth());
 		values.put(KEY_DAY, item.getDay());
 		values.put(KEY_YEAR, item.getYear());
+		values.put(KEY_LOC, item.getLocation());
 		
 		// updating row
 		return db.update(TABLE_ITEMS, values, KEY_IDI + " = ?",

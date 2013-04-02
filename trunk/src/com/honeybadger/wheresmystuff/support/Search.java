@@ -90,7 +90,7 @@ public class Search {
 	 */
 	public static ArrayList<Item> filterName(Member member, String name){
 		ArrayList<Item> list = Security.getMemberItemList(member);
-		ArrayList<Item> matches = new ArrayList<Item>;
+		ArrayList<Item> matches = new ArrayList<Item>();
 		for(int i = 0; i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getName() == name){
