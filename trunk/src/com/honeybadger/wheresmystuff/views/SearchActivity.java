@@ -53,7 +53,7 @@ public class SearchActivity extends Activity{
 		itemsList.setAdapter(adapterItems);
 
 		//Button listener for Search
-		findViewById(R.id.button1).setOnClickListener(new SearchItemClickListener());
+		findViewById(R.id.btnSearchForItems).setOnClickListener(new SearchItemClickListener());
 	}
 
 	/**
