@@ -33,8 +33,8 @@ public final class R {
         public static final int btnRegister=0x7f090032;
         public static final int btnRemoveMember=0x7f09001f;
         public static final int btnSearch=0x7f090024;
+        public static final int btnSearchForItems=0x7f090033;
         public static final int btnUnlockAccount=0x7f09001e;
-        public static final int button1=0x7f090033;
         public static final int category_spinner=0x7f090027;
         public static final int date_button=0x7f09002a;
         public static final int editDescription=0x7f09000e;
