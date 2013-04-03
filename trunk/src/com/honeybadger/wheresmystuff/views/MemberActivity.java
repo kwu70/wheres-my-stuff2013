@@ -90,8 +90,8 @@ public class MemberActivity extends Activity{
 		addItem.putExtra("userEmail", userEmail);
 		
 		//Create Search Intent
-//		search = new Intent(this, SearchActivity.class);
-//		search.putExtra("userEmail", userEmail);
+		search = new Intent(this, SearchActivity.class);
+		search.putExtra("userEmail", userEmail);
 		
 		//Admin Settings Button visible if the user is an Admin
 		View btn = (Button) findViewById(R.id.btnAdmin);
@@ -118,7 +118,7 @@ public class MemberActivity extends Activity{
 		findViewById(R.id.btnAdmin).setOnClickListener(new AdminSettingClickListener());
 		
 		//ClickListener for Search Button
-//		findViewById(R.id.btnSearch).setOnClickListener(new SearchClickListener());
+		findViewById(R.id.btnSearch).setOnClickListener(new SearchClickListener());
 		
 		//Iterates through the members items and if
 		//they have any then it assigns them to the appropriate
