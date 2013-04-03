@@ -3,26 +3,20 @@ package com.honeybadger.wheresmystuff.views;
 import com.honeybadger.wheresmystuff.R;
 import com.honeybadger.wheresmystuff.support.Member;
 import com.honeybadger.wheresmystuff.support.Search;
+import com.honeybadger.wheresmystuff.support.Item;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import android.app.Activity;
-import android.app.SearchManager;
 import android.os.Bundle;
-import android.content.ClipData.Item;
 import android.content.Intent;
-import android.database.Cursor;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.SearchView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -91,12 +85,11 @@ public class SearchActivity extends Activity{
 			int radioButtonID = radioGroup.getCheckedRadioButtonId();
 			RadioButton rad = (RadioButton) findViewById(radioButtonID);
 			String type = rad.getText().toString();
-
-			finish();
-		
+			
 			adapterItems = adapterTemp;
 			itemsList.setAdapter(adapterItems);
-		
+			
+			finish();
 		}
 	}
 	
