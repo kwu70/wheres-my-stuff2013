@@ -11,7 +11,7 @@ public class Loading extends Activity {
 	//a ProgressDialog object
 	private ProgressDialog pd;
 
-    /** Called when the activity is first created. */
+    //Called when the activity is first created
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,18 +36,16 @@ public class Loading extends Activity {
 			
 		}
 
-		//The code to be executed in a background thread.
+		/*
+		 * Background task to run before loading application
+		 */
 		@Override
 		protected Void doInBackground(Void... params) {
 			try {
-				//Get the current thread's token
 				synchronized (this) {
-					//Initialize an integer (that will act as a counter) to zero
 					int counter = 0;
-					//While the counter is smaller than four
 					while(counter <= 4){
-						//Wait 850 milliseconds
-						this.wait(850);
+						this.wait(1000);
 						counter++;
 						//Set the current progress. 
 						publishProgress(counter*25);
@@ -60,18 +58,16 @@ public class Loading extends Activity {
 			return null;
 		}
 
-		//Update the progress
+		//Update the progress bar
 		@Override
 		protected void onProgressUpdate(Integer... values){ 
 			pd.setProgress(values[0]);
 		}
 		
-		//After executing the code in the thread
+		//After executing the code in the thread, close the load screen
 		@Override
 		protected void onPostExecute(Void result) {
-			//close the load screen
 			pd.dismiss();
-			setContentView(R.layout.activity_login);
 		}
     }
     

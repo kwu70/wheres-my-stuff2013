@@ -77,6 +77,8 @@ public class Search {
 			Item currItem = list.get(i);
 			if(currItem.getStatus() == status){
 				matches.add(list.get(i));
+			}else{
+				return null;
 			}
 		}
 		return matches;
@@ -99,6 +101,8 @@ public class Search {
 			Item cur = list.get(i);
 			if(cur.getName().contains(name)){
 				matches.add(list.get(i));
+			}else{
+				return null;
 			}
 		}
 		return matches;
@@ -121,6 +125,8 @@ public class Search {
 			Item cur = list.get(i);
 			if(cur.getLocation().contains(location)){
 				matches.add(list.get(i));
+			}else{
+				return null;
 			}
 		}
 		return matches;
@@ -153,6 +159,28 @@ public class Search {
 		}
 		
 		
+		return matches;
+	}
+	
+	/*
+	 * Search for an item by category.
+	 * 
+	 * @param category The category of the item being searched for
+	 * @return matches A list of items with the same category as the search parameter
+	 */
+	public static ArrayList<Item> searchByCategory(String category){
+		ArrayList<Item> list = Security.getItemList();
+		ArrayList<Item> matches = new ArrayList<Item>();
+		
+		if(list==null){return null;}
+		for(int i = 0;i<list.size();i++){
+			Item cur = list.get(i);
+			if(cur.getType().contains(category)){
+				matches.add(list.get(i));
+			}else{
+				return null;
+			}
+		}
 		return matches;
 	}
 }
