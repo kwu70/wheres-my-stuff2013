@@ -27,6 +27,7 @@ public class Search {
 				}
 			}
 		}
+		
 		return matches;
 	}
 	
@@ -58,6 +59,8 @@ public class Search {
 				matches.add(list.get(i));
 			}
 		}
+		
+		list = null;
 		return matches;
 	}
 	
@@ -81,6 +84,8 @@ public class Search {
 				return null;
 			}
 		}
+		
+		list = null;
 		return matches;
 	}
 	
@@ -105,6 +110,8 @@ public class Search {
 				return null;
 			}
 		}
+		
+		list = null;
 		return matches;
 	}
 	
@@ -129,6 +136,8 @@ public class Search {
 				return null;
 			}
 		}
+		
+		list = null;
 		return matches;
 		
 	}
@@ -158,7 +167,7 @@ public class Search {
 			}
 		}
 		
-		
+		list = null;
 		return matches;
 	}
 	
