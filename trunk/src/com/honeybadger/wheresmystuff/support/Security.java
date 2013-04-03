@@ -112,8 +112,9 @@ public class Security {
 	 * @param item the Item being added to the item list
 	 */
 	public static void addItem(Item item){
-		dbHandlerI.addItem(item);
-		
+		if(item != null){
+			dbHandlerI.addItem(item);
+		}		
 	}
 	
 	/**
@@ -152,7 +153,9 @@ public class Security {
 	 * @param member the member that is having their failed attempts reset to zero.
 	 */
 	public static void resetAttempts(Member member) {
-		dbHandlerM.getMember(member.getID()).setFailedAttempts(0);
+		if(member != null){
+			dbHandlerM.getMember(member.getID()).setFailedAttempts(0);
+		}
 	}
 	
 	/**
@@ -181,6 +184,10 @@ public class Security {
 			}
 		}
 		return temp;
+	}
+	
+	public static int getCurrentID(){
+		return dbHandlerI.getCurrentItemID();
 	}
 	
 	public static DatabaseHandlerMembers getDBM(){

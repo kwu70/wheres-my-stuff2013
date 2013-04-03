@@ -70,7 +70,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 * Adds a member to the list
 	 * @param mem - member to be added
 	 */
-	public void addMember(Member mem) {
+	protected void addMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 				
@@ -99,7 +99,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 * @param id - id of member to retrieve
 	 * @return member that was retrieved using the ID
 	 */
-	public Member getMember(int id) {
+	protected Member getMember(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		//starts cursor at beginning of member table
@@ -147,7 +147,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 * 
 	 * @return all members in the database
 	 */
-	public ArrayList<Member> getAllMembers(){
+	protected ArrayList<Member> getAllMembers(){
 		ArrayList<Member> members = new ArrayList<Member>();
 		
 		// Select All Query
@@ -196,7 +196,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 * 
 	 * @return ID to be used for next member that is added
 	 */
-	public int getCurrentMemberID(){
+	protected int getCurrentMemberID(){
 		ArrayList<Member> members = getAllMembers();
 		return members.size() + 1;
 	}
@@ -218,7 +218,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 * @param mem - member to be updated
 	 * @return updates the member and returns 1 if it works
 	 */
-	public int updateMember(Member mem) {
+	protected int updateMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 
@@ -244,7 +244,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 * Deletes the member inputted
 	 * @param mem - member to be deleted
 	 */
-	public void deleteMember(Member mem) {
+	protected void deleteMember(Member mem) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_MEMBERS, KEY_IDM + " = ?",
 				new String[] { String.valueOf(mem.getID()) });
@@ -255,7 +255,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	 * 
 	 * @return the number of members in the database
 	 */
-	public int getMemberscount() {
+	protected int getMemberscount() {
 		String countQuery = "SELECT  * FROM " + TABLE_MEMBERS;
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(countQuery, null);

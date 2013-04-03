@@ -120,7 +120,7 @@ public class AddItemActivity extends Activity{
 			
 			
 			//creates and adds a new item to the current members item list
-			Security.addItem(new Item(Security.getDBI().getCurrentItemID() ,name, description,currentMember, lostFound, resolved, type, month, day, year, "Atlanta"));
+			Security.addItem(new Item(Security.getCurrentID() ,name, description,currentMember, lostFound, resolved, type, month, day, year, "Atlanta"));
 			//goes back to member activity and displays item
 			startActivity(returnIntent);
 			finish();
