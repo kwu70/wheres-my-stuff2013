@@ -50,15 +50,16 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	private static final String KEY_LOC = "location";
 
 	/**
-	 * Creates the database
+	 * Used to create a table
+	 * @param context - View that is creating the database
 	 */
 	public DatabaseHandlerItems(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see android.database.sqlite.SQLiteOpenHelper#onCreate(android.database.sqlite.SQLiteDatabase)
+	 * Used to create database
+	 * @param db - database to be created
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -73,8 +74,10 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
+	 * This is called if the db version is newer than the current one
+	 * @param db - database to be upgraded
+	 * @param oldVersion - old version # of database
+	 * @param newVersion - new version # of database
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -85,10 +88,6 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 		onCreate(db);
 	}
 
-	/**
-	 * All CRUD(Create, Read, Update, Delete) Operations
-	 */
-	
 	/**
 	 * takes all item values and stores them into the database
 	 * @param item - item being added to the database
@@ -127,6 +126,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	
 	/**
 	 * @param id - item that is being retrieved from the database
+	 * @return item item that was found from the inputted id
 	 */
 	protected Item getItem(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -170,7 +170,8 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 			try{
 				item = new Item(Integer.parseInt(cursor.getString(0)),
 						cursor.getString(1), cursor.getString(2), temp, temp1, 
-						temp2, cursor.getString(6), Integer.parseInt(cursor.getString(7)), 
+						temp2, cursor.getString(6), 
+						Integer.parseInt(cursor.getString(7)), 
 						Integer.parseInt(cursor.getString(8)), 
 						Integer.parseInt(cursor.getString(9)), cursor.getString(10));
 			}

@@ -36,13 +36,15 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	
 	/**
 	 * Used to create a table
+	 * @param context - View that is creating the database
 	 */
 	public DatabaseHandlerMembers(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 	/**
-	 * @see android.database.sqlite.SQLiteOpenHelper#onCreate(android.database.sqlite.SQLiteDatabase)
+	 * Used to create database
+	 * @param db - database to be created
 	 */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
@@ -54,8 +56,10 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see android.database.sqlite.SQLiteOpenHelper#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
+	 * This is called if the db version is newer than the current one
+	 * @param db - database to be upgraded
+	 * @param oldVersion - old version # of database
+	 * @param newVersion - new version # of database
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -116,7 +120,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 				try{
 					Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
 							cursor.getString(1), cursor.getString(2),
-							cursor.getString(3));	
+							cursor.getString(3));
 					cursor.close();
 					db.close();
 					return admin;
@@ -129,14 +133,15 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 			else{
 				try{
 					Member mem = new Member(Integer.parseInt(cursor.getString(0)),
-							cursor.getString(1), cursor.getString(2), cursor.getString(3));
+							cursor.getString(1), cursor.getString(2), 
+							cursor.getString(3));
 					cursor.close();
 					db.close();
 					return mem;
 				}
 				catch(Exception e){
 					System.out.println("Member failed to be added " +
-							"because the cursor reached a null");				
+							"because the cursor reached a null");
 				}
 			}
 		}
@@ -164,7 +169,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 					try{
 						 admin = new Admin(Integer.parseInt(cursor.getString(0)),
 								cursor.getString(1), cursor.getString(2), 
-								cursor.getString(3));			
+								cursor.getString(3));
 					}
 					catch(Exception e){
 						System.out.println("Admin failed to be added " +
@@ -181,7 +186,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 					}
 					catch(Exception e){
 						System.out.println("Member failed to be added " +
-								"because the cursor reached a null");				
+								"because the cursor reached a null");
 					}
 					members.add(mem);
 				}
