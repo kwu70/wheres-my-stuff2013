@@ -93,7 +93,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	 * takes all item values and stores them into the database
 	 * @param item - item being added to the database
 	 */
-	public void addItem(Item item) {
+	protected void addItem(Item item) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
@@ -128,7 +128,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	/**
 	 * @param id - item that is being retrieved from the database
 	 */
-	public Item getItem(int id) {
+	protected Item getItem(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TABLE_ITEMS, new String[] { KEY_IDI,
@@ -189,7 +189,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	/**
 	 * @return items - all the items in the database
 	 */
-	public ArrayList<Item> getAllItems(){
+	protected ArrayList<Item> getAllItems(){
 		ArrayList<Item> items = new ArrayList<Item>();
 		
 		String selectQuery = "SELECT  * FROM " + TABLE_ITEMS;
@@ -257,7 +257,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	 * @return int - the current id to be assigned to the next added
 	 * item
 	 */
-	public int getCurrentItemID(){
+	protected int getCurrentItemID(){
 		ArrayList<Item> items = getAllItems();
 		return items.size() + 1;
 	}
@@ -265,7 +265,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	/**
 	 * Logs all the items into the log
 	 */
-	public void logItems(){
+	protected void logItems(){
 		Log.d("DatabaseHandler: ", "Inside Log Items()");
 		ArrayList<Item> items = getAllItems();
 		for(Item i: items){
@@ -278,7 +278,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	 * @param item - item that is being updated
 	 * @return int - 1 if database succesfully updated
 	 */
-	public int updateItem(Item item) {
+	protected int updateItem(Item item) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
@@ -303,7 +303,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	 * Deletes item from database
 	 * @param item - item to be deleted
 	 */
-	public void deleteItem(Item item) {
+	protected void deleteItem(Item item) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		db.delete(TABLE_ITEMS, KEY_IDI + " = ?",
 				new String[] { String.valueOf(item.getID()) });
@@ -314,7 +314,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	 * 
 	 * @return count of items in database
 	 */
-	public int getItemsCount() {
+	protected int getItemsCount() {
 		String countQuery = "SELECT  * FROM " + TABLE_ITEMS;
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(countQuery, null);
