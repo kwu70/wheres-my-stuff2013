@@ -157,7 +157,10 @@ public class Search {
 		String name = nl[0];
 		String location = nl[1];
 		
-		if(list==null){return null;}
+		if(list==null)
+		{
+			return null;
+		}
 		for(int i =0;i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getName().contains(name) && cur.getLocation().contains(location)){
@@ -181,7 +184,10 @@ public class Search {
 		ArrayList<Item> list = Security.getItemList();
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
-		if(list==null){return null;}
+		if(list==null)
+		{
+			return null;
+		}
 		for(int i = 0;i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getType().contains(category)){

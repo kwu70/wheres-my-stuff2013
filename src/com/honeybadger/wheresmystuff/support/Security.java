@@ -3,17 +3,31 @@ package com.honeybadger.wheresmystuff.support;
 import java.util.ArrayList;
 
 import android.content.Context;
+
 /**
- * The Security class contains member list which contains all the members that exist in the system.
+ * The Security class contains member list 
+ * which contains all the members that exist in the system.
+ * 
+ * @author Honey Badger
+ * @version 1.0
  */
 public class Security {
-	
+
+	/**
+ 	* Static variable for handling database Member class 
+ 	*/
 	private static DatabaseHandlerMembers dbHandlerM;
+	
+	/**
+ 	* Static variable for handling database Item class 
+ 	*/
 	private static DatabaseHandlerItems dbHandlerI;
 	
 	/**
 	 * Security constructor that sets up the ArrayLists emails, passwords, and members
 	 * it initiates them with default emails and passwords
+	 * 
+	 * @param c 
 	 */
 	public Security(Context c){
 		Security.dbHandlerM = new DatabaseHandlerMembers(c);
@@ -23,7 +37,7 @@ public class Security {
 			dbHandlerM.addMember(new Admin(dbHandlerM.getCurrentMemberID(), "admin@admin", "admin", ""));
 		}
 	}
-	
+
 	/**
 	 * Getter for the members list.
 	 * 
@@ -32,12 +46,12 @@ public class Security {
 	public static ArrayList<Member> getMemberList(){
 		return dbHandlerM.getAllMembers();
 	}
-	
+
 	/**
-	 * Getter for item list
-	 * 
-	 * @return items the list that contains all the items (general list of items)
-	 */
+ 	* Getter for item list
+ 	* 
+ 	* @return items the list that contains all the items (general list of items)
+ 	*/
 	public static ArrayList<Item> getItemList(){
 		return dbHandlerI.getAllItems();
 	}
@@ -62,10 +76,11 @@ public class Security {
 	
 	
 	/**
-	 * Searches through the list of all members for the member with the specified email
+	 * Searches through the list of all members for
+	 * the member with the specified email
 	 * 
 	 * @param email Email of the specific member
-	 * @return Member with the email. If the email is not found then return default Member.
+	 * @return Member email, if not found return default Member.
 	 */
 	public static Member getMember(String email){
 		ArrayList<Member> mem = dbHandlerM.getAllMembers();
@@ -134,7 +149,7 @@ public class Security {
 	 * Remove a Member from the member list based on email.
 	 * 
 	 * @param email
-	 * @param password
+	 * @return true when email match member to be removed, else false
 	 */
 	public static boolean removeMember(String email){
 		ArrayList<Member> mem = dbHandlerM.getAllMembers();
@@ -172,6 +187,12 @@ public class Security {
 		}
 	}
 	
+	/**
+	 * Getter for ItemList
+	 * 
+	 * @param mem
+	 * @return temp
+	 */
 	public static ArrayList<Item> getMemberItemList(Member mem){
 		ArrayList<Item> items = dbHandlerI.getAllItems();
 		ArrayList<Item> temp = dbHandlerI.getAllItems();
@@ -186,16 +207,39 @@ public class Security {
 		return temp;
 	}
 	
+	/**
+	 * Getter for currentID
+	 * 
+	 * @return dbHandlerI.getCurrentItemID()
+	 */
 	public static int getCurrentID(){
 		return dbHandlerI.getCurrentItemID();
 	}
 	
+	/**
+	 * Getter from DBM
+	 * 
+	 * @return dbHandlerM
+	 */
 	public static DatabaseHandlerMembers getDBM(){
 		return dbHandlerM;
 	}
 	
+	/**
+	 * Getter for DBI
+	 * 
+	 * @return dbHandlerI
+	 */
 	public static DatabaseHandlerItems getDBI(){
 		return dbHandlerI;
 	}
 	
+	/**
+	 * toString() for Security class
+	 * 
+	 * @return null returns nothing
+	 */
+	public String toString() {
+		return null;
+	}
 }

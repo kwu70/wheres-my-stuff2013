@@ -20,6 +20,7 @@ import android.widget.EditText;
  * Remove members
  * 
  * @author Honey Badger
+ * @version 1.0
  */
 public class AdminSettingActivity extends Activity{
 	
@@ -209,7 +210,9 @@ public class AdminSettingActivity extends Activity{
 	
 	/**
 	 * Unlock Member Listener is the listener for the Unlock Member button
-	 * If the member in the textfield exists then their failedAttempts is reset to 0
+	 * 
+	 * If the member in the textfield exists
+	 * then their failedAttempts is reset to 0
 	 * 
 	 * @author Honey Badger
 	 */
@@ -238,7 +241,8 @@ public class AdminSettingActivity extends Activity{
 	/**
 	 * Dialog for the Create Admin
 	 * 
-	 * This just brings up a box asking whether the user wants to create the Admin
+	 * This just brings up a box asking 
+	 * whether the user wants to create the Admin,
 	 * if they do then the Admin is created.
 	 * 
 	 * @author Honey Badger
@@ -274,8 +278,9 @@ public class AdminSettingActivity extends Activity{
 	}
 	
 	/**
-	 * Remove Click Listener is the Dialog for the Remove Member button
-	 * Yes or No dialog that asks if the user wants to remove the member from the system
+	 * Remove Click Listener in the Dialog for the Remove Member button
+	 * Yes or No dialog that asks if the user wants 
+	 * 	to remove the member from the system
 	 * If yes then the member will be removed from the system.
 	 * 
 	 * @author Honey Badger
@@ -311,7 +316,8 @@ public class AdminSettingActivity extends Activity{
 	/**
 	 * Unlock Click Listener for Unlock Member button
 	 * Yes or No Dialog to check that the user wants to unlock the member
-	 * If Yes then the user unlocks the member by resetting their failedAttempts to 0.
+	 * If Yes then the user unlocks the member 
+	 *  by resetting their failedAttempts to 0.
 	 * 
 	 * @author Honey Badger
 	 */
