@@ -12,7 +12,7 @@ public class Item {
 	
 	private final String location;
 	
-	private static final String[] Category = new String[]
+	private static final String[] CATEGORY = new String[]
 			{"Food", "Clothing", "Personal", "Donation"};
 	
 	private boolean status, resolved;
@@ -202,7 +202,7 @@ public class Item {
 	 * @return category Represents the Item's category
 	 */
 	public String[] getListOfCategories(){
-		return Category;
+		return CATEGORY;
 	}
 	
 	/**
@@ -211,7 +211,7 @@ public class Item {
 	 * @return category.length Represents the length the List
 	 */
 	public int sizeOfCategoryList(){
-		return Category.length;
+		return CATEGORY.length;
 	}
 	
 	/**

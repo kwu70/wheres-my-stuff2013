@@ -14,12 +14,15 @@ import android.widget.EditText;
 /**
  * The LoginView class contains the UI screen users are shown before they
  * can access their MemberActivity screen.
+ * 
+ * @author Honey Badger
+ * @version 1.0
  */
 public class LoginView extends Activity{
-	
+
 	//Email and password user typed in
-	String email;
-	String password; 
+	private String email;
+	private String password; 
 	
 	// Email and password Text boxes
 	private EditText mEmailView;
@@ -38,6 +41,9 @@ public class LoginView extends Activity{
 	private Intent load;
 			
 	private Login lg;
+	
+	//length of the password
+	private static final int passwordLength = 4;
 
 	/**
 	 * Called when the activity is first created.
@@ -45,7 +51,7 @@ public class LoginView extends Activity{
 	 * a new Login instance.  Sets up Login UI and attempts to login after 
 	 * sign-in button is pressed.
 	 * 
-	 * @param state of activity
+	 * @param savedInstanceState state of activity
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -109,7 +115,7 @@ public class LoginView extends Activity{
 			mPasswordView.setError(getString(R.string.error_field_required));
 			focusView = mPasswordView;
 			cancel = true;
-		} else if (password.length() < 4) {
+		} else if (password.length() < passwordLength) {
 			mPasswordView.setError(getString(R.string.error_invalid_password));
 			focusView = mPasswordView;
 			cancel = true;
@@ -147,7 +153,7 @@ public class LoginView extends Activity{
 		}
 	}
 	
-	/*
+	/**
 	 * This method is called when the back button is pressed
 	 * and returns to home
 	 */

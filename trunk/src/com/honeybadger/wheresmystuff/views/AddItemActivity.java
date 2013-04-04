@@ -15,11 +15,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-/*
- * This class contains the proper text fields and radio buttons to create a new item.
+/**
+ * 
+ * This class contains the proper text fields
+ *  and radio buttons to create a new item.
+ *  
+ * @author Honey Badger
+ * @version 1.0
  */
 public class AddItemActivity extends Activity{
-	
+
 	//email of user that is accessing the app
 	private String userEmail;
 	
@@ -37,13 +42,13 @@ public class AddItemActivity extends Activity{
 	private int month;
 	private int day;
 	private int year;
-	
+
 	/**
 	 * Called when the activity is first created.
 	 * Creates Intent object which moves to MemberActivity.class.
 	 * and sends the user email that is being used, back to the class.
 	 * 
-	 * @param state of activity
+	 * @param savedInstanceState state of activity
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,12 +72,18 @@ public class AddItemActivity extends Activity{
 		
 	}
 	
-	/*
+	/**
 	 * This class is a listener for the cancel button and when it is clicked
 	 * just returns back to MemberActivity
+	 * 
+	 * @author Honey Badger
 	 */
 	private class CancelClickListener implements OnClickListener{
 
+		/**
+		 * Activity for detecting if cancel button is pressed or not
+		 * @param v
+		 */
 		@Override
 		public void onClick(View v) {
 			startActivity(returnIntent);
@@ -81,19 +92,27 @@ public class AddItemActivity extends Activity{
 		
 	}
 	
-	/*
-	 * This class is a listener for the Add Item button and when it is clicked gets 
-	 * all the data from the fields and buttons and creates a new item. Then it goes back
+	/**
+	 * This class is a listener for the Add Item button 
+	 * and when it is clicked gets all the data from the fields
+	 * and buttons and creates a new item. Then it goes back
 	 * to member activity so that it can be displayed.
+	 * 
+	 * @author Honey Badger
 	 */
 	private class AddClickListener implements OnClickListener{
-
+		
+		/**
+		 * 	The listener for Adding an Item
+		 * 
+		 * @param v
+		 */
 		@Override
 		public void onClick(View v) {
 			String name = itemName.getText().toString();
 			String description = itemDescription.getText().toString();
 			//false is lost and true is found
-			Boolean lostFound;
+			Boolean lostFound = false;
 			RadioButton radLost = (RadioButton)findViewById(R.id.radLost);
 			
 			if(radLost.isChecked()){
@@ -102,7 +121,7 @@ public class AddItemActivity extends Activity{
 			else{
 				lostFound = true;
 			}
-			//defalut false because the user is creating
+			//default false because the user is creating
 			Boolean resolved = false;
 			
 			//gets currently selected type
@@ -120,7 +139,8 @@ public class AddItemActivity extends Activity{
 			
 			
 			//creates and adds a new item to the current members item list
-			Security.addItem(new Item(Security.getCurrentID() ,name, description,currentMember, lostFound, resolved, type, month, day, year, "Atlanta"));
+			Security.addItem(new Item(Security.getCurrentID() ,name, description,currentMember, 
+					lostFound, resolved, type, month, day, year, "Atlanta"));
 			//goes back to member activity and displays item
 			startActivity(returnIntent);
 			finish();
