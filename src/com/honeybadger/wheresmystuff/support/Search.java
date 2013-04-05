@@ -15,7 +15,7 @@ public class Search {
 		ArrayList<Item> matches = new ArrayList<Item>();
 
 		if((category == null) || (category.length() == 0)) {
-			return null;
+			return matches;
 		}
 		else{
 			ArrayList<Item> list = Security.getMemberItemList(member);
@@ -40,12 +40,12 @@ public class Search {
 	 */
 	public static ArrayList<Item> filterDate(Member member, String date){
 		
-		if((null != date) && (date.length() == 0)) {
-			return null;
-		}
-		
 		ArrayList<Item> list = Security.getMemberItemList(member);
 		ArrayList<Item> matches = new ArrayList<Item>();
+		
+		if((null != date) && (date.length() == 0)) {
+			return matches;
+		}
 		
 		String[] mdy = date.split("/");
 		int month = Integer.parseInt(mdy[0]);
@@ -81,7 +81,7 @@ public class Search {
 			if(currItem.getStatus() == status){
 				matches.add(list.get(i));
 			}else{
-				return null;
+				return matches;
 			}
 		}
 		
@@ -100,14 +100,14 @@ public class Search {
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
 		if(list==null) {
-			return null;
+			return matches;
 		}
 		for(int i = 0; i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getName().contains(name)){
 				matches.add(list.get(i));
 			}else{
-				return null;
+				return matches;
 			}
 		}
 		
@@ -126,14 +126,12 @@ public class Search {
 		ArrayList<Item> matches = new ArrayList<Item>();
 		
 		if(list==null) {
-			return null;
+			return matches;
 		}
 		for(int i = 0; i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getLocation().contains(location)){
 				matches.add(list.get(i));
-			}else{
-				return null;
 			}
 		}
 		
@@ -159,14 +157,12 @@ public class Search {
 		
 		if(list==null)
 		{
-			return null;
+			return matches;
 		}
 		for(int i =0;i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getName().contains(name) && cur.getLocation().contains(location)){
 				matches.add(list.get(i));
-			}else{
-				return null;
 			}
 		}
 		
@@ -186,14 +182,12 @@ public class Search {
 		
 		if(list==null)
 		{
-			return null;
+			return matches;
 		}
 		for(int i = 0;i<list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getType().contains(category)){
 				matches.add(list.get(i));
-			}else{
-				return null;
 			}
 		}
 		return matches;

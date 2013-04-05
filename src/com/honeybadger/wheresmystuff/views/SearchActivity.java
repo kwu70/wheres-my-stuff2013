@@ -66,7 +66,6 @@ public class SearchActivity extends Activity{
 			if(TextUtils.isEmpty(searchCriteria)) {
 				s_editText.setError(getString(R.string.error_field_required));
 				s_editText.requestFocus();
-				
 			}
 			else {
 				if(name.isChecked()){
