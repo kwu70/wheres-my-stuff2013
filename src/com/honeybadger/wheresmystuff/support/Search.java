@@ -106,8 +106,6 @@ public class Search {
 			Item cur = list.get(i);
 			if(cur.getName().contains(name)){
 				matches.add(list.get(i));
-			}else{
-				return matches;
 			}
 		}
 		
@@ -150,10 +148,16 @@ public class Search {
 	public static ArrayList<Item> searchNameAndLocation(String s){
 		ArrayList<Item> list = Security.getItemList();
 		ArrayList<Item> matches = new ArrayList<Item>();
-		
-		String[] nl = s.split(" in ");
-		String name = nl[0];
-		String location = nl[1];
+		String name;
+		String location;
+		if(s.contains("in")){
+			String[] nl = s.split(" in ");
+			name = nl[0];
+			location = nl[1];
+		}
+		else{
+			return matches;
+		}
 		
 		if(list==null)
 		{

@@ -201,7 +201,7 @@ public class Item {
 	 * 
 	 * @return category Represents the Item's category
 	 */
-	public String[] getListOfCategories(){
+	public static String[] getListOfCategories(){
 		return CATEGORY;
 	}
 	
