@@ -128,7 +128,13 @@ public class AddItemActivity extends Activity{
 			RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radGroupType);
 			int radioButtonID = radioGroup.getCheckedRadioButtonId();
 			RadioButton rad = (RadioButton) findViewById(radioButtonID);
+			String arr[] = Item.getListOfCategories();
 			String type = rad.getText().toString();
+			for(String s: arr){
+				if(type.equals(s)){
+					type = s;
+				}
+			}
 			
 			//get date from system
 			Calendar date = Calendar.getInstance();
