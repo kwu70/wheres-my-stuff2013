@@ -80,8 +80,6 @@ public class Search {
 			Item currItem = list.get(i);
 			if(currItem.getStatus() == status){
 				matches.add(list.get(i));
-			}else{
-				return matches;
 			}
 		}
 		
