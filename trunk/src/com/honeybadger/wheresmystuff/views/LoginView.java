@@ -77,7 +77,7 @@ public class LoginView extends Activity{
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						startActivity(load);
+						//startActivity(load);
 						attemptLogin();
 					}
 				});
