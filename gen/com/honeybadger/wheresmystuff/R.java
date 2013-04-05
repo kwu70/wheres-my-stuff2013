@@ -30,16 +30,15 @@ public final class R {
         public static final int btnCancel=0x7f090015;
         public static final int btnCreateAccount=0x7f090005;
         public static final int btnCreateAdmin=0x7f09001d;
+        public static final int btnItemSearch=0x7f090033;
         public static final int btnRegister=0x7f090032;
         public static final int btnRemoveMember=0x7f09001f;
         public static final int btnSearch=0x7f090024;
-        public static final int btnSearchForItems=0x7f090033;
         public static final int btnUnlockAccount=0x7f09001e;
         public static final int category_spinner=0x7f090027;
         public static final int date_button=0x7f09002a;
         public static final int editDescription=0x7f09000e;
         public static final int editItemName=0x7f090012;
-        public static final int editText1=0x7f090036;
         public static final int email=0x7f090001;
         public static final int lblAdminSettingEmail=0x7f090017;
         public static final int lblAdminSettingPassword=0x7f090019;
@@ -52,10 +51,9 @@ public final class R {
         public static final int lbl_Filtering=0x7f090026;
         public static final int lbl_filter2=0x7f090028;
         public static final int listFound=0x7f090023;
-        public static final int listView1=0x7f090034;
         public static final int login=0x7f090003;
         public static final int login_form=0x7f090000;
-        public static final int menu_forgot_password=0x7f090039;
+        public static final int menu_forgot_password=0x7f09003a;
         public static final int password=0x7f090002;
         public static final int radClothingType=0x7f09000b;
         public static final int radDonationType=0x7f09000d;
@@ -65,9 +63,12 @@ public final class R {
         public static final int radGroupType=0x7f090009;
         public static final int radLost=0x7f09000f;
         public static final int radPersonalType=0x7f09000c;
-        public static final int radioCategory=0x7f090038;
+        public static final int radioCategory=0x7f090039;
         public static final int radioGroup1=0x7f090035;
         public static final int radioName=0x7f090037;
+        public static final int radioNameAndLocation=0x7f090038;
+        public static final int search_editText=0x7f090036;
+        public static final int search_listView=0x7f090034;
         public static final int sign_in_button=0x7f090004;
         public static final int textView1=0x7f09001b;
         public static final int txtAdminSettingAdminEmail=0x7f090018;
@@ -88,15 +89,14 @@ public final class R {
         public static final int member_view=0x7f030003;
         public static final int register_view=0x7f030004;
         public static final int search_view=0x7f030005;
-        public static final int searchable=0x7f030006;
     }
     public static final class menu {
         public static final int activity_login=0x7f080000;
     }
     public static final class string {
         public static final int account_preferences=0x7f050002;
-        public static final int action_sign_in_register=0x7f050037;
-        public static final int action_sign_in_short=0x7f050038;
+        public static final int action_sign_in_register=0x7f050038;
+        public static final int action_sign_in_short=0x7f050039;
         public static final int add_item=0x7f050006;
         public static final int add_item_view=0x7f050010;
         public static final int add_lostfound_item=0x7f05001b;
@@ -114,13 +114,13 @@ public final class R {
         public static final int date_button=0x7f050024;
         public static final int date_button2=0x7f050029;
         public static final int donation_type=0x7f050019;
-        public static final int error_field_required=0x7f05003e;
-        public static final int error_incorrect_password=0x7f05003d;
-        public static final int error_incorrect_password_email=0x7f05003f;
-        public static final int error_invalid_email=0x7f05003b;
-        public static final int error_invalid_password=0x7f05003c;
+        public static final int error_field_required=0x7f05003f;
+        public static final int error_incorrect_password=0x7f05003e;
+        public static final int error_incorrect_password_email=0x7f050040;
+        public static final int error_invalid_email=0x7f05003c;
+        public static final int error_invalid_password=0x7f05003d;
         public static final int error_lock_out=0x7f05001a;
-        public static final int error_no_match=0x7f050040;
+        public static final int error_no_match=0x7f050041;
         public static final int first_name=0x7f050007;
         public static final int food_type=0x7f050016;
         public static final int found_item_rad=0x7f050014;
@@ -137,23 +137,24 @@ public final class R {
         public static final int lbl_filter_by_date=0x7f05002b;
         public static final int lbl_item_list=0x7f050026;
         public static final int lbl_userEmail=0x7f05001f;
-        public static final int login_progress_signing_in=0x7f05003a;
+        public static final int login_progress_signing_in=0x7f05003b;
         public static final int lost_item_rad=0x7f050013;
         public static final int lost_items=0x7f050005;
         public static final int lost_items_list=0x7f05000c;
         public static final int member_activity=0x7f050001;
-        public static final int menu_forgot_password=0x7f050039;
+        public static final int menu_forgot_password=0x7f05003a;
         public static final int personal_type=0x7f050018;
         public static final int prompt=0x7f050023;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f050035;
-        public static final int prompt_password=0x7f050036;
+        public static final int prompt_email=0x7f050036;
+        public static final int prompt_password=0x7f050037;
         public static final int radioCategory=0x7f050033;
         public static final int radioName=0x7f050031;
         public static final int register=0x7f050009;
         public static final int register_email=0x7f05000d;
         public static final int register_password=0x7f05000e;
+        public static final int search_NameAndLocation=0x7f050035;
         public static final int search_activity=0x7f05002e;
         public static final int search_for_items=0x7f050034;
         public static final int search_hint=0x7f05002d;
