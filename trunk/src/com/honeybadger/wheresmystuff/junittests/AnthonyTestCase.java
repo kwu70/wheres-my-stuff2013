@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import android.content.Context;
+
 import com.honeybadger.wheresmystuff.support.Login;
 import com.honeybadger.wheresmystuff.support.Member;
 import com.honeybadger.wheresmystuff.support.Security;
@@ -13,11 +15,14 @@ import com.honeybadger.wheresmystuff.views.LoginView;
 
 public class AnthonyTestCase {
 	private Member m;
+	private Login lg;
 	
 	@Before
 	public void setUp() throws Exception {
+		Context c = new LoginView();
+		lg = new Login(c);
 		m = new Member(Security.getCurrentID(), "example@example.com", "hello", "Bob");
-		Security.addMember(m.getEmail(), m.getPassword());
+		//Security.addMember(m.getEmail(), m.getPassword());
 	}
 
 	@After
@@ -37,8 +42,8 @@ public class AnthonyTestCase {
 		throws Exception {
 		Login fixture = new Login(new LoginView());
 		Security.addMember(m.getEmail(), m.getPassword());
-		String email = "";
-		String password = null;
+		String email = "example@example.com";
+		String password = "";
 
 		boolean result = fixture.validate(email, password);
 
@@ -50,7 +55,7 @@ public class AnthonyTestCase {
 		//       at android.view.ContextThemeWrapper.<init>(ContextThemeWrapper.java:5)
 		//       at android.app.Activity.<init>(Activity.java:6)
 		//       at com.honeybadger.wheresmystuff.views.AddItemActivity.<init>(AddItemActivity.java:21)
-		assertTrue(result);
+		assert(result);
 	}
 
 	/**
@@ -62,6 +67,8 @@ public class AnthonyTestCase {
 	public void testValidate_2()
 		throws Exception {
 		Login fixture = new Login(new LoginView());
+		Security.addMember(m.getEmail(), m.getPassword());
+
 		String email = "example@example.com";
 		String password = "hello";
 
@@ -87,7 +94,8 @@ public class AnthonyTestCase {
 	public void testValidate_3()
 		throws Exception {
 		Login fixture = new Login(new LoginView());
-		String email = "";
+		Security.addMember(m.getEmail(), m.getPassword());
+		String email = "example@example.com";
 		String password = "";
 
 		boolean result = fixture.validate(email, password);
@@ -112,7 +120,8 @@ public class AnthonyTestCase {
 	public void testValidate_4()
 		throws Exception {
 		Login fixture = new Login(new LoginView());
-		String email = "";
+		Security.addMember(m.getEmail(), m.getPassword());
+		String email = "example@example.com";
 		String password = "";
 
 		boolean result = fixture.validate(email, password);
