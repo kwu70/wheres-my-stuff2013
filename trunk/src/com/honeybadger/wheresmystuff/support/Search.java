@@ -96,13 +96,14 @@ public class Search {
 	public static ArrayList<Item> searchByName(String name){
 		ArrayList<Item> list = Security.getItemList();
 		ArrayList<Item> matches = new ArrayList<Item>();
+		String temp = name.toLowerCase();
 		
 		if(list==null) {
 			return matches;
 		}
 		for(int i = 0; i<list.size();i++){
 			Item cur = list.get(i);
-			if(cur.getName().contains(name)){
+			if(cur.getName().toLowerCase().contains(temp)){
 				matches.add(list.get(i));
 			}
 		}
