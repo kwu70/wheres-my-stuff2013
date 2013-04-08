@@ -90,6 +90,7 @@ public class Member{
 	 */
 	public void setFailedAttempts(int failedAttempts){
 		this.failedAttempts = failedAttempts;
+		Security.updateMember(this);
 	}
 	
 	/**
