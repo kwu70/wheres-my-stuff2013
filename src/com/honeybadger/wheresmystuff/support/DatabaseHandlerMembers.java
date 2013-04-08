@@ -18,7 +18,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	private static final int DATABASE_VERSION = 5;
+	private static final int DATABASE_VERSION = 7;
 
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager Members";
@@ -34,6 +34,8 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	private static final String KEY_PSWD = "password";
 	
 	private static final String KEY_MNAME = "membername";
+	
+	private static final String KEY_FAIL = "failed";
 	
 	/**
 	 * Used to create a table
@@ -52,7 +54,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 		//creating tables
 		String CREATE_MEMBERS_TABLE = "CREATE TABLE " + TABLE_MEMBERS + "("
 				+ KEY_IDM + " INTEGER PRIMARY KEY," + KEY_EMAIL + " TEXT,"
-				+ KEY_PSWD + " TEXT, " + KEY_MNAME + " TEXT" + ")";
+				+ KEY_PSWD + " TEXT, " + KEY_MNAME + " TEXT," + KEY_FAIL + " TEXT" + ")";
 		db.execSQL(CREATE_MEMBERS_TABLE);
 	}
 
@@ -87,12 +89,14 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 			values.put(KEY_EMAIL, mem.getEmail());
 			values.put(KEY_PSWD, mem.getPassword());
 			values.put(KEY_MNAME, "Admin");
+			values.put(KEY_FAIL, mem.getFailedAttempts());
 		}
 		else{
 			values.put(KEY_IDM, mem.getID());
 			values.put(KEY_EMAIL, mem.getEmail());
 			values.put(KEY_PSWD, mem.getPassword());
 			values.put(KEY_MNAME, mem.getName());
+			values.put(KEY_FAIL, mem.getFailedAttempts());
 		}
 
 		// Inserting Row
@@ -109,7 +113,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 
 		//starts cursor at beginning of member table
 		Cursor cursor = db.query(TABLE_MEMBERS, new String[] { KEY_IDM,
-				KEY_EMAIL, KEY_PSWD, KEY_MNAME }, KEY_IDM + "=?",
+				KEY_EMAIL, KEY_PSWD, KEY_MNAME, KEY_FAIL }, KEY_IDM + "=?",
 				new String[] { String.valueOf(id) }, null, null, null, null);
 		
 		//if it is not null make it move to the first position of the table
@@ -122,6 +126,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 					Admin admin = new Admin(Integer.parseInt(cursor.getString(0)),
 							cursor.getString(1), cursor.getString(2),
 							cursor.getString(3));
+					admin.setFailedAttempts(Integer.parseInt(cursor.getString(4)));
 					cursor.close();
 					db.close();
 					return admin;
@@ -136,6 +141,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 					Member mem = new Member(Integer.parseInt(cursor.getString(0)),
 							cursor.getString(1), cursor.getString(2), 
 							cursor.getString(3));
+					mem.setFailedAttempts(Integer.parseInt(cursor.getString(4)));
 					cursor.close();
 					db.close();
 					return mem;
@@ -171,6 +177,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 						 admin = new Admin(Integer.parseInt(cursor.getString(0)),
 								cursor.getString(1), cursor.getString(2), 
 								cursor.getString(3));
+							admin.setFailedAttempts(Integer.parseInt(cursor.getString(4)));
 					}
 					catch(Exception e){
 						System.out.println("Admin failed to be added " +
@@ -184,6 +191,8 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 						mem = new Member(Integer.parseInt(cursor.getString(0)),
 								cursor.getString(1), cursor.getString(2), 
 								cursor.getString(3));
+						mem.setFailedAttempts(Integer.parseInt(cursor.getString(4)));
+
 					}
 					catch(Exception e){
 						System.out.println("Member failed to be added " +
@@ -233,12 +242,14 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 			values.put(KEY_EMAIL, mem.getEmail());
 			values.put(KEY_PSWD, mem.getPassword());
 			values.put(KEY_MNAME, "Admin");
+			values.put(KEY_FAIL, mem.getFailedAttempts());
 		}
 		else{
 			values.put(KEY_IDM, mem.getID());
 			values.put(KEY_EMAIL, mem.getEmail());
 			values.put(KEY_PSWD, mem.getPassword());
 			values.put(KEY_MNAME, mem.getName());
+			values.put(KEY_FAIL, mem.getFailedAttempts());
 		}
 		
 		// updating row

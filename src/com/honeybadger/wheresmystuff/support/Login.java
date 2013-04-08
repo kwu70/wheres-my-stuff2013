@@ -25,7 +25,10 @@ public class Login {
 	 * @return boolean True if user is locked out, false otherwise.
 	 */
 	public boolean lockOut(Member member){
-		return member.getFailedAttempts() == 3;
+		if(Security.contains(member.getEmail())){
+			return Security.getFailedAttemps(member) == 3;
+		}
+		return false;
 	}
 
 	/**

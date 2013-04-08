@@ -138,7 +138,7 @@ public class LoginView extends Activity{
 			focusView.requestFocus();
 		}
 		else {
-			if(lg.validate(email, password) && !lg.lockOut(Security.getMember(email))){
+			if(lg.validate(email, password)){
 				memberIntent.putExtra("userEmail", email);
 				startActivity(memberIntent);
 				finish();
