@@ -93,6 +93,23 @@ public class Security {
 	}
 	
 	/**
+	 * Gets the failed attempts of the user
+	 * @param mem - member to get the failed attempts for
+	 * @return number of failed attempts
+	 */
+	public static int getFailedAttemps(Member mem){
+		return dbHandlerM.getMember(mem.getID()).getFailedAttempts();
+	}
+	
+	/**
+	 * Updates all the members values
+	 * @param mem - member to be updated
+	 */
+	public static void updateMember(Member mem){
+		dbHandlerM.updateMember(mem);
+	}
+	
+	/**
 	 * Determines if a member is in the list based on email
 	 * 
 	 * @param email Email of specific member
@@ -183,6 +200,7 @@ public class Security {
 		for(int i = 0; i < mem.size(); i++){
 			if(email.equals(mem.get(i).getEmail())){
 				mem.get(i).setFailedAttempts(0);
+				Security.updateMember(mem.get(i));
 			}
 		}
 	}

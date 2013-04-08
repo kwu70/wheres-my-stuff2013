@@ -96,7 +96,9 @@ public class Member{
 	 * increments failedAttempts (Login Attempts) by 1
 	 */
 	public void incFailedAttempts(){
-		this.failedAttempts++;
+		Member temp = Security.getMember(this.email);
+		temp.failedAttempts++;
+		Security.updateMember(temp);
 	}
 	
 	/**
