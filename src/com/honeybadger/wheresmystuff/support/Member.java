@@ -36,7 +36,7 @@ public class Member{
 	}
 	
 	/**
-	 * getter for name
+	 * getter for name of the member
 	 * @return name The Name of the Member
 	 */
 	public String getName(){

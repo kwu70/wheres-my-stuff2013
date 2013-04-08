@@ -47,7 +47,7 @@ public class LoginView extends Activity{
 
 	/**
 	 * Called when the activity is first created.
-	 * Creates Intent object which moves to MemberActivity.class and creates 
+	 * Creates an Intent object which moves to MemberActivity.class and creates 
 	 * a new Login instance.  Sets up Login UI and attempts to login after 
 	 * sign-in button is pressed.
 	 * 
@@ -155,7 +155,7 @@ public class LoginView extends Activity{
 	
 	/**
 	 * This method is called when the back button is pressed
-	 * and returns to home
+	 * and returns to home.
 	 */
 	public void onBackPressed() {
 		finish();
