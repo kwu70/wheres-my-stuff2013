@@ -45,7 +45,7 @@ public class AddItemActivity extends Activity{
 
 	/**
 	 * Called when the activity is first created.
-	 * Creates Intent object which moves to MemberActivity.class.
+	 * Creates an Intent object which moves to MemberActivity.class
 	 * and sends the user email that is being used, back to the class.
 	 * 
 	 * @param savedInstanceState state of activity
@@ -73,8 +73,8 @@ public class AddItemActivity extends Activity{
 	}
 	
 	/**
-	 * This class is a listener for the cancel button and when it is clicked
-	 * just returns back to MemberActivity
+	 * This class is a listener for the cancel button. When it is clicked
+	 * it returns the user back to MemberActivity
 	 * 
 	 * @author Honey Badger
 	 */
@@ -93,8 +93,8 @@ public class AddItemActivity extends Activity{
 	}
 	
 	/**
-	 * This class is a listener for the Add Item button 
-	 * and when it is clicked gets all the data from the fields
+	 * This class is a listener for the Add Item button. 
+	 * When it is clicked gets all the data from the fields
 	 * and buttons and creates a new item. Then it goes back
 	 * to member activity so that it can be displayed.
 	 * 

@@ -37,7 +37,7 @@ public class Loading extends Activity {
 		}
 
 		/*
-		 * Background task to run before loading application
+		 * Background task to run before loading the application
 		 */
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -64,7 +64,7 @@ public class Loading extends Activity {
 			pd.setProgress(values[0]);
 		}
 		
-		//After executing the code in the thread, close the load screen
+		//After executing the code in the thread, it closes the load screen.
 		@Override
 		protected void onPostExecute(Void result) {
 			pd.dismiss();

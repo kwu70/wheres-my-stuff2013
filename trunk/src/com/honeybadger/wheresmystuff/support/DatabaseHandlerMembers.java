@@ -10,6 +10,7 @@ import android.util.Log;
 
 /**
  * This class is used to run the database for members
+ * 
  * @author TheHoneyBadger
  * @version 1
  */
@@ -56,7 +57,8 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * This is called if the db version is newer than the current one
+	 * This is called if the db version is newer than the current version
+	 * 
 	 * @param db - database to be upgraded
 	 * @param oldVersion - old version # of database
 	 * @param newVersion - new version # of database
@@ -99,7 +101,6 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 
 	 * @param id - id of member to retrieve
 	 * @return member that was retrieved using the ID
 	 */
@@ -150,7 +151,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	
 	/**
 	 * 
-	 * @return all members in the database
+	 * @return members All members in the database
 	 */
 	protected ArrayList<Member> getAllMembers(){
 		ArrayList<Member> members = new ArrayList<Member>();
@@ -207,7 +208,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	}
 	
 	/**
-	 * logs all members into the log
+	 * Logs all members into the log
 	 */
 	public void logMembers(){
 		Log.d("DatabaseHandler: ", "Inside Log Members()");
@@ -246,7 +247,8 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * Deletes the member inputted
+	 * Deletes the specified member
+	 * 
 	 * @param mem - member to be deleted
 	 */
 	protected void deleteMember(Member mem) {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Search {
 	
 	/**
-	 * Filters member's items to show only those that have a given category
+	 * Filters the member's items to only those that have a given category
 	 * 
 	 * @param member A member
 	 * @param category String representing category
@@ -32,7 +32,7 @@ public class Search {
 	}
 	
 	/**
-	 * Filters member's items to show only those that were posted as lost on a given date
+	 * Filters themember's items to only show those that were posted as lost on a given date
 	 * 
 	 * @param member A member
 	 * @param date String representing date
@@ -65,7 +65,7 @@ public class Search {
 	}
 	
 	/**
-	 * Filters member's items to show only those that have a matching status
+	 * Filters the member's items to only those that have a matching status
 	 * 
 	 * @param member A member
 	 * @param status Boolean representing lost or found status
@@ -88,7 +88,7 @@ public class Search {
 	}
 	
 	/**
-	 * Filter items to show those with matching names
+	 * Filters the items to show those with matching names
 	 * 
 	 * @param name The name of the particular item
 	 * @return matches the list that contains items with the specified names
@@ -138,8 +138,8 @@ public class Search {
 	}
 	
 	/*
-	 * given a String with an item name and location, return any matching items 
-	 * from the list of items
+	 * Given a String with an item name and location, this returns
+	 *  any matching items from the list of items
 	 * 
 	 * @param s String containing the item name and location
 	 * @return matches A list of items with the specified name and location

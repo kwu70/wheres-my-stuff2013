@@ -10,6 +10,7 @@ import android.util.Log;
 
 /**
  * This class is used to manage the database for items
+ * 
  * @author - TheHoneyBadgers
  * @version - 1
  */
@@ -58,7 +59,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * Used to create database
+	 * Used to create a database
 	 * @param db - database to be created
 	 */
 	@Override
@@ -74,7 +75,8 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * This is called if the db version is newer than the current one
+	 * This is called if the db version is newer than the current version
+	 * 
 	 * @param db - database to be upgraded
 	 * @param oldVersion - old version # of database
 	 * @param newVersion - new version # of database
@@ -89,7 +91,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * takes all item values and stores them into the database
+	 * Takes all item values and stores them into the database
 	 * @param item - item being added to the database
 	 */
 	protected void addItem(Item item) {
@@ -125,8 +127,8 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	}
 	
 	/**
-	 * @param id - item that is being retrieved from the database
-	 * @return item item that was found from the inputted id
+	 * @param id - Item that is being retrieved from the database
+	 * @return item Item that was found from the inputted id
 	 */
 	protected Item getItem(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
@@ -188,7 +190,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	}
 	
 	/**
-	 * @return items - all the items in the database
+	 * @return items - All items in the database
 	 */
 	protected ArrayList<Item> getAllItems(){
 		ArrayList<Item> items = new ArrayList<Item>();
@@ -301,7 +303,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	}
 	
 	/**
-	 * Deletes item from database
+	 * Deletes an item from the database
 	 * @param item - item to be deleted
 	 */
 	protected void deleteItem(Item item) {
@@ -313,7 +315,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 	
 	/**
 	 * 
-	 * @return count of items in database
+	 * @return A count of items in the database
 	 */
 	protected int getItemsCount() {
 		String countQuery = "SELECT  * FROM " + TABLE_ITEMS;

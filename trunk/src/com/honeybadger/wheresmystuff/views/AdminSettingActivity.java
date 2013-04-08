@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 /**
  * Admin Setting Activity class is an activity for Admins that allows
- * them to manipulate the system variables.
+ * them to manipulate the system variables. Such as:
  * Create a new admin
  * Unlock members
  * Remove members
@@ -115,10 +115,10 @@ public class AdminSettingActivity extends Activity{
 	private class CreateAdminOnClickListener implements OnClickListener{
 		
 		/**
-		 * When the user clicks create admin button it gets the three textfields
+		 * When the user clicks create admin button it gets the three textfields.
 		 * two to check user email and see if they are identical and the third
-		 * is the password for the admin
-		 * It creates the admin with these given parameters
+		 * is the password for the admin.
+		 * It creates the admin given these parameters
 		 * 
 		 * @see android.view.View.OnClickListener#onClick(android.view.View)
 		 * @param v
@@ -182,8 +182,8 @@ public class AdminSettingActivity extends Activity{
 	
 	/**
 	 * Remove Member Listener is the listener for the Remove Member button.
-	 * If the member in the textfield exists then it is removed
-	 * otherwise it throws an error
+	 * If the member in the textfield exists then it is removed,
+	 * otherwise it throws an error.
 	 * 
 	 * @author Honey Badger
 	 */
@@ -219,7 +219,7 @@ public class AdminSettingActivity extends Activity{
 	private class UnlockMemberOnClickListner implements OnClickListener{
 		
 		/**
-		 * When the user clicks unlock is unlocks the member that is entered
+		 * When the user clicks unlock it unlocks the member that is entered
 		 * into the text field
 		 * 
 		 * @see android.view.View.OnClickListener#onClick(android.view.View)
@@ -239,10 +239,10 @@ public class AdminSettingActivity extends Activity{
 	}
 	
 	/**
-	 * Dialog for the Create Admin
+	 * Dialog for Create Admin
 	 * 
-	 * This just brings up a box asking 
-	 * whether the user wants to create the Admin,
+	 * This brings up a box asking 
+	 * whether the user wants to create the Admin;
 	 * if they do then the Admin is created.
 	 * 
 	 * @author Honey Badger
@@ -251,9 +251,9 @@ public class AdminSettingActivity extends Activity{
 		
 		/**
 		 * If the user clicks yes on the display box, the activity
-		 * creates a new member and starts the login activity
+		 * creates a new member and starts the login activity.
 		 * If they click no, then the message goes away  and nothing
-		 * happens
+		 * happens.
 		 * 
 		 * @param dialog
 		 * @param which
@@ -278,9 +278,9 @@ public class AdminSettingActivity extends Activity{
 	}
 	
 	/**
-	 * Remove Click Listener in the Dialog for the Remove Member button
+	 * Remove ClickListener in the Dialog for the Remove Member button
 	 * Yes or No dialog that asks if the user wants 
-	 * 	to remove the member from the system
+	 * 	to remove the member from the system.
 	 * If yes then the member will be removed from the system.
 	 * 
 	 * @author Honey Badger
@@ -288,7 +288,7 @@ public class AdminSettingActivity extends Activity{
 	private class RemoverClickListener implements DialogInterface.OnClickListener{
 
 		/**
-		 * Checks if yes or no and then executes remove 
+		 * Checks if 'yes' or 'no,' then executes remove 
 		 * depending on the answer.
 		 * Yes - Removes user
 		 * No - Cancels
@@ -324,7 +324,7 @@ public class AdminSettingActivity extends Activity{
 	private class UnlockerClickListener implements DialogInterface.OnClickListener{
 		
 		/**
-		 * Checks if yes or no and then executes unlock 
+		 * Checks if 'yes' or 'no,' then executes unlock 
 		 * depending on the answer.
 		 * Yes - Unlocks user
 		 * No - Cancels

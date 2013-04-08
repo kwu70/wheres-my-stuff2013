@@ -139,10 +139,10 @@ public class RegisterActivity extends Activity{
 	private class DialogClickListener implements DialogInterface.OnClickListener{
 
 		/*
-		 * If the user clicks yes on the display box, the activity
-		 * creates a new member and starts the login activity
-		 * If they click no, then the message goes away  and nothing
-		 * happens
+		 * If the user clicks 'yes' on the display box, the activity
+		 * creates a new member and starts the login activity.
+		 * If they click 'no,' then the message goes away  and nothing
+		 * happens.
 		 */
 		@Override
 	    public void onClick(DialogInterface dialog, int which) {

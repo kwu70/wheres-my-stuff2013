@@ -164,7 +164,7 @@ public class MemberActivity extends Activity{
 	}
 	
 	/**
-	 * Date Click Listener for filtering by the date
+	 * Date Click Listener for filtering by the date.
 	 * Gets the string from the textfield and puts it into filter method
 	 * updates the UI item list to show only dates that are before or equal
 	 * to the date entered into the textfield.
@@ -192,8 +192,8 @@ public class MemberActivity extends Activity{
 	}
 	
 	/**
-	 * AdminSetting Listener for the Admin Setting Button only visible to Admins
-	 * Once button is clicked takes user to AdminSettingActivity
+	 * AdminSetting Listener for the Admin Setting Button. Only visible to Admins.
+	 * Once button is clicked takes user to AdminSettingActivity.
 	 */
 	private class AdminSettingClickListener implements OnClickListener{
 
@@ -205,9 +205,9 @@ public class MemberActivity extends Activity{
 	
 	
 	/**
-	 * Spinner Filter filters the item list by category or status
-	 * sends string in drop down box to filtering method
-	 * updates UI with filtered array
+	 * SpinnerFilter filters the item list by category or status,
+	 * then sends the string in drop down box to filtering method
+	 * and updates the UI with the filtered array.
 	 */
 	private class CategorySpinnerOnItemSelectedListener implements OnItemSelectedListener{
 

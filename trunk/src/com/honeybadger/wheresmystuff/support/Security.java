@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 
 /**
- * The Security class contains member list 
+ * The Security class contains the list of members.
  * which contains all the members that exist in the system.
  * 
  * @author Honey Badger
@@ -24,8 +24,8 @@ public class Security {
 	private static DatabaseHandlerItems dbHandlerI;
 	
 	/**
-	 * Security constructor that sets up the ArrayLists emails, passwords, and members
-	 * it initiates them with default emails and passwords
+	 * Security constructor that sets up the ArrayLists emails, passwords, and members.
+	 * It initiates them with default emails and passwords
 	 * 
 	 * @param c 
 	 */
@@ -48,7 +48,7 @@ public class Security {
 	}
 
 	/**
- 	* Getter for item list
+ 	* Getter for the item list
  	* 
  	* @return items the list that contains all the items (general list of items)
  	*/
@@ -77,7 +77,7 @@ public class Security {
 	
 	/**
 	 * Searches through the list of all members for
-	 * the member with the specified email
+	 * the member with the specified email.
 	 * 
 	 * @param email Email of the specific member
 	 * @return Member email, if not found return default Member.
@@ -93,7 +93,7 @@ public class Security {
 	}
 	
 	/**
-	 * Determines if a member is in the list based on the email
+	 * Determines if a member is in the list based on email
 	 * 
 	 * @param email Email of specific member
 	 * @return boolean based on whether the Member is in the list.
@@ -163,7 +163,7 @@ public class Security {
 	}
 
 	/**
-	 * resets failed attempts of specified member 
+	 * Resets the failed attempts of specified member 
 	 * 
 	 * @param member the member that is having their failed attempts reset to zero.
 	 */
@@ -174,7 +174,7 @@ public class Security {
 	}
 	
 	/**
-	 * Resets failed attempts to zero.
+	 * Resets FailedAttempts to zero.
 	 * 
 	 * @param email Email of the memebr that is being unlocked.
 	 */

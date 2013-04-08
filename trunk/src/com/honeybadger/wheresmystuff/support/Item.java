@@ -1,7 +1,7 @@
 package com.honeybadger.wheresmystuff.support;
 
 /**
- * Item class represents and Item created by a Member
+ * Item class represents an Item created by a Member
  * 
  * @author Honey Badger
  */
@@ -53,7 +53,7 @@ public class Item {
 	}
 
 	/**
-	 * Getter name
+	 * Getter for the item name.
 	 * 
 	 * @return name Represents the Items name
 	 */
@@ -62,7 +62,7 @@ public class Item {
 	}
 	
 	/**
-	 * Setter name
+	 * Setter for the item name.
 	 * 
 	 * @param name Represents the Item's name
 	 */
@@ -71,7 +71,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter for Description
+	 * Getter for the Description.
 	 * 
 	 * @return description Represents the Items' description
 	 */
@@ -80,7 +80,7 @@ public class Item {
 	}
 	
 	/**
-	 * Setter for Description
+	 * Setter for the Description.
 	 * 
 	 * @param description Represents the Item's description
 	 */
@@ -89,7 +89,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter for owner
+	 * Getter for the owner.
 	 * 
 	 * @return Owner Represents the owner of the Item
 	 */
@@ -98,7 +98,7 @@ public class Item {
 	}
 	
 	/**
-	 * Setter for Owner
+	 * Setter for the owner.
 	 * 
 	 * @param owner Represents the owner of the Item
 	 */
@@ -107,7 +107,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter for Status
+	 * Getter for the item status.
 	 * 
 	 * @return status Represents the Item's status
 	 */
@@ -116,7 +116,7 @@ public class Item {
 	}
 	
 	/**
-	 * Setter for status
+	 * Setter for the item status.
 	 * 
 	 * @param status Represents the Item's status
 	 */
@@ -125,7 +125,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter for resolved
+	 * Getter for resolved.
 	 * 
 	 * @return resolved Represents resvolved
 	 */
@@ -134,7 +134,7 @@ public class Item {
 	}
 	
 	/**
-	 * Sets resolved
+	 * Sets resolved.
 	 * 
 	 * @param resolved Represents resolved
 	 */
@@ -143,7 +143,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter for type
+	 * Getter for the item type.
 	 * 
 	 * @return type Represents the Item's type
 	 */
@@ -188,7 +188,7 @@ public class Item {
 	}
 	
 	/**
-	 * Setter for type
+	 * Setter for the item type.
 	 * 
 	 * @param type Represents type of the Item
 	 */
@@ -197,7 +197,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter for list of categories
+	 * Getter for the list of categories
 	 * 
 	 * @return category Represents the Item's category
 	 */
@@ -206,7 +206,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter size of category list
+	 * Getter for the size of the category list
 	 * 
 	 * @return category.length Represents the length the List
 	 */
@@ -215,7 +215,7 @@ public class Item {
 	}
 	
 	/**
-	 * Getter for ID
+	 * Getter for the item's ID
 	 * 
 	 * @return id Represents Item's id in database
 	 */

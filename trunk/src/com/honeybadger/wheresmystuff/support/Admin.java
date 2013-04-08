@@ -9,8 +9,8 @@ public class Admin extends Member {
 
 	
 	/**
-	 * This constructor is a more detailed constructor and allows their 
-	 * to be a username for the admin
+	 * This constructor is a more detailed constructor and allows there 
+	 * to be a username for the admin.
 	 * 
 	 * @param id - each member has id in database
 	 * @param email - email of new Admin
@@ -33,7 +33,7 @@ public class Admin extends Member {
 	
 	/**
 	 * This method creates a new admin and adds them to the
-	 * member list so they can login as an admin
+	 * member list so that they can login as an admin
 	 * 
 	 * @param email - email of new Admin
 	 * @param password - password of new Admin
