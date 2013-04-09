@@ -6,23 +6,26 @@
 package com.honeybadger.wheresmystuff.support;
 
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ */
 public class Search {
 	/**
 	 * Filters the member's items to only those that have a given category
 	 * 
 	 * @param member A member
 	 * @param category String representing category
-	 * @return matches the list that contains items of specified category
-	 */
-	public static ArrayList<Item> filterCategory(Member member, String category){
-		final ArrayList<Item> matches = new ArrayList<Item>();
+	
+	 * @return matches the list that contains items of specified category */
+	public static List<Item> filterCategory(Member member, String category){
+		final List<Item> matches = new ArrayList<Item>();
 
 		if((category == null) || (category.length() == 0)) {
 			return matches;
 		}
 		else{
-			final ArrayList<Item> list = Security.getMemberItemList(member);
+			final List<Item> list = Security.getMemberItemList(member);
 			
 			for(int i = 0; i < list.size(); i++){
 				Item currItem = list.get(i);
@@ -41,17 +44,13 @@ public class Search {
 	 * 
 	 * @param member A member
 	 * @param date String representing date
-	 * @return matches the list that contains items lost on specified date
-	 */
-	public static ArrayList<Item> filterDate(Member member, String date){
+	
+	 * @return matches the list that contains items lost on specified date */
+	public static List<Item> filterDate(Member member, String date){
 		
-		final ArrayList<Item> list = Security.getMemberItemList(member);
-		final ArrayList<Item> matches = new ArrayList<Item>();
+		List<Item> list = Security.getMemberItemList(member);
+		final List<Item> matches = new ArrayList<Item>();
 
-		if((null != date) && (date.length() == 0)) {
-			return matches;
-		}
-		
 		final String[] mdy = date.split("/");
 		final int month = Integer.parseInt(mdy[0]);
 		final int day = Integer.parseInt(mdy[1]);
@@ -74,12 +73,12 @@ public class Search {
 	 * 
 	 * @param member A member
 	 * @param status Boolean representing lost or found status
-	 * @return matches the list that contains items with specified status
-	 */
-	public static ArrayList<Item> filterStatus(Member member, Boolean status){
+	
+	 * @return matches the list that contains items with specified status */
+	public static List<Item> filterStatus(Member member, Boolean status){
 		
-		final ArrayList<Item> list = Security.getMemberItemList(member);
-		final ArrayList<Item> matches = new ArrayList<Item>();
+		List<Item> list = Security.getMemberItemList(member);
+		final List<Item> matches = new ArrayList<Item>();
 
 		for(int i = 0; i < list.size(); i++){
 			Item currItem = list.get(i);
@@ -96,11 +95,11 @@ public class Search {
 	 * Filters the items to show those with matching names
 	 * 
 	 * @param name The name of the particular item
-	 * @return matches the list that contains items with the specified names
-	 */
-	public static ArrayList<Item> searchByName(String name){
-		final ArrayList<Item> list = Security.getItemList();
-		final ArrayList<Item> matches = new ArrayList<Item>();
+	
+	 * @return matches the list that contains items with the specified names */
+	public static List<Item> searchByName(String name){
+		List<Item> list = Security.getItemList();
+		final List<Item> matches = new ArrayList<Item>();
 		final String temp = name.toLowerCase();
 		
 		if(list == null) {
@@ -121,11 +120,11 @@ public class Search {
 	 * Filter items by location.
 	 * 
 	 * @param location Item location
-	 * @return matches A list of items in the specified location
-	 */
-	public static ArrayList<Item> searchByLocation(String location){
-		ArrayList<Item> list = Security.getItemList();
-		final ArrayList<Item> matches = new ArrayList<Item>();
+	
+	 * @return matches A list of items in the specified location */
+	public static List<Item> searchByLocation(String location){
+		List<Item> list = Security.getItemList();
+		final List<Item> matches = new ArrayList<Item>();
 
 		if(list == null) {
 			return matches;
@@ -149,9 +148,14 @@ public class Search {
 	 * @param s String containing the item name and location
 	 * @return matches A list of items with the specified name and location
 	 */
-	public static ArrayList<Item> searchNameAndLocation(String s){
-		ArrayList<Item> list = Security.getItemList();
-		final ArrayList<Item> matches = new ArrayList<Item>();
+	/**
+	 * Method searchNameAndLocation.
+	 * @param s String
+	 * @return ArrayList<Item>
+	 */
+	public static List<Item> searchNameAndLocation(String s){
+		List<Item> list = Security.getItemList();
+		final List<Item> matches = new ArrayList<Item>();
 
 		final String name;
 		final String location;
@@ -184,9 +188,14 @@ public class Search {
 	 * @param category The category of the item being searched for
 	 * @return matches A list of items with the same category as the search parameter
 	 */
-	public static ArrayList<Item> searchByCategory(String category){
-		final ArrayList<Item> list = Security.getItemList();
-		final ArrayList<Item> matches = new ArrayList<Item>();
+	/**
+	 * Method searchByCategory.
+	 * @param category String
+	 * @return ArrayList<Item>
+	 */
+	public static List<Item> searchByCategory(String category){
+		final List<Item> list = Security.getItemList();
+		final List<Item> matches = new ArrayList<Item>();
 
 		if(list == null){
 			return matches;
