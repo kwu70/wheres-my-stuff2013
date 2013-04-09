@@ -177,7 +177,7 @@ public class MemberActivity extends Activity{
 			adapterTemp.clear();
 			//filter the list
 			ArrayList<Item> tempItemList;
-			tempItemList = Search.filterDate(currentMember, tempDate);
+			tempItemList = (ArrayList<Item>) Search.filterDate(currentMember, tempDate);
 			//add filtered items into new list
 			if(tempItemList != null){
 				for(Item item: tempItemList){
@@ -232,15 +232,15 @@ public class MemberActivity extends Activity{
 				//Filter by lost and found
 				if(spinnerString.equals("Found") || spinnerString.equals("Lost")){
 					if(spinnerString.equals("Found")){
-						tempItemList = Search.filterStatus(currentMember, true);
+						tempItemList = (ArrayList<Item>) Search.filterStatus(currentMember, true);
 					}
 					else{
-						tempItemList = Search.filterStatus(currentMember, false);
+						tempItemList = (ArrayList<Item>) Search.filterStatus(currentMember, false);
 					}
 				}
 				//Filter by category
 				else{
-					tempItemList = Search.filterCategory(currentMember, spinnerString);
+					tempItemList = (ArrayList<Item>) Search.filterCategory(currentMember, spinnerString);
 				}
 				//make the new array adapter for the list
 				if(currentMember.getItems() != null){

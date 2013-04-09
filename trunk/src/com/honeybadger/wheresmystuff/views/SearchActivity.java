@@ -70,7 +70,7 @@ public class SearchActivity extends Activity{
 			else {
 				if(name.isChecked()){
 					//search by name
-					ArrayList<Item> tempNames = Search.searchByName(searchCriteria);
+					ArrayList<Item> tempNames = (ArrayList<Item>) Search.searchByName(searchCriteria);
 					if(tempNames != null){
 						for(Item item: tempNames){
 							adapterTemp.add(item.getName());
@@ -78,7 +78,7 @@ public class SearchActivity extends Activity{
 					}
 				} else if(nameAndLoc.isChecked()){
 					//search by name and category
-					ArrayList<Item> tempNameAndLoc = Search.searchNameAndLocation(searchCriteria);
+					ArrayList<Item> tempNameAndLoc = (ArrayList<Item>) Search.searchNameAndLocation(searchCriteria);
 					if(tempNameAndLoc != null){
 						for(Item item: tempNameAndLoc){
 							adapterTemp.add(item.getName());
@@ -86,7 +86,7 @@ public class SearchActivity extends Activity{
 					}
 				} else if(category.isChecked()){
 					//search by category
-					ArrayList<Item> tempCategories = Search.searchByCategory(searchCriteria);
+					ArrayList<Item> tempCategories = (ArrayList<Item>) Search.searchByCategory(searchCriteria);
 					if(tempCategories != null){
 						for(Item item: tempCategories){
 							adapterTemp.add(item.getName());
