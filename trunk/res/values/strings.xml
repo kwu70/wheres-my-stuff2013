@@ -2,17 +2,9 @@
 
     <string name="app_name">Where\'s My Stuff</string>
     <string name="member_activity">Main Page</string>
-    <string name="account_preferences">Account Preferences</string>
-    <string name="search_radio_name">Name</string>
-    <string name="found_items">Found Items</string>
-    <string name="lost_items">Lost Items</string>
     <string name="add_item">Add Item</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
     <string name="register">Register</string>
     <string name="create_account">Create Account</string>
-    <string name="found_items_list">Found Items List</string>
-    <string name="lost_items_list">Lost Items List</string>
     <string name="register_email">Email</string>
     <string name="register_password">Password</string>
     <string name="confirm_password">Confirm Password</string>
@@ -45,21 +37,15 @@
         <item >Found</item>
         
     </string-array>
-        <string name="date_button">Date</string>
         <string name="lblDate">Enter Date (mm/dd/yyyy)</string>
-        <string name="lbl_item_list">Items List</string>
         <string name="item_list">Item List</string>
         <string name="lbl_filter">Filter Item List</string>
         <string name="date_button2">Filter Date</string>
         <string name="lbl_filter2">Filter By Category or Status</string>
         <string name="lbl_filter_by_date">Filter by Date</string>
-        <string name="search_label">Items</string>
-        <string name="search_hint">Search Items</string>
         <string name="search_activity">Search View</string>
-        <string name="category">Category</string>
         <string name="searchbutton_text">Search</string>
         <string name="radioName">Name</string>
-        <string name="search_radio_category">Category</string>
         <string name="radioCategory">Category</string>
         <string name="search_for_items">Search for Items</string>
         <string name="search_NameAndLocation">Name and Location</string>
