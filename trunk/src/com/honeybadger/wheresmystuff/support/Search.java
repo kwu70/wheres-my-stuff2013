@@ -1,9 +1,13 @@
+/**
+ * Search class used for allowing users to locate specific items in the app.
+ * 
+ * @author HoneyBadger
+ */
 package com.honeybadger.wheresmystuff.support;
 
 import java.util.ArrayList;
 
 public class Search {
-	
 	/**
 	 * Filters the member's items to only those that have a given category
 	 * 
@@ -12,13 +16,13 @@ public class Search {
 	 * @return matches the list that contains items of specified category
 	 */
 	public static ArrayList<Item> filterCategory(Member member, String category){
-		ArrayList<Item> matches = new ArrayList<Item>();
+		final ArrayList<Item> matches = new ArrayList<Item>();
 
 		if((category == null) || (category.length() == 0)) {
 			return matches;
 		}
 		else{
-			ArrayList<Item> list = Security.getMemberItemList(member);
+			final ArrayList<Item> list = Security.getMemberItemList(member);
 			
 			for(int i = 0; i < list.size(); i++){
 				Item currItem = list.get(i);
@@ -32,7 +36,8 @@ public class Search {
 	}
 	
 	/**
-	 * Filters themember's items to only show those that were posted as lost on a given date
+	 * Filters themember's items to only show those that
+	 *  were posted as lost on a given date
 	 * 
 	 * @param member A member
 	 * @param date String representing date
@@ -40,17 +45,17 @@ public class Search {
 	 */
 	public static ArrayList<Item> filterDate(Member member, String date){
 		
-		ArrayList<Item> list = Security.getMemberItemList(member);
-		ArrayList<Item> matches = new ArrayList<Item>();
-		
+		final ArrayList<Item> list = Security.getMemberItemList(member);
+		final ArrayList<Item> matches = new ArrayList<Item>();
+
 		if((null != date) && (date.length() == 0)) {
 			return matches;
 		}
 		
-		String[] mdy = date.split("/");
-		int month = Integer.parseInt(mdy[0]);
-		int day = Integer.parseInt(mdy[1]);
-		int year = Integer.parseInt(mdy[2]);
+		final String[] mdy = date.split("/");
+		final int month = Integer.parseInt(mdy[0]);
+		final int day = Integer.parseInt(mdy[1]);
+		final int year = Integer.parseInt(mdy[2]);
 		for(int i = 0; i < list.size(); i++){
 			Item currItem = list.get(i);
 			if(currItem.getMonth() >= month
@@ -73,9 +78,9 @@ public class Search {
 	 */
 	public static ArrayList<Item> filterStatus(Member member, Boolean status){
 		
-		ArrayList<Item> list = Security.getMemberItemList(member);
-		ArrayList<Item> matches = new ArrayList<Item>();
-		
+		final ArrayList<Item> list = Security.getMemberItemList(member);
+		final ArrayList<Item> matches = new ArrayList<Item>();
+
 		for(int i = 0; i < list.size(); i++){
 			Item currItem = list.get(i);
 			if(currItem.getStatus() == status){
@@ -94,14 +99,14 @@ public class Search {
 	 * @return matches the list that contains items with the specified names
 	 */
 	public static ArrayList<Item> searchByName(String name){
-		ArrayList<Item> list = Security.getItemList();
-		ArrayList<Item> matches = new ArrayList<Item>();
-		String temp = name.toLowerCase();
+		final ArrayList<Item> list = Security.getItemList();
+		final ArrayList<Item> matches = new ArrayList<Item>();
+		final String temp = name.toLowerCase();
 		
-		if(list==null) {
+		if(list == null) {
 			return matches;
 		}
-		for(int i = 0; i<list.size();i++){
+		for(int i = 0; i < list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getName().toLowerCase().contains(temp)){
 				matches.add(list.get(i));
@@ -120,12 +125,12 @@ public class Search {
 	 */
 	public static ArrayList<Item> searchByLocation(String location){
 		ArrayList<Item> list = Security.getItemList();
-		ArrayList<Item> matches = new ArrayList<Item>();
-		
-		if(list==null) {
+		final ArrayList<Item> matches = new ArrayList<Item>();
+
+		if(list == null) {
 			return matches;
 		}
-		for(int i = 0; i<list.size();i++){
+		for(int i = 0; i < list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getLocation().contains(location)){
 				matches.add(list.get(i));
@@ -146,11 +151,12 @@ public class Search {
 	 */
 	public static ArrayList<Item> searchNameAndLocation(String s){
 		ArrayList<Item> list = Security.getItemList();
-		ArrayList<Item> matches = new ArrayList<Item>();
-		String name;
-		String location;
+		final ArrayList<Item> matches = new ArrayList<Item>();
+
+		final String name;
+		final String location;
 		if(s.contains("in")){
-			String[] nl = s.split(" in ");
+			final String[] nl = s.split(" in ");
 			name = nl[0];
 			location = nl[1];
 		}
@@ -158,11 +164,10 @@ public class Search {
 			return matches;
 		}
 		
-		if(list==null)
-		{
+		if(list == null){
 			return matches;
 		}
-		for(int i =0;i<list.size();i++){
+		for(int i =0;i < list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getName().contains(name) && cur.getLocation().contains(location)){
 				matches.add(list.get(i));
@@ -180,14 +185,13 @@ public class Search {
 	 * @return matches A list of items with the same category as the search parameter
 	 */
 	public static ArrayList<Item> searchByCategory(String category){
-		ArrayList<Item> list = Security.getItemList();
-		ArrayList<Item> matches = new ArrayList<Item>();
-		
-		if(list==null)
-		{
+		final ArrayList<Item> list = Security.getItemList();
+		final ArrayList<Item> matches = new ArrayList<Item>();
+
+		if(list == null){
 			return matches;
 		}
-		for(int i = 0;i<list.size();i++){
+		for(int i = 0;i < list.size();i++){
 			Item cur = list.get(i);
 			if(cur.getType().contains(category)){
 				matches.add(list.get(i));
