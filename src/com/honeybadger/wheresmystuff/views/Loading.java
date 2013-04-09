@@ -1,7 +1,9 @@
 package com.honeybadger.wheresmystuff.views; 
-
-import com.honeybadger.wheresmystuff.R;
-
+/**
+ * Class for the loading screen
+ * 
+ * @author HoneyBadger
+ */
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -48,7 +50,7 @@ public class Loading extends Activity {
 						this.wait(1000);
 						counter++;
 						//Set the current progress. 
-						publishProgress(counter*25);
+						publishProgress(counter * 25);
 					}
 				}
 			} 
