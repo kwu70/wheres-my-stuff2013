@@ -60,9 +60,10 @@ public class LoginView extends Activity{
 		memberIntent = new Intent(this, MemberActivity.class);		
 		registerIntent = new Intent(this, RegisterActivity.class);
 		load = new Intent(this, Loading.class);
+		startActivity(load);
 		
-		//login initialized so we can access methods and it sets up a user account since
-		//we do not have persistent data.
+		
+		//login initialized so we can access methods and it sets up a user account
 		lg = new Login(this);
 		
 		email = getIntent().getStringExtra(EXTRA_EMAIL);
@@ -77,7 +78,6 @@ public class LoginView extends Activity{
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View view) {
-						//startActivity(load);
 						attemptLogin();
 					}
 				});

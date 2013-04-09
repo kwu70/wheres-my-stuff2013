@@ -4,6 +4,8 @@ package com.honeybadger.wheresmystuff.views;
  * 
  * @author HoneyBadger
  */
+import com.honeybadger.wheresmystuff.R;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -28,12 +30,11 @@ public class Loading extends Activity {
 			//initialize a new instance of Progress Dialog and configure settings
 			pd = new ProgressDialog(Loading.this);
 			pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			pd.setIcon(R.drawable.honey_badger);
 			pd.setTitle("Loading...");
 			pd.setMessage("Loading application, please wait");
 			pd.setCancelable(true);
-			pd.setIndeterminate(false);
-			pd.setMax(100);
-			pd.setProgress(0);
+			pd.setIndeterminate(true);
 			pd.show();
 			
 		}
@@ -70,9 +71,10 @@ public class Loading extends Activity {
 		@Override
 		protected void onPostExecute(Void result) {
 			pd.dismiss();
+			setContentView(R.layout.activity_login);
 		}
     }
-    
+
     @Override
     public void onBackPressed() {
     		super.onBackPressed();
