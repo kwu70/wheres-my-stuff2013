@@ -19,7 +19,7 @@ public class DatabaseHandlerItems extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	private static final int DATABASE_VERSION = 11;
+	private static final int DATABASE_VERSION = 14;
 
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager Items";

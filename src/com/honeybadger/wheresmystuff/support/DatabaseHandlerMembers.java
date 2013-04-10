@@ -18,7 +18,7 @@ public class DatabaseHandlerMembers extends SQLiteOpenHelper {
 
 	// All Static variables
 	// Database Version
-	private static final int DATABASE_VERSION = 8;
+	private static final int DATABASE_VERSION = 13;
 
 	// Database Name
 	private static final String DATABASE_NAME = "Data Manager Members";
