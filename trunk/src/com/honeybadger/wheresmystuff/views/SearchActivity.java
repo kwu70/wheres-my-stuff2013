@@ -15,15 +15,29 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
+/**
+ * SearchActivity contains the UI screen members are shown after clicking the 
+ * Search button found in the Member screen.
+ * 
+ * @author Honey Badger
+ * @version 1.0
+ */
 public class SearchActivity extends Activity{
 
 	private EditText s_editText;
 
 	//used in the ListViews 
 	private ArrayAdapter<String> adapterItems;
+	
 	private ArrayAdapter<String> adapterTemp;
+	
 	private ListView itemsList;
 
+	/**
+	 * Called when the activity is first created.
+	 * 
+	 * @param savedInstanceState state of activity
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,9 +64,18 @@ public class SearchActivity extends Activity{
 	 * This class is a listener for the Search button and when it is clicked 
 	 * it searches the database based on the radio button (either name or category)
 	 * and produces a list below.
+	 * 
+	 * @author Honey Badger
+	 * @version 1.0
 	 */
 	private class SearchItemClickListener implements OnClickListener{
 
+		/**
+		 * Searches database based on radio button selection and selected content.
+		 * 
+		 * @see android.view.View$OnClickListener#onClick(View)
+		 * @param v
+		 */
 		@Override
 		public void onClick(View v) {
 			
