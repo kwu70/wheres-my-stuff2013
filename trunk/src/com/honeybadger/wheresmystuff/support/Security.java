@@ -239,7 +239,7 @@ public class Security {
 	 * 
 	 * @return dbHandlerI.getCurrentMemberID();
 	 */
-	public static int gettCurrentMID(){
+	public static int getCurrentMID(){
 		return dbHandlerM.getCurrentMemberID();
 	}
 	
