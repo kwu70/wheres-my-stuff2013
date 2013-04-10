@@ -75,25 +75,17 @@ public class JosephTestCase extends android.test.ActivityInstrumentationTestCase
 	 * food category to a list showing just food items
 	 */
 	public void testfilterCategory3(){
-		i1 = new Item(Security.getCurrentID(), "shirt", "black", member, 
-				false, false, "clothing", 02, 06, 2013, "Atlanta");
-		i2 = new Item(Security.getCurrentID(), "apple", "red", member, 
+
+		i1 = new Item(Security.getCurrentID(), "apple", "red", member, 
 				false, false, "Food", 02, 06, 2013, "Atlanta");
-		i3 = new Item(Security.getCurrentID(), "pants", "blue", member, 
-				false, false, "clothing", 02, 06, 2013, "Atlanta");
-		i4 = new Item(Security.getCurrentID(), "banana", "yellow", member, 
-				false, false, "Food", 02, 06, 2013, "Atlanta");
-		
+
 		Security.addItem(i1);
-		Security.addItem(i2);
-		Security.addItem(i3);
-		Security.addItem(i4);
 		
 		List<Item> filterList = Search.filterCategory(member, "Food");
 
 		Boolean result = false;
-
-		if((filterList.size() != 0) && (filterList.get(0).getID() == i2.getID()) && (filterList.get(1).getID() == i4.getID())){
+			
+		if((filterList.size() != 0) && (filterList.get(0).getID() == i1.getID())){
 			result = true;
 		}
 
