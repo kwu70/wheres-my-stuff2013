@@ -53,7 +53,7 @@ public class Search {
 		if(date == null || date.length() == 0){
 			return matches;
 		}
-			else{
+		else{
 			final String[] mdy = date.split("/");
 			final int month = Integer.parseInt(mdy[0]);
 			final int day = Integer.parseInt(mdy[1]);
