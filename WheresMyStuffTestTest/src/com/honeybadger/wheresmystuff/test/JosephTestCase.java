@@ -2,6 +2,7 @@ package com.honeybadger.wheresmystuff.test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import com.honeybadger.wheresmystuff.support.Item;
 import com.honeybadger.wheresmystuff.support.Login;
@@ -20,6 +21,7 @@ public class JosephTestCase extends android.test.ActivityInstrumentationTestCase
 
 	private LoginView lv;
 	private Member member;
+	private Item i1, i2, i3, i4;
 
 	//required constructor for Testing
 	public JosephTestCase(){
@@ -32,8 +34,8 @@ public class JosephTestCase extends android.test.ActivityInstrumentationTestCase
 	@Override
 	public void setUp(){
 		lv = getActivity();
-		Security.addMember("test@test.com", "test");
-		member = Security.getMember("test@test.com");
+		member = new Member(Security.getCurrentID(), "test@test.com", "test", "Name");
+		Security.addMember(member.getEmail(),member.getPassword());
 	}
 
 	/**
@@ -42,11 +44,10 @@ public class JosephTestCase extends android.test.ActivityInstrumentationTestCase
 	 */
 	public void testfilterCategory1(){
 
-		ArrayList<Item> list = Search.filterCategory(member, null);
-		ArrayList<Item> empty = new ArrayList<Item>();
+		List<Item> list = Search.filterCategory(member, null);
 		Boolean result = false;
 
-		if(list == empty){
+		if(list.size() == 0){
 			result = true;
 		}
 
@@ -59,11 +60,10 @@ public class JosephTestCase extends android.test.ActivityInstrumentationTestCase
 	 */
 	public void testfilterCategory2(){
 
-		ArrayList<Item> list = Search.filterCategory(member, "");
-		ArrayList<Item> empty = new ArrayList<Item>();
+		ArrayList<Item> list = (ArrayList<Item>) Search.filterCategory(member, "");
 		Boolean result = false;
 
-		if(list == empty){
+		if(list.size() == 0){
 			result = true;
 		}
 
@@ -75,36 +75,28 @@ public class JosephTestCase extends android.test.ActivityInstrumentationTestCase
 	 * food category to a list showing just food items
 	 */
 	public void testfilterCategory3(){
+		i1 = new Item(Security.getCurrentID(), "shirt", "black", member, 
+				false, false, "clothing", 02, 06, 2013, "Atlanta");
+		i2 = new Item(Security.getCurrentID(), "apple", "red", member, 
+				false, false, "Food", 02, 06, 2013, "Atlanta");
+		i3 = new Item(Security.getCurrentID(), "pants", "blue", member, 
+				false, false, "clothing", 02, 06, 2013, "Atlanta");
+		i4 = new Item(Security.getCurrentID(), "banana", "yellow", member, 
+				false, false, "Food", 02, 06, 2013, "Atlanta");
+		
+		Security.addItem(i1);
+		Security.addItem(i2);
+		Security.addItem(i3);
+		Security.addItem(i4);
+		
+		List<Item> filterList = Search.filterCategory(member, "Food");
 
-		Security.addItem(new Item(1, "shirt", "black", member, 
-				false, false, "clothing", 02, 06, 2013, "Atlanta"));
+		Boolean result = false;
 
-		Security.addItem(new Item(2, "apple", "red", member, 
-				false, false, "food", 02, 06, 2013, "Atlanta"));
-
-		Security.addItem(new Item(3, "pants", "blue", member, 
-				false, false, "clothing", 02, 06, 2013, "Atlanta"));
-
-		Security.addItem(new Item(4, "banana", "yellow", member, 
-				false, false, "food", 02, 06, 2013, "Atlanta"));
-
-		ArrayList<Item> fullList = Security.getMemberItemList(member);
-		fullList.remove(0);
-		fullList.remove(2);
-
-		ArrayList<Item> filterList = Search.filterCategory(member, "food");
-
-		Boolean result = true;
-
-		for(int i = 0; i < filterList.size(); i++){
-			Item currFullItem = fullList.get(i);
-			Item currFilterItem = filterList.get(i);
-			if(!currFullItem.getType().equals(currFilterItem.getType())){
-				assertTrue(!result);
-			}
+		if((filterList.size() != 0) && (filterList.get(0).getID() == i2.getID()) && (filterList.get(1).getID() == i4.getID())){
+			result = true;
 		}
 
 		assertTrue(result);
 	}
-
 }
