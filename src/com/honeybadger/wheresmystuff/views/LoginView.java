@@ -60,7 +60,7 @@ public class LoginView extends Activity{
 		memberIntent = new Intent(this, MemberActivity.class);		
 		registerIntent = new Intent(this, RegisterActivity.class);
 		load = new Intent(this, Loading.class);
-		startActivity(load);
+		//startActivity(load);
 		
 		
 		//login initialized so we can access methods and it sets up a user account
