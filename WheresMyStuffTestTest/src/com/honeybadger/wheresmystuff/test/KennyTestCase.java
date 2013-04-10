@@ -15,7 +15,7 @@ import com.honeybadger.wheresmystuff.views.LoginView;
  */
 public class KennyTestCase extends ActivityInstrumentationTestCase2<LoginView> {
 
-	private LoginView sa;
+	private LoginView lv;
 	private Item item;
 	
 	/**
@@ -30,7 +30,7 @@ public class KennyTestCase extends ActivityInstrumentationTestCase2<LoginView> {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		sa = getActivity();
+		lv = getActivity();
 		item = new Item(Security.getCurrentID() ,"test" , "", new Member(Security.getCurrentMID(), "", "", ""), false, false, "", 0, 0, 0, "");
 		Security.addItem(item);
 	}
@@ -39,7 +39,7 @@ public class KennyTestCase extends ActivityInstrumentationTestCase2<LoginView> {
 	 * This method test to see if the item is present
 	 */
 	public void testSearchName(){
-		Security sc = new Security(sa);
+		Security sc = new Security(lv);
 		Item list = sc.getItemList().get(0);
 		Boolean compare = list.getName().equals("test");
 		assertTrue(compare);
@@ -49,9 +49,9 @@ public class KennyTestCase extends ActivityInstrumentationTestCase2<LoginView> {
 	 * This test to see if it can search for an item Name that does not exist
 	 */
 	public void testSearchEmptyName(){
-		Security sc = new Security(sa);
+		Security sc = new Security(lv);
 		Item list = sc.getItemList().get(0);
-		Boolean result = list.getName().equals(" ");
-		assertTrue(!result);
+		Boolean compare = list.getName().equals(" ");
+		assertTrue(!compare);
 	}
 }
