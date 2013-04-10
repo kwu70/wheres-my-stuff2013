@@ -226,12 +226,21 @@ public class Security {
 	}
 	
 	/**
-	 * Getter for currentID
+	 * Getter for currentItemID
 	 * 
 	 * @return dbHandlerI.getCurrentItemID()
 	 */
 	public static int getCurrentID(){
 		return dbHandlerI.getCurrentItemID();
+	}
+	
+	/**
+	 * Getter for currentMemberID
+	 * 
+	 * @return dbHandlerI.getCurrentMemberID();
+	 */
+	public static int gettCurrentMID(){
+		return dbHandlerM.getCurrentMemberID();
 	}
 	
 	/**
