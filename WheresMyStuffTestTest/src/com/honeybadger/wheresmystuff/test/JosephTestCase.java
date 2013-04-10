@@ -21,7 +21,7 @@ public class JosephTestCase extends android.test.ActivityInstrumentationTestCase
 
 	private LoginView lv;
 	private Member member;
-	private Item i1, i2, i3, i4;
+	private Item i1;
 
 	//required constructor for Testing
 	public JosephTestCase(){
