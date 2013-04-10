@@ -34,12 +34,16 @@ import android.widget.Spinner;
  * Search Button which takes user to search screen
  * Add Item Button which takes user to add item screen
  * 
+ * @author Honey Badger
+ * @version 1.0
  */
 public class MemberActivity extends Activity{
 	
 	//Intent to go to different pages
 	private Intent addItem;
+	
 	private Intent adminSettings;
+	
 	private Intent search;
 	
 	//current User's email
@@ -54,7 +58,9 @@ public class MemberActivity extends Activity{
 	//used in the ListViews to properly display
 	//the lost items and found items
 	private ArrayAdapter<String> adapterItems;
+	
 	private ArrayAdapter<String> adapterTemp;
+	
 	private ListView itemsList;
 	
 	//Drop down box for Filtering
@@ -63,7 +69,7 @@ public class MemberActivity extends Activity{
 	/**
 	 * Called when the activity is first created.
 	 * 
-	 * @param state of activity
+	 * @param savedInstanceState state of activity
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -139,9 +145,17 @@ public class MemberActivity extends Activity{
 	/**
 	 * AddItem Listener for the Add Item Button
 	 * Once button is clicked takes user to AddItemActivity
+	 * 
+	 * @author Honey Badger
 	 */
 	private class AddItemClickListener implements OnClickListener{
 
+		/**
+		 * Takes the user to the Add Item Activity.
+		 * 
+		 * @see android.view.View$OnClickListener#onClick(View)
+		 * @param v
+		 */
 		@Override
 		public void onClick(View arg0) {
 			startActivity(addItem);
@@ -153,9 +167,17 @@ public class MemberActivity extends Activity{
 	 * Search Listener for the Search for Items Button
 	 * Once button is clicked takes user to Search Activity where they
 	 * can search for Items.
+	 * 
+	 * @author Honey Badger
 	 */
 	private class SearchClickListener implements OnClickListener{
 
+		/**
+		 * Takes the user to the Search Activity.
+		 * 
+		 * @see android.view.View$OnClickListener#onClick(View)
+		 * @param v
+		 */
 		@Override
 		public void onClick(View arg0) {
 			startActivity(search);	
@@ -168,9 +190,18 @@ public class MemberActivity extends Activity{
 	 * Gets the string from the textfield and puts it into filter method
 	 * updates the UI item list to show only dates that are before or equal
 	 * to the date entered into the textfield.
+	 * 
+	 * @author Honey Badger
 	 */
 	private class DateClickListener implements OnClickListener{
 
+		/**
+		 * Updates the item list to show dates before or equal to textfield 
+		 * date.
+		 * 
+		 * @see android.view.View$OnClickListener#onClick(View)
+		 * @param v 
+		 */
 		public void onClick(View arg0) {
 			//clear temp and get date
 			String tempDate = date.getText().toString();
@@ -194,6 +225,8 @@ public class MemberActivity extends Activity{
 	/**
 	 * AdminSetting Listener for the Admin Setting Button. Only visible to Admins.
 	 * Once button is clicked takes user to AdminSettingActivity.
+	 * 
+	 * @author Honey Badger
 	 */
 	private class AdminSettingClickListener implements OnClickListener{
 
@@ -208,9 +241,21 @@ public class MemberActivity extends Activity{
 	 * SpinnerFilter filters the item list by category or status,
 	 * then sends the string in drop down box to filtering method
 	 * and updates the UI with the filtered array.
+	 * 
+	 * @author Honey Badger
 	 */
 	private class CategorySpinnerOnItemSelectedListener implements OnItemSelectedListener{
 
+		/**
+		 * Updates item list according to selected filter.
+		 * 
+		 * @see android.widget.AdapterView$OnItemSelectedListener#onItemSelected(
+		 * 		AdapterView<?>, View, int, long)
+		 * @param parent 
+		 * @param view 
+		 * @param pos 
+		 * @param id 
+		 */
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 			//clear and get category
@@ -255,6 +300,13 @@ public class MemberActivity extends Activity{
 			
 		}
 
+		/**
+		 * Updates item list with all of the member's items.
+		 * 
+		 * @see android.widget.AdapterView$OnItemSelectedListener#onNothingSelected
+		 * 		(AdapterView<?>)
+		 * @param v 
+		 */
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {
 			if(currentMember.getItems() != null){
