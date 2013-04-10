@@ -65,7 +65,7 @@ public class JayneTestCase extends android.test.ActivityInstrumentationTestCase2
 	}
 	/**
 	*Tests the filterDate method by comparing a filtered list
-	* of items added on or before "04/01/2013"
+	* of items added on or after "04/01/2013"
 	*/
 	public void testfilterDate3(){
 		item1 = new Item(Security.getCurrentID(), "item1", "test on date", member,
@@ -83,7 +83,7 @@ public class JayneTestCase extends android.test.ActivityInstrumentationTestCase2
 		Security.addItem(item4);
 		
 		List<Item> allItems = Security.getMemberItemList(member);
-		List<Item> filteredItems = Search.filterDate(member, "04/01/2013");
+		List<Item> filteredItems = Search.filterDate(member, "04/10/2013");
 	
 		Boolean result = false;
 	
@@ -91,11 +91,11 @@ public class JayneTestCase extends android.test.ActivityInstrumentationTestCase2
 			result = false;
 		}
 		for(int i = 0; i < filteredItems.size(); i++){
-			if(filteredItems.get(i).getMonth() < 4
-					&& filteredItems.get(i).getYear() <= 2013){
+			if(filteredItems.get(i).getMonth() > 4
+					&& filteredItems.get(i).getYear() >= 2013){
 				result = true;
 			}else if(filteredItems.get(i).getMonth() == 4 
-					&& filteredItems.get(i).getDay() == 1
+					&& filteredItems.get(i).getDay() >= 10
 					&& filteredItems.get(i).getYear() == 2013){
 				result = true;
 			}
