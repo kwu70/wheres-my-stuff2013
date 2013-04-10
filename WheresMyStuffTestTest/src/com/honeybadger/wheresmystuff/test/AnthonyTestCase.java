@@ -20,45 +20,52 @@ public class AnthonyTestCase extends android.test.ActivityInstrumentationTestCas
 			super(LoginView.class);
 		}
 		
-		//Gets the login view activity and adds the member
-		//with the email example@example.com
-		//and password hello
-		@Override
+		/**
+		 * Gets the login view activity and adds the member
+		 * with the email example@example.com and password hello
+		 */
+				@Override
 		public void setUp(){
 			lv = getActivity();
 			Security.addMember("example@example.com", "hello");
 		}
 		
-		//This test checks to see if validate returns false
-		//if the inputted username is wrong, but the password is
-		//right.
+		/**This test checks to see if validate returns false
+		 *if the inputted username is wrong, but the password is
+		 *right
+		 */
 		public void testValidate1(){
 			Login fixture = new Login(lv);
 			Boolean result = fixture.validate("", "hello");
 			assertTrue(!result);
 		}
 
-		//This test checks to see if validate returns false
-		//if the inputted username is right, but the password is
-		//wrong.
+		/**This test checks to see if validate returns false
+		 *if the inputted username is right, but the password is
+		 *wrong
+		 */
 		public void testValidate2(){
 			Login fixture = new Login(lv);
 			Boolean result = fixture.validate("example@example.com", "");
 			assertTrue(!result);
 		}
 
-		//This test checks to see if validate returns false
-		//if the inputted username is wrong, but the password is
-		//wrong.
+		/**This test checks to see if validate returns false
+		 *if the inputted username is wrong, but the password is
+		 *wrong.
+		 * 
+		 */
 		public void testValidate3(){
 			Login fixture = new Login(lv);
 			Boolean result = fixture.validate("", "");
 			assertTrue(!result);
 		}
 
-		//This test checks to see if validate returns true
-		//if the inputted username is right, but the password is
-		//right.
+		/**This test checks to see if validate returns true
+		 *if the inputted username is right, but the password is
+		 *right.
+		 * 
+		 */
 		public void testValidate4(){
 			Login fixture = new Login(lv);
 			Boolean result = fixture.validate("example@example.com", "hello");
