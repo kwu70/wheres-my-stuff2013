@@ -50,17 +50,21 @@ public class Search {
 		
 		List<Item> list = Security.getMemberItemList(member);
 		final List<Item> matches = new ArrayList<Item>();
-
-		final String[] mdy = date.split("/");
-		final int month = Integer.parseInt(mdy[0]);
-		final int day = Integer.parseInt(mdy[1]);
-		final int year = Integer.parseInt(mdy[2]);
-		for(int i = 0; i < list.size(); i++){
-			Item currItem = list.get(i);
-			if(currItem.getMonth() >= month
-					&& currItem.getDay() >= day
-					&& currItem.getYear() >= year){
-				matches.add(list.get(i));
+		if(date == null || date.length() == 0){
+			return matches;
+		}
+			else{
+			final String[] mdy = date.split("/");
+			final int month = Integer.parseInt(mdy[0]);
+			final int day = Integer.parseInt(mdy[1]);
+			final int year = Integer.parseInt(mdy[2]);
+			for(int i = 0; i < list.size(); i++){
+				Item currItem = list.get(i);
+				if(currItem.getMonth() >= month
+						&& currItem.getDay() >= day
+						&& currItem.getYear() >= year){
+					matches.add(list.get(i));
+				}
 			}
 		}
 		
