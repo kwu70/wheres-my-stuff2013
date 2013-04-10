@@ -1,8 +1,11 @@
 package com.honeybadger.wheresmystuff.test;
 
+import java.util.List;
+
 import android.test.ActivityInstrumentationTestCase2;
 import com.honeybadger.wheresmystuff.support.Item;
 import com.honeybadger.wheresmystuff.support.Member;
+import com.honeybadger.wheresmystuff.support.Search;
 import com.honeybadger.wheresmystuff.support.Security;
 import com.honeybadger.wheresmystuff.views.LoginView;
 
@@ -29,7 +32,6 @@ public class KennyTestCase extends ActivityInstrumentationTestCase2<LoginView> {
 	 * get the LoginView Activity and add a new item named test
 	 */
 	protected void setUp() throws Exception {
-		super.setUp();
 		lv = getActivity();
 		item = new Item(Security.getCurrentID() ,"test" , "", new Member(Security.getCurrentMID(), "", "", ""), false, false, "", 0, 0, 0, "");
 		Security.addItem(item);
@@ -39,9 +41,15 @@ public class KennyTestCase extends ActivityInstrumentationTestCase2<LoginView> {
 	 * This method test to see if the item is present
 	 */
 	public void testSearchName(){
-		Security sc = new Security(lv);
-		Item list = sc.getItemList().get(0);
-		Boolean compare = list.getName().equals("test");
+		List<Item> list = Search.searchByName("test");
+		System.out.println(list.size());
+		Boolean compare = false;
+		for(Item i: list){
+			if(i.getName().equals("test")){
+				compare = true;
+			}
+			System.out.println(i.getName());
+		}
 		assertTrue(compare);
 	}
 	
@@ -49,9 +57,13 @@ public class KennyTestCase extends ActivityInstrumentationTestCase2<LoginView> {
 	 * This test to see if it can search for an item Name that does not exist
 	 */
 	public void testSearchEmptyName(){
-		Security sc = new Security(lv);
-		Item list = sc.getItemList().get(0);
-		Boolean compare = list.getName().equals(" ");
+		List<Item> list = Search.searchByName("");
+		Boolean compare = false;
+		for(Item i: list){
+			if(i.getName() == ""){
+				compare = true;
+			}
+		}
 		assertTrue(!compare);
 	}
 }

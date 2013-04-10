@@ -17,7 +17,7 @@ public class JayneTestCase extends android.test.ActivityInstrumentationTestCase2
 	
 	private LoginView lv;
 	private Member member;
-	private Item item1, item2, item3, item4;
+	private Item item1;
 	
 	//constructor required for testing
 	public JayneTestCase(){
@@ -70,17 +70,8 @@ public class JayneTestCase extends android.test.ActivityInstrumentationTestCase2
 	public void testfilterDate3(){
 		item1 = new Item(Security.getCurrentID(), "item1", "test on date", member,
 						false, false, "personal", 04, 01, 2013, "Atlanta");
-		/*
-		item2 = new Item(Security.getCurrentID(), "item2", "test on date", member,
-						false, false, "personal", 04, 01, 2013, "Atlanta");
-		item3 = new Item(Security.getCurrentID(), "item3", "test before date", member,
-						false, false, "personal", 03, 31, 2013, "Atlanta");
-		item4 = new Item(Security.getCurrentID(), "item4", "test after date", member,
-						false, false, "personal", 04, 02, 2013, "Atlanta");
-		*/
 		Security.addItem(item1);
 		
-		//List<Item> allItems = Security.getMemberItemList(member);
 		List<Item> filteredItems = Search.filterDate(member, "04/01/2013");
 	
 		Boolean result = false;
