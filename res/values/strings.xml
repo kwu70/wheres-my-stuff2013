@@ -28,6 +28,12 @@
     <string name="btn_unlock_account">Unlock Account</string>
     <string name="admin_settings_view">Admin Settings</string>
     <string name="prompt">Sort By</string>
+    <string name="addPic">Add Picture</string>
+    <string name="pic_intro">Load Image From Gallery or Camera</string>
+    <string name="GalleryPic">Gallery</string>
+    <string name="CameraPic">Camera</string>
+    <string name="picture">Picture</string>
+    <string name="picture_activity">Picture</string>
     <string-array name="entries"><item>All</item>
         <item>Food</item>
         <item>Clothing</item>
