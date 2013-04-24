@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+     	android:textStyle="italic"
+        android:text="@string/pic_intro" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="391dp"
+        android:src="@drawable/honey_badger" 
+        android:contentDescription="@string/picture" />
+
+    <Button
+        android:id="@+id/loadPicBtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/loadPicBtn1"
+        android:layout_alignBottom="@+id/loadPicBtn1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="48dp"
+        android:text="@string/CameraPic" />
+
+    <Button
+        android:id="@+id/loadPicBtn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginRight="50dp"
+        android:layout_toLeftOf="@+id/loadPicBtn2"
+        android:layout_weight="0"
+        android:text="@string/GalleryPic" />
+
+</RelativeLayout>
