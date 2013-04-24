@@ -32,7 +32,7 @@ public class AddItemActivity extends Activity{
 	private Member currentMember;
 	
 	//intent to return to MemberActivity
-	private Intent returnIntent;
+	private Intent returnIntent, pictureIntent;
 	
 	//Texts fields for the item's name and description.
 	private EditText itemName;
@@ -62,6 +62,8 @@ public class AddItemActivity extends Activity{
 		returnIntent = new Intent(this, MemberActivity.class);
 		returnIntent.putExtra("userEmail", userEmail);
 		
+		pictureIntent = new Intent(this, PictureActivity.class);
+		
 		itemName = (EditText) findViewById(R.id.editItemName);
 		itemDescription = (EditText) findViewById(R.id.editDescription);
 
@@ -69,6 +71,8 @@ public class AddItemActivity extends Activity{
 		findViewById(R.id.btnCancel).setOnClickListener(new CancelClickListener());
 		
 		findViewById(R.id.btnAddItem).setOnClickListener(new AddClickListener());
+		
+		findViewById(R.id.picBtn).setOnClickListener(new PictureClickListener());
 		
 	}
 	
@@ -90,6 +94,25 @@ public class AddItemActivity extends Activity{
 			finish();
 		}
 		
+	}
+	
+	/**
+	 * This class is a listener for the add picture button. When it is clicked
+	 * it takes the user to the add picture view
+	 * 
+	 * @author Honey Badger
+	 */
+	private class PictureClickListener implements OnClickListener{
+
+		/**
+		 * Activity for detecting if add picture button is pressed or not
+		 * @param v
+		 */
+		@Override
+		public void onClick(View v) {
+			startActivity(pictureIntent);
+			finish();
+		}
 	}
 	
 	/**
