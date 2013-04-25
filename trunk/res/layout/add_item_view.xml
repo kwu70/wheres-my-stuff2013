@@ -127,9 +127,9 @@
             android:id="@+id/picBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_below="@+id/radGroupType"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/btnCancel"
             android:text="@string/addPic" />
 
     </RelativeLayout>
